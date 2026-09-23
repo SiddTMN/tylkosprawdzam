@@ -347,3 +347,170 @@ async function updateUsdPln() {
 updateUsdPln();
 
 setInterval(updateUsdPln, 60 * 60 * 1000);
+
+// --------------------------------------------------
+// ECONOMIC CALENDAR
+// --------------------------------------------------
+
+async function updateCalendar() {
+
+    const container =
+        document.getElementById("calendar-events");
+
+    if (!container) {
+        return;
+    }
+
+    try {
+
+        const now = new Date();
+        const end = new Date();
+
+        end.setDate(now.getDate() + 14);
+
+        const formatDate = date =>
+            date.toISOString().split("T")[0];
+
+        const url =
+            `https://www.financecalendar.com/wp-json/fc/v1/calendar` +
+            `?from=${formatDate(now)}` +
+            `&to=${formatDate(end)}` +
+            `&limit=100`;
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error(
+                `FinanceCalendar: ${response.status}`
+            );
+        }
+
+        const data = await response.json();
+
+        // API może zwrócić tablicę bezpośrednio
+        // albo obiekt zawierający events.
+        const events =
+            Array.isArray(data)
+                ? data
+                : data.events || [];
+
+        const upcoming = events
+
+            .filter(event =>
+                event.impact === "high" ||
+                event.impact === "medium"
+            )
+
+            .filter(event => {
+
+                if (event.all_day) {
+                    return true;
+                }
+
+                if (!event.time_utc) {
+                    return true;
+                }
+
+                return new Date(event.time_utc) >= now;
+            })
+
+            .slice(0, 5);
+
+        container.innerHTML = "";
+
+        if (upcoming.length === 0) {
+
+            container.innerHTML = `
+                <div class="calendar-loading">
+                    brak nadchodzących wydarzeń
+                </div>
+            `;
+
+            return;
+        }
+
+        upcoming.forEach(event => {
+
+            const row =
+                document.createElement("div");
+
+            row.className = "calendar-event";
+
+            let dateText = "";
+            let timeText = "—";
+
+            if (event.time_utc) {
+
+                const eventDate =
+                    new Date(event.time_utc);
+
+                dateText =
+                    eventDate
+                        .toLocaleDateString("pl-PL", {
+                            day: "2-digit",
+                            month: "short"
+                        })
+                        .toUpperCase();
+
+                timeText =
+                    eventDate
+                        .toLocaleTimeString("pl-PL", {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                            timeZone: "Europe/Warsaw"
+                        });
+
+            } else {
+
+                dateText =
+                    new Date(event.date)
+                        .toLocaleDateString("pl-PL", {
+                            day: "2-digit",
+                            month: "short"
+                        })
+                        .toUpperCase();
+            }
+
+            const impact =
+                event.impact.toUpperCase();
+
+            row.innerHTML = `
+                <div class="calendar-date">
+                    <span>${dateText}</span>
+                    <strong>${timeText}</strong>
+                </div>
+
+                <div class="calendar-info">
+                    <strong>${event.name}</strong>
+                    <span>${event.category || ""}</span>
+                </div>
+
+                <span class="calendar-impact ${event.impact}">
+                    ${impact}
+                </span>
+            `;
+
+            container.appendChild(row);
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Nie udało się pobrać kalendarza:",
+            error
+        );
+
+        container.innerHTML = `
+            <div class="calendar-loading">
+                kalendarz niedostępny
+            </div>
+        `;
+    }
+}
+
+updateCalendar();
+
+setInterval(
+    updateCalendar,
+    60 * 60 * 1000
+);
