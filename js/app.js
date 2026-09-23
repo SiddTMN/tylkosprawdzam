@@ -255,3 +255,95 @@ async function updateOilPrice() {
 
 updateOilPrice();
 setInterval(updateOilPrice, 15 * 60 * 1000);
+
+// --------------------------------------------------
+// USD / PLN
+// --------------------------------------------------
+
+async function updateUsdPln() {
+
+    try {
+
+        const endDate = new Date();
+        const startDate = new Date();
+
+        startDate.setDate(endDate.getDate() - 7);
+
+        const formatDate = date =>
+            date.toISOString().split("T")[0];
+
+        const url =
+            `https://api.frankfurter.dev/v2/rates` +
+            `?from=${formatDate(startDate)}` +
+            `&to=${formatDate(endDate)}` +
+            `&base=USD` +
+            `&quotes=PLN`;
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error(`Frankfurter: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (!Array.isArray(data) || data.length < 2) {
+            throw new Error(
+                "Brak wystarczających danych USD/PLN"
+            );
+        }
+
+        // Sortujemy po dacie, żeby nie polegać
+        // na kolejności odpowiedzi API.
+        data.sort(
+            (a, b) => new Date(a.date) - new Date(b.date)
+        );
+
+        const latest = data[data.length - 1];
+        const previous = data[data.length - 2];
+
+        const rate = Number(latest.rate);
+        const previousRate = Number(previous.rate);
+
+        const change =
+            ((rate - previousRate) / previousRate) * 100;
+
+        const usdAsset =
+            document.querySelector(
+                '.asset[data-market="usdpln"]'
+            );
+
+        if (!usdAsset) {
+            return;
+        }
+
+        const priceElement =
+            usdAsset.querySelector(".asset-price");
+
+        const changeElement =
+            usdAsset.querySelector(".asset-change");
+
+        priceElement.textContent =
+            rate.toFixed(4);
+
+        changeElement.textContent =
+            `${change >= 0 ? "+" : ""}${change.toFixed(2)}%`;
+
+        changeElement.classList.remove("up", "down");
+
+        changeElement.classList.add(
+            change >= 0 ? "up" : "down"
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Nie udało się pobrać USD/PLN:",
+            error
+        );
+    }
+}
+
+updateUsdPln();
+
+setInterval(updateUsdPln, 60 * 60 * 1000);
