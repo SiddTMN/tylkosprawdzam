@@ -144,8 +144,8 @@ function formatCryptoPrice(price) {
     }
 
     return "$" + price.toLocaleString("en-US", {
-        minimumFractionDigits: 3,
-        maximumFractionDigits: 4
+        minimumFractionDigits: 4,
+        maximumFractionDigits: 8
     });
 }
 
