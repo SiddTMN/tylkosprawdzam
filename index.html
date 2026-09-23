@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>tylkosprawdzam.</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- HEADER -->
+        <header class="topbar">
+            <div class="brand">
+                <h1>tylkosprawdzam<span>.</span></h1>
+            </div>
+
+            <div class="status">
+                <span class="status-dot"></span>
+                <span>market desk</span>
+                <span class="clock" id="clock">--:--:--</span>
+            </div>
+        </header>
+
+
+        <section class="market-bar">
+
+    <button class="asset"
+        data-symbol="COINBASE:BTCUSD"
+        data-name="BTC / USD"
+        data-coin="bitcoin">
+
+    <span class="symbol">BTC</span>
+    <strong class="asset-price">—</strong>
+    <span class="change asset-change">—</span>
+    </button>
+
+    <button class="asset active"
+        data-symbol="COINBASE:ETHUSD"
+        data-name="ETH / USD"
+        data-coin="ethereum">
+
+    <span class="symbol">ETH</span>
+    <strong class="asset-price">—</strong>
+    <span class="change asset-change">—</span>
+    </button>
+
+    <button class="asset"
+        data-symbol="COINBASE:DOTUSD"
+        data-name="DOT / USD"
+        data-coin="polkadot">
+
+    <span class="symbol">DOT</span>
+    <strong class="asset-price">—</strong>
+    <span class="change asset-change">—</span>
+    </button>
+
+    <button class="asset"
+        data-symbol="COINBASE:XLMUSD"
+        data-name="XLM / USD"
+        data-coin="stellar">
+
+    <span class="symbol">XLM</span>
+    <strong class="asset-price">—</strong>
+    <span class="change asset-change">—</span>
+    </button>
+
+    <button class="asset" data-symbol="TVC:DXY" data-name="DXY">
+        <span class="symbol">DXY</span>
+        <strong>97.42</strong>
+        <span class="change down">-0.2%</span>
+    </button>
+
+    <button class="asset" data-symbol="TVC:US10Y" data-name="US 10Y">
+        <span class="symbol">US10Y</span>
+        <strong>4.18%</strong>
+        <span class="change up">+0.03</span>
+    </button>
+
+    <button class="asset"
+        data-symbol="TVC:USOIL"
+        data-name="WTI OIL"
+        data-market="oil">
+
+    <span class="symbol">OIL</span>
+    <strong class="asset-price">—</strong>
+    <span class="change asset-change">—</span>
+    </button>
+
+</section>
+
+
+        <!-- MAIN GRID -->
+        <main class="dashboard">
+
+            <!-- CHART -->
+            <section class="panel chart-panel">
+
+                <div class="panel-header">
+                    <div>
+                        <span class="eyebrow">wykres</span>
+                        <h2 id="chart-title">ETH / USD</h2>
+                    </div>
+                </div>
+
+               <div id="tradingview-chart"></div>
+
+            </section>
+
+
+            <!-- EVENTS -->
+            <section class="panel events-panel">
+
+                <div class="panel-header">
+                    <div>
+                        <span class="eyebrow">kalendarz</span>
+                        <h2>co przed nami</h2>
+                    </div>
+                </div>
+
+                <div class="event">
+                    <div class="event-time">
+                        <span>DZIŚ</span>
+                        <strong>14:30</strong>
+                    </div>
+
+                    <div>
+                        <h3>US economic data</h3>
+                        <p>Macro · USD</p>
+                    </div>
+
+                    <span class="impact high">HIGH</span>
+                </div>
+
+                <div class="event">
+                    <div class="event-time">
+                        <span>25 SEP</span>
+                        <strong>16:00</strong>
+                    </div>
+
+                    <div>
+                        <h3>Fed speech</h3>
+                        <p>Fed · Rates</p>
+                    </div>
+
+                    <span class="impact medium">MED</span>
+                </div>
+
+                <div class="event">
+                    <div class="event-time">
+                        <span>30 SEP</span>
+                        <strong>--:--</strong>
+                    </div>
+
+                    <div>
+                        <h3>Market event</h3>
+                        <p>Crypto</p>
+                    </div>
+
+                    <span class="impact low">LOW</span>
+                </div>
+
+            </section>
+
+
+            <!-- NEWS -->
+            <section class="panel news-panel">
+
+                <div class="panel-header">
+                    <div>
+                        <span class="eyebrow">news feed</span>
+                        <h2>co się dzieje</h2>
+                    </div>
+
+                    <span class="live">● LIVE</span>
+                </div>
+
+
+                <article class="news-item">
+                    <time>09:48</time>
+
+                    <div>
+                        <h3>Spot ETF flows return positive as crypto market rebounds</h3>
+                        <p>
+                            Institutional flows improve alongside stronger BTC
+                            and ETH price action.
+                        </p>
+
+                        <div class="tags">
+                            <span>ETH</span>
+                            <span>BTC</span>
+                            <span>ETF</span>
+                        </div>
+                    </div>
+                </article>
+
+
+                <article class="news-item">
+                    <time>09:21</time>
+
+                    <div>
+                        <h3>Oil prices move lower during European trading</h3>
+                        <p>
+                            Energy markets react to changing supply expectations
+                            and geopolitical developments.
+                        </p>
+
+                        <div class="tags">
+                            <span>OIL</span>
+                            <span>MACRO</span>
+                        </div>
+                    </div>
+                </article>
+
+
+                <article class="news-item">
+                    <time>08:54</time>
+
+                    <div>
+                        <h3>Polkadot ecosystem activity remains in focus</h3>
+                        <p>
+                            Traders continue watching network developments
+                            and DOT market structure.
+                        </p>
+
+                        <div class="tags">
+                            <span>DOT</span>
+                        </div>
+                    </div>
+                </article>
+
+            </section>
+
+
+            <!-- PULSE -->
+            <section class="panel pulse-panel">
+
+                <div class="panel-header">
+                    <div>
+                        <span class="eyebrow">snapshot</span>
+                        <h2>market pulse</h2>
+                    </div>
+                </div>
+
+                <div class="metric">
+                    <span>BTC dominance</span>
+                    <strong>57.2%</strong>
+                </div>
+
+                <div class="metric">
+                    <span>Fear & Greed</span>
+                    <strong>48</strong>
+                </div>
+
+                <div class="metric">
+                    <span>ETH / BTC</span>
+                    <strong class="up">↑ 1.8%</strong>
+                </div>
+
+                <div class="metric">
+                    <span>DXY</span>
+                    <strong class="down">↓ 0.2%</strong>
+                </div>
+
+                <div class="metric">
+                    <span>Market bias</span>
+                    <strong>NEUTRAL</strong>
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>
