@@ -157,62 +157,14 @@
                         <h2>co się dzieje</h2>
                     </div>
 
-                    <span class="live">● LIVE</span>
+                    <span class="live" id="news-status" role="status">pobieranie...</span>
                 </div>
 
 
-                <article class="news-item">
-                    <time>09:48</time>
-
-                    <div>
-                        <h3>Spot ETF flows return positive as crypto market rebounds</h3>
-                        <p>
-                            Institutional flows improve alongside stronger BTC
-                            and ETH price action.
-                        </p>
-
-                        <div class="tags">
-                            <span>ETH</span>
-                            <span>BTC</span>
-                            <span>ETF</span>
-                        </div>
-                    </div>
-                </article>
-
-
-                <article class="news-item">
-                    <time>09:21</time>
-
-                    <div>
-                        <h3>Oil prices move lower during European trading</h3>
-                        <p>
-                            Energy markets react to changing supply expectations
-                            and geopolitical developments.
-                        </p>
-
-                        <div class="tags">
-                            <span>OIL</span>
-                            <span>MACRO</span>
-                        </div>
-                    </div>
-                </article>
-
-
-                <article class="news-item">
-                    <time>08:54</time>
-
-                    <div>
-                        <h3>Polkadot ecosystem activity remains in focus</h3>
-                        <p>
-                            Traders continue watching network developments
-                            and DOT market structure.
-                        </p>
-
-                        <div class="tags">
-                            <span>DOT</span>
-                        </div>
-                    </div>
-                </article>
+                <div id="news-items" class="news-items" aria-label="Najnowsze wiadomości">
+                    <p class="news-message">pobieranie wiadomości...</p>
+                </div>
+                <a class="news-source" href="https://www.coindesk.com/" target="_blank" rel="noopener noreferrer">źródło: CoinDesk · RSS przez rss2json</a>
 
             </section>
 
@@ -259,6 +211,7 @@
     </div>
 
     <script src="js/app.js"></script>
+    <script src="js/news.js"></script>
 
 </body>
 </html>
