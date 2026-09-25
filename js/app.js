@@ -24,6 +24,7 @@ const cryptoPricesUsd = {};
 
 let usdPlnRate = null;
 let activeCoin = "ethereum";
+let oilPriceUsd = null;
 
 
 function loadChart(symbol, name) {
@@ -105,6 +106,11 @@ assets.forEach(asset => {
         asset.classList.add("active");
 
         activeCoin = asset.dataset.coin || null;
+
+        if (asset.dataset.market === "oil") {
+        activeCoin = "oil";
+        }
+
         updateChartPricePln();
 
         loadChart(
@@ -132,11 +138,17 @@ function updateChartPricePln() {
         return;
     }
 
-    const usdPrice = cryptoPricesUsd[activeCoin];
+    let usdPrice;
+
+    if (activeCoin === "oil") {
+    usdPrice = oilPriceUsd;
+    } else {
+    usdPrice = cryptoPricesUsd[activeCoin];
+    }
 
     if (!usdPrice) {
-        chartPricePln.textContent = "";
-        return;
+    chartPricePln.textContent = "";
+    return;
     }
 
     const plnPrice = usdPrice * usdPlnRate;
@@ -290,7 +302,8 @@ async function updateOilPrice() {
 
         const changeElement =
         oilAsset.querySelector(".asset-change");
-
+        
+        oilPriceUsd = Number(data.priceUsd);
         priceElement.textContent =
         "$" + Number(data.priceUsd).toFixed(2);
 
@@ -302,6 +315,7 @@ async function updateOilPrice() {
         changeElement.classList.add(
         data.changePct >= 0 ? "up" : "down"
         );
+        updateChartPricePln();
 
         } catch (error) {
 
