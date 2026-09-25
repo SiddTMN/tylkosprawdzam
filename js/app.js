@@ -17,6 +17,13 @@ setInterval(updateClock, 1000);
 const chartContainer = document.getElementById("tradingview-chart");
 const chartTitle = document.getElementById("chart-title");
 const assets = document.querySelectorAll(".asset");
+const chartPricePln =
+    document.getElementById("chart-price-pln");
+
+const cryptoPricesUsd = {};
+
+let usdPlnRate = null;
+let activeCoin = "ethereum";
 
 
 function loadChart(symbol, name) {
@@ -97,6 +104,9 @@ assets.forEach(asset => {
 
         asset.classList.add("active");
 
+        activeCoin = asset.dataset.coin || null;
+        updateChartPricePln();
+
         loadChart(
             asset.dataset.symbol,
             asset.dataset.name
@@ -110,6 +120,53 @@ loadChart(
     "COINBASE:ETHUSD",
     "ETH / USD"
 );
+
+function updateChartPricePln() {
+
+    if (!chartPricePln) {
+        return;
+    }
+
+    if (!activeCoin || !usdPlnRate) {
+        chartPricePln.textContent = "";
+        return;
+    }
+
+    const usdPrice = cryptoPricesUsd[activeCoin];
+
+    if (!usdPrice) {
+        chartPricePln.textContent = "";
+        return;
+    }
+
+    const plnPrice = usdPrice * usdPlnRate;
+
+    let formatted;
+
+    if (plnPrice >= 1000) {
+
+        formatted = plnPrice.toLocaleString("pl-PL", {
+            maximumFractionDigits: 0
+        });
+
+    } else if (plnPrice >= 1) {
+
+        formatted = plnPrice.toLocaleString("pl-PL", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+
+    } else {
+
+        formatted = plnPrice.toLocaleString("pl-PL", {
+            minimumFractionDigits: 4,
+            maximumFractionDigits: 8
+        });
+    }
+
+    chartPricePln.textContent =
+        `≈ ${formatted} PLN`;
+}
 
 // --------------------------------------------------
 // LIVE CRYPTO PRICES
@@ -178,6 +235,7 @@ async function updateCryptoPrices() {
 
             const price = coinData.usd;
             const change = coinData.usd_24h_change;
+            cryptoPricesUsd[coin] = price;
 
             priceElement.textContent =
                 formatCryptoPrice(price);
@@ -190,6 +248,7 @@ async function updateCryptoPrices() {
             changeElement.classList.add(
                 change >= 0 ? "up" : "down"
             );
+            updateChartPricePln();
         });
 
     } catch (error) {
@@ -303,6 +362,7 @@ async function updateUsdPln() {
         const previous = data[data.length - 2];
 
         const rate = Number(latest.rate);
+        usdPlnRate = rate;
         const previousRate = Number(previous.rate);
 
         const change =
@@ -334,6 +394,7 @@ async function updateUsdPln() {
         changeElement.classList.add(
             change >= 0 ? "up" : "down"
         );
+        updateChartPricePln();
 
     } catch (error) {
 
