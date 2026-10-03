@@ -575,15 +575,21 @@ body {
     flex-shrink: 0;
 }
 
-.dxy-metric {
-    display: block;
+.snapshot-panels {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+}
+
+.dxy-content {
+    padding: 15px 20px;
     min-width: 0;
 }
 
 .dxy-widget {
     width: 100%;
     min-width: 0;
-    margin-top: 8px;
 }
 
 .dxy-widget .tradingview-widget-container__widget {

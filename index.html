@@ -197,56 +197,65 @@
 
 
             <!-- PULSE -->
-            <section class="panel pulse-panel">
+            <div class="snapshot-panels">
+                <section class="panel pulse-panel">
 
-                <div class="panel-header">
-                    <div>
-                        <span class="eyebrow">snapshot</span>
-                        <h2>market pulse</h2>
+                    <div class="panel-header">
+                        <div>
+                            <span class="eyebrow">snapshot</span>
+                            <h2>market pulse</h2>
+                        </div>
                     </div>
-                </div>
 
-                <div class="metric">
-                    <div class="metric-label">
-                        <span>BTC dominance</span>
-                        <small class="metric-details"><a href="https://www.coingecko.com/en/global-charts" target="_blank" rel="noopener noreferrer">CoinGecko</a> · <span id="btc-dominance-status" role="status">pobieranie...</span></small>
+                    <div class="metric">
+                        <div class="metric-label">
+                            <span>BTC dominance</span>
+                            <small class="metric-details"><a href="https://www.coingecko.com/en/global-charts" target="_blank" rel="noopener noreferrer">CoinGecko</a> · <span id="btc-dominance-status" role="status">pobieranie...</span></small>
+                        </div>
+                        <strong id="btc-dominance">—%</strong>
                     </div>
-                    <strong id="btc-dominance">—%</strong>
-                </div>
 
-                <div class="metric">
-                    <span>Fear & Greed</span>
-                    <strong>—</strong>
-                </div>
-
-                <div class="metric">
-                    <span>ETH / BTC</span>
-                    <strong>—</strong>
-                </div>
-
-                <div class="metric dxy-metric">
-                    <span>DXY</span>
-                    <div class="tradingview-widget-container dxy-widget">
-                        <div class="tradingview-widget-container__widget"></div>
-                        <div class="metric-details"><a href="https://www.tradingview.com/symbols/CAPITALCOM-DXY/" target="_blank" rel="noopener noreferrer">DXY CFD · Capital.com / TradingView</a></div>
-                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                        {
-                            "symbol": "CAPITALCOM:DXY",
-                            "width": "100%",
-                            "isTransparent": true,
-                            "colorTheme": "dark",
-                            "locale": "en"
-                        }
-                        </script>
+                    <div class="metric">
+                        <span>Fear & Greed</span>
+                        <strong>—</strong>
                     </div>
-                </div>
 
-                <div class="metric">
-                    <span>Market bias</span>
-                    <strong>—</strong>
-                </div>
+                    <div class="metric">
+                        <span>ETH / BTC</span>
+                        <strong>—</strong>
+                    </div>
 
-            </section>
+                    <div class="metric">
+                        <span>Market bias</span>
+                        <strong>—</strong>
+                    </div>
+
+                </section>
+
+                <section class="panel dxy-panel">
+                    <div class="panel-header">
+                        <div>
+                            <span class="eyebrow">macro</span>
+                            <h2>dollar index</h2>
+                        </div>
+                    </div>
+                    <div class="dxy-content">
+                        <div class="tradingview-widget-container dxy-widget">
+                            <div class="tradingview-widget-container__widget"></div>
+                            <div class="metric-details"><a href="https://www.tradingview.com/symbols/CAPITALCOM-DXY/" target="_blank" rel="noopener noreferrer">DXY CFD · Capital.com / TradingView</a></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                            {
+                                "symbol": "CAPITALCOM:DXY",
+                                "width": "100%",
+                                "isTransparent": true,
+                                "colorTheme": "dark",
+                                "locale": "en"
+                            }
+                            </script>
+                        </div>
+                    </div>
+                </section>
+            </div>
 
         </main>
 
