@@ -575,6 +575,21 @@ body {
     flex-shrink: 0;
 }
 
+.dxy-metric {
+    display: block;
+    min-width: 0;
+}
+
+.dxy-widget {
+    width: 100%;
+    min-width: 0;
+    margin-top: 8px;
+}
+
+.dxy-widget .tradingview-widget-container__widget {
+    min-height: 101px;
+}
+
 /* SMALLER DESKTOPS */
 
 @media (max-width: 1250px) {
