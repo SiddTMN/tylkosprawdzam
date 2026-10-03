@@ -160,24 +160,40 @@
 
 
             <!-- NEWS -->
-            <section class="panel news-panel">
+            <div class="news-panels">
+                <section class="panel news-panel">
 
-                <div class="panel-header">
-                    <div>
-                        <span class="eyebrow">news feed</span>
-                        <h2>co się dzieje</h2>
+                    <div class="panel-header">
+                        <div>
+                            <span class="eyebrow">crypto news</span>
+                            <h2>co się dzieje</h2>
+                        </div>
+
+                        <span class="live" id="news-status" role="status">pobieranie...</span>
                     </div>
 
-                    <span class="live" id="news-status" role="status">pobieranie...</span>
-                </div>
 
+                    <div id="news-items" class="news-items" aria-label="Najnowsze wiadomości o kryptowalutach">
+                        <p class="news-message">pobieranie wiadomości...</p>
+                    </div>
+                    <a class="news-source" href="https://www.coindesk.com/" target="_blank" rel="noopener noreferrer">źródło: CoinDesk · RSS przez rss2json</a>
 
-                <div id="news-items" class="news-items" aria-label="Najnowsze wiadomości">
-                    <p class="news-message">pobieranie wiadomości...</p>
-                </div>
-                <a class="news-source" href="https://www.coindesk.com/" target="_blank" rel="noopener noreferrer">źródło: CoinDesk · RSS przez rss2json</a>
+                </section>
 
-            </section>
+                <section class="panel news-panel">
+                    <div class="panel-header">
+                        <div>
+                            <span class="eyebrow">global news</span>
+                            <h2>co na świecie</h2>
+                        </div>
+                        <span class="live" id="global-news-status" role="status">pobieranie...</span>
+                    </div>
+                    <div id="global-news-items" class="news-items" aria-label="Najnowsze wiadomości ze świata">
+                        <p class="news-message">pobieranie wiadomości...</p>
+                    </div>
+                    <a class="news-source" href="https://www.bbc.com/news/world" target="_blank" rel="noopener noreferrer">źródło: BBC News · RSS przez rss2json</a>
+                </section>
+            </div>
 
 
             <!-- PULSE -->
