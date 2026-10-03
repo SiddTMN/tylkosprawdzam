@@ -583,7 +583,7 @@ body {
 }
 
 .dxy-content {
-    padding: 15px 20px;
+    padding: 20px;
     min-width: 0;
 }
 
@@ -594,6 +594,11 @@ body {
 
 .dxy-widget .tradingview-widget-container__widget {
     min-height: 101px;
+}
+
+.dxy-source {
+    margin-top: 12px;
+    overflow-wrap: anywhere;
 }
 
 /* SMALLER DESKTOPS */
