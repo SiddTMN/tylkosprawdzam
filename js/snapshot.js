@@ -18,6 +18,47 @@
     let fetching = false;
     let cached = true;
 
+    const fearGreedValue = document.getElementById("fear-greed");
+    const fearGreedStatus = document.getElementById("fear-greed-status");
+    const fearGreedRefreshInterval = 60 * 60 * 1000;
+    const dateFormat = new Intl.DateTimeFormat("pl-PL", {
+        day: "2-digit", month: "2-digit", year: "numeric", timeZone: "Europe/Warsaw"
+    });
+    let fearGreedLastAttempt = 0;
+    let fearGreedFetching = false;
+
+    async function updateFearGreed() {
+        if (!fearGreedValue || !fearGreedStatus || document.hidden || fearGreedFetching) return;
+        fearGreedFetching = true;
+        fearGreedLastAttempt = Date.now();
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 15000);
+        try {
+            const response = await fetch("https://api.alternative.me/fng/?limit=1", { signal: controller.signal });
+            if (!response.ok) throw new Error("Alternative.me: " + response.status);
+            const payload = await response.json();
+            const reading = Array.isArray(payload?.data) ? payload.data[0] : null;
+            const numericField = field =>
+                (typeof field === "string" && field.trim() !== "") || typeof field === "number";
+            const index = numericField(reading?.value) ? Number(reading.value) : NaN;
+            const updatedAt = numericField(reading?.timestamp) ? Number(reading.timestamp) * 1000 : NaN;
+            if (payload?.metadata?.error || !Number.isInteger(index) || index < 0 || index > 100 ||
+                typeof reading?.value_classification !== "string" || !reading.value_classification.trim() ||
+                !Number.isFinite(updatedAt) || updatedAt <= 0 || updatedAt > Date.now() + 60 * 1000) {
+                throw new Error("Nieprawidłowe dane Fear & Greed");
+            }
+            fearGreedValue.textContent = reading.value + " · " + reading.value_classification;
+            fearGreedStatus.textContent = "dane · " + dateFormat.format(updatedAt);
+        } catch (error) {
+            console.warn("Nie udało się pobrać Fear & Greed:", error);
+            fearGreedValue.textContent = "—";
+            fearGreedStatus.textContent = "dane niedostępne";
+        } finally {
+            clearTimeout(timeout);
+            fearGreedFetching = false;
+        }
+    }
+
     function valid(result) {
         return result && typeof result.dominance === "number" &&
             Number.isFinite(result.dominance) && result.dominance > 0 && result.dominance <= 100 &&
@@ -81,9 +122,11 @@
         if (document.hidden) return;
         render();
         if (Date.now() - lastAttempt >= refreshInterval) update();
+        if (Date.now() - fearGreedLastAttempt >= fearGreedRefreshInterval) updateFearGreed();
     }
 
     update();
+    updateFearGreed();
     setInterval(refreshIfDue, refreshInterval);
     document.addEventListener("visibilitychange", refreshIfDue);
 })();
