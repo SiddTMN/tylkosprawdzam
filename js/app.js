@@ -191,10 +191,50 @@ const coinIds = [...cryptoAssets]
     .join(",");
 
 const cryptoApiUrl =
-    `https://api.coingecko.com/api/v3/simple/price` +
+    `https://api.coingecko.com/api/v3/coins/markets` +
     `?ids=${coinIds}` +
-    `&vs_currencies=usd` +
-    `&include_24hr_change=true`;
+    `&vs_currency=usd` +
+    `&sparkline=false&price_change_percentage=7d,30d`;
+
+function renderMarketTrend(data) {
+    const element = document.getElementById("market-trend");
+    if (!element) return;
+    const trend = id => {
+        const coin = data[id];
+        const week = coin?.price_change_percentage_7d_in_currency;
+        const month = coin?.price_change_percentage_30d_in_currency;
+        return typeof week === "number" && Number.isFinite(week) &&
+            typeof month === "number" && Number.isFinite(month)
+            ? 0.60 * week + 0.40 * month : null;
+    };
+    const average = (first, second) => {
+        const a = trend(first), b = trend(second);
+        return a !== null && b !== null ? (a + b) / 2 : null;
+    };
+    const direction = score => score > 3 ? 1 : score < -3 ? -1 : 0;
+    const core = average("bitcoin", "ethereum");
+    element.className = "market-trend";
+    if (core === null) {
+        element.textContent = "—";
+        element.setAttribute("aria-label", "Market Trend: dane niedostępne");
+        return;
+    }
+    const main = direction(core);
+    const broad = average("polkadot", "stellar");
+    const speculative = average("bonk", "aethir");
+    const pressure = broad === null ? 0 : direction(broad);
+    let level = 0;
+    if (pressure !== 0 && (main === 0 || pressure === main)) {
+        level = 1;
+        if (speculative !== null && direction(speculative) === pressure) level = 2;
+    }
+    element.textContent = main > 0 ? "↑" : main < 0 ? "↓" : "→";
+    element.classList.add(main > 0 ? "trend-up" : main < 0 ? "trend-down" : "trend-neutral");
+    if (level) element.classList.add("glow-" + level, pressure > 0 ? "glow-up" : "glow-down");
+    element.setAttribute("aria-label", "Market Trend: " +
+        (main > 0 ? "trend wzrostowy" : main < 0 ? "trend spadkowy" : "trend boczny") +
+        (level ? ", " + (pressure > 0 ? "dodatnie" : "ujemne") + " potwierdzenie, poziom " + level : ""));
+}
 
 function formatCryptoPrice(price) {
 
@@ -228,7 +268,10 @@ async function updateCryptoPrices() {
             throw new Error(`CoinGecko: ${response.status}`);
         }
 
-        const data = await response.json();
+        const markets = await response.json();
+        if (!Array.isArray(markets)) throw new Error("Nieprawidłowe dane CoinGecko");
+        const data = Object.fromEntries(markets.map(coin => [coin.id, coin]));
+        renderMarketTrend(data);
 
         cryptoAssets.forEach(asset => {
 
@@ -245,13 +288,20 @@ async function updateCryptoPrices() {
             const changeElement =
                 asset.querySelector(".asset-change");
 
-            const price = coinData.usd;
-            const change = coinData.usd_24h_change;
+            const price = coinData.current_price;
+            const change = coinData.price_change_percentage_24h;
+            if (!Number.isFinite(price)) return;
             cryptoPricesUsd[coin] = price;
 
             priceElement.textContent =
                 formatCryptoPrice(price);
 
+            if (!Number.isFinite(change)) {
+                changeElement.textContent = "—";
+                changeElement.classList.remove("up", "down");
+                updateChartPricePln();
+                return;
+            }
             changeElement.textContent =
                 `${change >= 0 ? "+" : ""}${change.toFixed(2)}%`;
 
@@ -269,6 +319,7 @@ async function updateCryptoPrices() {
             "Nie udało się pobrać cen krypto:",
             error
         );
+        renderMarketTrend({});
     }
 }
 

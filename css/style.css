@@ -575,6 +575,26 @@ body {
     flex-shrink: 0;
 }
 
+.metric .market-trend {
+    font-size: 36px;
+    line-height: 1;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.market-trend.trend-up { color: var(--green); }
+.market-trend.trend-down { color: var(--red); }
+.market-trend.glow-up { --trend-glow: var(--green); }
+.market-trend.glow-down { --trend-glow: var(--red); }
+.market-trend.glow-1 {
+    text-shadow: 0 0 8px color-mix(in srgb, var(--trend-glow) 35%, transparent);
+}
+.market-trend.glow-2 {
+    text-shadow: 0 0 8px color-mix(in srgb, var(--trend-glow) 55%, transparent),
+        0 0 16px color-mix(in srgb, var(--trend-glow) 25%, transparent);
+}
+.market-trend-details { overflow-wrap: anywhere; }
+
 .snapshot-panels {
     display: flex;
     flex-direction: column;
