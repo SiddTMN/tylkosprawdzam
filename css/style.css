@@ -632,6 +632,17 @@ body {
     overflow-wrap: anywhere;
 }
 
+.dxy-fallback {
+    padding: 20px 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.dxy-content.dxy-unavailable .dxy-widget,
+.dxy-content.dxy-unavailable .dxy-source {
+    display: none;
+}
+
 /* SMALLER DESKTOPS */
 
 @media (max-width: 1250px) {
