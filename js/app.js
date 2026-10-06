@@ -199,6 +199,8 @@ const cryptoApiUrl =
 function renderMarketTrend(data) {
     const element = document.getElementById("market-trend");
     if (!element) return;
+    const assetLabels = document.querySelectorAll(".market-trend-details .trend-asset");
+    assetLabels.forEach(label => { label.className = "trend-asset"; });
     const trend = id => {
         const coin = data[id];
         const week = coin?.price_change_percentage_7d_in_currency;
@@ -231,6 +233,14 @@ function renderMarketTrend(data) {
     element.textContent = main > 0 ? "↑" : main < 0 ? "↓" : "→";
     element.classList.add(main > 0 ? "trend-up" : main < 0 ? "trend-down" : "trend-neutral");
     if (level) element.classList.add("glow-" + level, pressure > 0 ? "glow-up" : "glow-down");
+    assetLabels.forEach(label => {
+        const group = label.dataset.trendGroup;
+        if (group === "core") {
+            label.classList.add(main > 0 ? "trend-up" : main < 0 ? "trend-down" : "trend-neutral");
+        } else if ((group === "broad" && level >= 1) || (group === "speculative" && level === 2)) {
+            label.classList.add(pressure > 0 ? "trend-up" : "trend-down", group === "broad" ? "glow-1" : "glow-2");
+        }
+    });
     element.setAttribute("aria-label", "Market Trend: " +
         (main > 0 ? "trend wzrostowy" : main < 0 ? "trend spadkowy" : "trend boczny") +
         (level ? ", " + (pressure > 0 ? "dodatnie" : "ujemne") + " potwierdzenie, poziom " + level : ""));

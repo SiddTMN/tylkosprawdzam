@@ -587,13 +587,24 @@ body {
 .market-trend.glow-up { --trend-glow: var(--green); }
 .market-trend.glow-down { --trend-glow: var(--red); }
 .market-trend.glow-1 {
-    text-shadow: 0 0 8px color-mix(in srgb, var(--trend-glow) 35%, transparent);
+    text-shadow: 0 0 8px color-mix(in srgb, var(--trend-glow) 30%, transparent);
 }
 .market-trend.glow-2 {
-    text-shadow: 0 0 8px color-mix(in srgb, var(--trend-glow) 55%, transparent),
-        0 0 16px color-mix(in srgb, var(--trend-glow) 25%, transparent);
+    text-shadow: 0 0 8px color-mix(in srgb, var(--trend-glow) 50%, transparent),
+        0 0 16px color-mix(in srgb, var(--trend-glow) 22%, transparent);
 }
 .market-trend-details { overflow-wrap: anywhere; }
+.market-trend-details .trend-asset { color: var(--muted); }
+.market-trend-details .trend-up { color: var(--green); }
+.market-trend-details .trend-down { color: var(--red); }
+.market-trend-details .trend-neutral { color: var(--text); }
+.market-trend-details .glow-1 {
+    text-shadow: 0 0 4px color-mix(in srgb, currentColor 22%, transparent);
+}
+.market-trend-details .glow-2 {
+    text-shadow: 0 0 4px color-mix(in srgb, currentColor 32%, transparent),
+        0 0 8px color-mix(in srgb, currentColor 14%, transparent);
+}
 
 .snapshot-panels {
     display: flex;
