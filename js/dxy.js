@@ -1,39 +1,67 @@
 (() => {
-    const content = document.querySelector(".dxy-content");
-    const widget = content?.querySelector(".dxy-widget");
-    const fallback = content?.querySelector(".dxy-fallback");
-    if (!widget || !fallback) return;
-
-    // The embed loader creates a cross-origin iframe; its quote data cannot
-    // be inspected here. Only watch the DXY container for initialization.
-    const hasWidget = () => Array.from(widget.querySelectorAll("iframe"))
-        .some(frame => {
-            const src = frame.getAttribute("src");
-            return src && src !== "about:blank";
-        });
-
+    console.log("[DXY] fallback monitor started");
+    let readyFrame = null;
+    let timeout;
+    let observer;
+    let initialized = false;
+    const getFrame = () => document.querySelector(".dxy-widget iframe");
     const restoreWidget = () => {
-        if (!hasWidget()) return false;
+        if (!initialized || !readyFrame || getFrame()?.contentWindow !== readyFrame) return;
         clearTimeout(timeout);
+        const content = document.querySelector(".dxy-content");
         content.classList.remove("dxy-unavailable");
-        fallback.hidden = true;
+        content.querySelector(".dxy-fallback").hidden = true;
         observer.disconnect();
-        return true;
+        console.log("[DXY] widget ready; normal state restored");
     };
-
-    const observer = new MutationObserver(restoreWidget);
-    const timeout = setTimeout(() => {
-        if (restoreWidget()) return;
-        content.classList.add("dxy-unavailable");
-        fallback.hidden = false;
-        // Keep watching so a slow loader can still replace the fallback.
-    }, 8000);
-
-    observer.observe(widget, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ["src"]
+    // Register before TradingView starts; an iframe alone does not prove readiness.
+    window.addEventListener("message", event => {
+        const frame = getFrame();
+        if (!frame || event.source !== frame.contentWindow) return;
+        let origin;
+        try { origin = new URL(frame.src).origin; } catch { return; }
+        if (event.origin !== origin || event.data?.name !== "tv-widget-ready") return;
+        readyFrame = event.source;
+        console.log("[DXY] TradingView ready signal received");
+        restoreWidget();
     });
-    restoreWidget();
+    const initialize = () => {
+        const content = document.querySelector(".dxy-content");
+        const widget = content?.querySelector(".dxy-widget");
+        const fallback = content?.querySelector(".dxy-fallback");
+        if (!widget || !fallback) {
+            console.warn("[DXY] initialization aborted: DXY markup missing");
+            return;
+        }
+        initialized = true;
+        let detectedFrame = null;
+        const detectFrame = () => {
+            const frame = getFrame();
+            if (frame && frame !== detectedFrame) {
+                detectedFrame = frame;
+                console.log("[DXY] iframe detected; waiting for widget ready");
+            }
+        };
+        observer = new MutationObserver(detectFrame);
+        observer.observe(widget, { childList: true, subtree: true });
+        timeout = setTimeout(() => {
+            console.log("[DXY] timeout reached");
+            if (readyFrame && getFrame()?.contentWindow === readyFrame) {
+                restoreWidget();
+                return;
+            }
+            content.classList.add("dxy-unavailable");
+            fallback.hidden = false;
+            console.log("[DXY] fallback shown");
+            // A late ready message can restore the widget without reloading it.
+        }, 8000);
+        console.log("[DXY] monitoring initialized; timeout 8000 ms");
+        detectFrame();
+        restoreWidget();
+    };
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initialize, { once: true });
+    } else {
+        initialize();
+    }
 })();
