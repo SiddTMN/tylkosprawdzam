@@ -1,21 +1,53 @@
 {
-  "schemaVersion": 1,
-  "source": "FinanceCalendar",
-  "generatedAt": "2026-10-08T11:53:09.436Z",
+  "schemaVersion": 2,
+  "source": "FinanceCalendar+TreasuryDirect",
+  "generatedAt": "2026-10-08T13:43:05.839Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
     "from": "2026-10-08",
     "to": "2026-10-22"
   },
+  "sources": {
+    "FinanceCalendar": {
+      "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
+      "status": "fresh",
+      "checkedAt": "2026-10-08T13:43:05.839Z",
+      "lastSuccessAt": "2026-10-08T13:43:05.839Z"
+    },
+    "TreasuryDirect": {
+      "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
+      "status": "fresh",
+      "checkedAt": "2026-10-08T13:43:05.839Z",
+      "lastSuccessAt": "2026-10-08T13:43:05.839Z"
+    }
+  },
   "events": [
     {
-      "name": "Jobless claims",
-      "category": "economic-indicators",
-      "impact": "medium",
+      "source": "TreasuryDirect",
+      "id": "TreasuryDirect:912810UW6:2026-10-08",
+      "name": "US Treasury 30Y Auction (reopening)",
+      "category": "TreasuryDirect · potwierdzona",
+      "impact": "high",
       "kind": "timed",
-      "sortAt": 1791462600000,
-      "expiresAt": 1791462600000
+      "sortAt": 1791478800000,
+      "expiresAt": 1791478800000,
+      "cusip": "912810UW6",
+      "securityType": "Bond",
+      "originalTerm": "30-Year",
+      "remainingTerm": "29-Year 10-Month",
+      "reopening": true,
+      "auctionDate": "2026-10-08",
+      "settlementDate": "2026-10-15",
+      "announcementDate": "2026-10-01",
+      "maturityDate": "2056-08-15",
+      "confirmation": "announced",
+      "timeZone": "America/New_York",
+      "timeBasis": "competitive-bid-close",
+      "competitiveClose": "13:00",
+      "noncompetitiveClose": "12:00",
+      "offeringAmount": "22000000000",
+      "announcementUrl": "https://www.treasurydirect.gov/instit/annceresult/press/preanre/2026/A_20261001_4.pdf"
     },
     {
       "name": "Canada Labour Force Survey",
@@ -23,7 +55,8 @@
       "impact": "high",
       "kind": "timed",
       "sortAt": 1791549000000,
-      "expiresAt": 1791549000000
+      "expiresAt": 1791549000000,
+      "source": "FinanceCalendar"
     },
     {
       "name": "Existing Home Sales",
@@ -31,7 +64,8 @@
       "impact": "medium",
       "kind": "timed",
       "sortAt": 1791900000000,
-      "expiresAt": 1791900000000
+      "expiresAt": 1791900000000,
+      "source": "FinanceCalendar"
     },
     {
       "name": "China CPI",
@@ -39,7 +73,8 @@
       "impact": "medium",
       "kind": "timed",
       "sortAt": 1791941400000,
-      "expiresAt": 1791941400000
+      "expiresAt": 1791941400000,
+      "source": "FinanceCalendar"
     },
     {
       "name": "US CPI",
@@ -47,7 +82,8 @@
       "impact": "high",
       "kind": "timed",
       "sortAt": 1791981000000,
-      "expiresAt": 1791981000000
+      "expiresAt": 1791981000000,
+      "source": "FinanceCalendar"
     },
     {
       "name": "Australia Labour Force",
@@ -55,7 +91,8 @@
       "impact": "high",
       "kind": "timed",
       "sortAt": 1792024200000,
-      "expiresAt": 1792024200000
+      "expiresAt": 1792024200000,
+      "source": "FinanceCalendar"
     },
     {
       "name": "UK GDP",
@@ -63,7 +100,8 @@
       "impact": "high",
       "kind": "timed",
       "sortAt": 1792044000000,
-      "expiresAt": 1792044000000
+      "expiresAt": 1792044000000,
+      "source": "FinanceCalendar"
     },
     {
       "name": "Jobless claims",
@@ -71,7 +109,8 @@
       "impact": "medium",
       "kind": "timed",
       "sortAt": 1792067400000,
-      "expiresAt": 1792067400000
+      "expiresAt": 1792067400000,
+      "source": "FinanceCalendar"
     },
     {
       "name": "Retail Sales",
@@ -79,7 +118,8 @@
       "impact": "high",
       "kind": "timed",
       "sortAt": 1792067400000,
-      "expiresAt": 1792067400000
+      "expiresAt": 1792067400000,
+      "source": "FinanceCalendar"
     },
     {
       "name": "PPI",
@@ -87,7 +127,8 @@
       "impact": "medium",
       "kind": "timed",
       "sortAt": 1792067400000,
-      "expiresAt": 1792067400000
+      "expiresAt": 1792067400000,
+      "source": "FinanceCalendar"
     },
     {
       "name": "Industrial Production",
@@ -95,7 +136,8 @@
       "impact": "medium",
       "kind": "timed",
       "sortAt": 1792156500000,
-      "expiresAt": 1792156500000
+      "expiresAt": 1792156500000,
+      "source": "FinanceCalendar"
     },
     {
       "name": "China GDP",
@@ -103,7 +145,8 @@
       "impact": "high",
       "kind": "timed",
       "sortAt": 1792375200000,
-      "expiresAt": 1792375200000
+      "expiresAt": 1792375200000,
+      "source": "FinanceCalendar"
     },
     {
       "name": "Canada CPI",
@@ -111,7 +154,8 @@
       "impact": "high",
       "kind": "timed",
       "sortAt": 1792413000000,
-      "expiresAt": 1792413000000
+      "expiresAt": 1792413000000,
+      "source": "FinanceCalendar"
     },
     {
       "name": "PBoC Loan Prime Rate",
@@ -119,7 +163,8 @@
       "impact": "medium",
       "kind": "timed",
       "sortAt": 1792458000000,
-      "expiresAt": 1792458000000
+      "expiresAt": 1792458000000,
+      "source": "FinanceCalendar"
     },
     {
       "name": "UK Labour Market Report",
@@ -127,7 +172,8 @@
       "impact": "high",
       "kind": "timed",
       "sortAt": 1792476000000,
-      "expiresAt": 1792476000000
+      "expiresAt": 1792476000000,
+      "source": "FinanceCalendar"
     },
     {
       "name": "Housing starts",
@@ -135,7 +181,8 @@
       "impact": "medium",
       "kind": "timed",
       "sortAt": 1792499400000,
-      "expiresAt": 1792499400000
+      "expiresAt": 1792499400000,
+      "source": "FinanceCalendar"
     },
     {
       "name": "UK CPI Inflation",
@@ -143,7 +190,8 @@
       "impact": "high",
       "kind": "timed",
       "sortAt": 1792562400000,
-      "expiresAt": 1792562400000
+      "expiresAt": 1792562400000,
+      "source": "FinanceCalendar"
     },
     {
       "name": "Jobless claims",
@@ -151,7 +199,8 @@
       "impact": "medium",
       "kind": "timed",
       "sortAt": 1792672200000,
-      "expiresAt": 1792672200000
+      "expiresAt": 1792672200000,
+      "source": "FinanceCalendar"
     }
   ]
 }

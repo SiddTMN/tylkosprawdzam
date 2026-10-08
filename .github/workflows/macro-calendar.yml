@@ -18,6 +18,7 @@ on:
     paths:
       - 'index.html'
       - 'js/calendar*.js'
+      - 'js/treasury-model.js'
       - 'scripts/**'
       - 'tests/**'
       - '.github/workflows/macro-calendar.yml'
@@ -61,7 +62,7 @@ jobs:
       # Main may have advanced while the run was queued. Test checked-out code too.
       - name: Test current main
         run: node --test tests/*.test.js
-      - name: Generate FinanceCalendar JSON
+      - name: Generate FinanceCalendar and TreasuryDirect JSON
         run: node scripts/generate-macro-calendar.cjs
       - name: Commit only validated calendar data
         run: |
@@ -69,7 +70,7 @@ jobs:
           if ! git diff --cached --quiet; then
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git commit -m 'Update FinanceCalendar data'
+            git commit -m 'Update macro calendar data'
             # Fail on concurrent changes; never force-push or overwrite newer code.
             git push origin HEAD:main
           fi

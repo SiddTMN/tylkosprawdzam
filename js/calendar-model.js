@@ -1,8 +1,8 @@
 // Shared browser/generator model. No DOM or network access.
 (function (root, factory) {
-    if (typeof module === "object" && module.exports) module.exports = factory();
-    else root.MacroCalendarModel = factory();
-})(typeof globalThis !== "undefined" ? globalThis : this, () => {
+    if (typeof module === "object" && module.exports) module.exports = factory(require("./treasury-model.js"));
+    else root.MacroCalendarModel = factory(root.TreasuryCalendarModel);
+})(typeof globalThis !== "undefined" ? globalThis : this, (treasury) => {
     "use strict";
     const TIME_ZONE = "Europe/Warsaw";
     const DAY_MS = 86400000;
@@ -130,20 +130,67 @@
         };
     }
 
+
+    function sourceIsStale(source, now) {
+        return source.status !== "fresh" || source.lastSuccessAt === null ||
+            now - parseTimestamp(source.lastSuccessAt) > MAX_AGE_MS;
+    }
+
+    function validateSources(sources, generatedAt) {
+        if (!sources || typeof sources !== "object" || Array.isArray(sources))
+            throw new Error("Invalid calendar source metadata");
+        const result = {};
+        for (const name of ["FinanceCalendar", "TreasuryDirect"]) {
+            const s = sources[name];
+            const checkedAt = parseTimestamp(s?.checkedAt);
+            const successAt = s?.lastSuccessAt === null ? null : parseTimestamp(s?.lastSuccessAt);
+            if (!s || !["fresh", "stale", "unavailable"].includes(s.status) ||
+                checkedAt !== generatedAt || (s.lastSuccessAt !== null && successAt === null) ||
+                (successAt !== null && successAt > checkedAt) ||
+                (s.status === "unavailable") !== (successAt === null) ||
+                (s.status === "fresh" && successAt !== checkedAt) ||
+                s.endpoint !== (name === "FinanceCalendar"
+                    ? "https://www.financecalendar.com/wp-json/fc/v1/calendar" : treasury.ENDPOINT))
+                throw new Error("Invalid calendar source freshness");
+            result[name] = { endpoint: s.endpoint, status: s.status, checkedAt: s.checkedAt,
+                lastSuccessAt: s.lastSuccessAt };
+        }
+        return result;
+    }
+
+    function buildCombinedSnapshot(financeEvents, treasuryEvents, sources, now) {
+        const range = getRange(now);
+        const end = warsawMidnight(parseDay(range.to) + DAY_MS);
+        const start = warsawMidnight(parseDay(range.from));
+        const events = treasury.mergeEvents(financeEvents.map(e => ({ ...e, source: "FinanceCalendar" })),
+            treasuryEvents);
+        const snapshot = {
+            schemaVersion: 2, source: "FinanceCalendar+TreasuryDirect",
+            generatedAt: new Date(now).toISOString(), queryTimezone: "UTC",
+            displayTimezone: TIME_ZONE, range, sources,
+            events: selectUpcoming(events, now, Infinity).filter(e => e.sortAt >= start && e.sortAt < end)
+        };
+        parseSnapshot(snapshot, now);
+        return snapshot;
+    }
+
     function parseSnapshot(data, now) {
         const generatedAt = parseTimestamp(data?.generatedAt);
         const from = parseDay(data?.range?.from);
         const to = parseDay(data?.range?.to);
-        if (data?.schemaVersion !== 1 || data.source !== "FinanceCalendar" ||
+        if (!([1, 2].includes(data?.schemaVersion)) ||
+            data.source !== (data.schemaVersion === 1 ? "FinanceCalendar" : "FinanceCalendar+TreasuryDirect") ||
             data.queryTimezone !== "UTC" || data.displayTimezone !== TIME_ZONE ||
             generatedAt === null || generatedAt > now + 5 * 60 * 1000 ||
             from === null || to !== from + 14 * DAY_MS ||
             new Date(generatedAt).toISOString().slice(0, 10) !== data.range.from ||
-            !Array.isArray(data.events) || data.events.length > 100 ||
+            !Array.isArray(data.events) || data.events.length > (data.schemaVersion === 1 ? 100 : 300) ||
             now >= warsawMidnight(to + DAY_MS)) {
             throw new Error("Nieprawidłowy lub wygasły plik kalendarza");
         }
         const end = warsawMidnight(to + DAY_MS);
+        const sources = data.schemaVersion === 2 ? validateSources(data.sources, generatedAt) : null;
+        const treasuryIds = new Set();
         const events = data.events.map(event => {
             if (!event || typeof event.name !== "string" || !event.name.trim() ||
                 typeof event.category !== "string" || !["high", "medium"].includes(event.impact) ||
@@ -166,10 +213,24 @@
                     throw new Error("Nieprawidłowe granice dnia wydarzenia");
                 }
             }
+            if (sources) {
+                if (!["FinanceCalendar", "TreasuryDirect"].includes(event.source) ||
+                    sources[event.source].lastSuccessAt === null) throw new Error("Invalid event source");
+                if (event.source === "TreasuryDirect") {
+                    const normalized = treasury.validateEvent(event, parseTimestamp(sources.TreasuryDirect.lastSuccessAt));
+                    if (treasuryIds.has(normalized.id)) throw new Error("Duplicate Treasury snapshot identity");
+                    treasuryIds.add(normalized.id);
+                    return normalized;
+                }
+            }
             return { name: event.name, category: event.category, impact: event.impact,
-                kind: event.kind, sortAt: event.sortAt, expiresAt: event.expiresAt };
+                kind: event.kind, sortAt: event.sortAt, expiresAt: event.expiresAt,
+                ...(sources ? { source: "FinanceCalendar" } : {}) };
         });
-        return { events, generatedAt, stale: now - generatedAt > MAX_AGE_MS };
+        return { events, generatedAt, sources,
+            stale: now - generatedAt > MAX_AGE_MS || Boolean(sources && sourceIsStale(sources.FinanceCalendar, now)),
+            partialStale: Boolean(sources && sourceIsStale(sources.TreasuryDirect, now)) };
     }
-    return { normalizeFinanceCalendar, getRange, selectUpcoming, buildSnapshot, parseSnapshot };
+    return { normalizeFinanceCalendar, getRange, selectUpcoming, buildSnapshot, buildCombinedSnapshot,
+        parseSnapshot, sourceIsStale, MAX_AGE_MS };
 });

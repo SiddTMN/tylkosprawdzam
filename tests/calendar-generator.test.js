@@ -24,6 +24,7 @@ test("generator writes validated sorted JSON, removes only exact duplicates, kee
     }));
     payload.push({ ...payload[0] }, record("low", { impact: "low" }), record("past", { time_utc: "2026-10-08T09:00:00Z" }));
     const snapshot = await generate({ now, outputPath, fetchImpl: async (url, options) => {
+        if (url.includes("treasurydirect.gov")) return response([]);
         assert.equal(url, "https://www.financecalendar.com/wp-json/fc/v1/calendar?from=2026-10-08&to=2026-10-22&limit=100");
         assert.ok(options.signal instanceof AbortSignal);
         return response({ events: payload });
@@ -33,14 +34,14 @@ test("generator writes validated sorted JSON, removes only exact duplicates, kee
     assert.equal(saved.events.length, 8);
     assert.equal(saved.events[0].name, "release 7");
     assert.equal(selectUpcoming(parseSnapshot(saved, now).events, now).length, 5);
-    assert.equal(saved.source, "FinanceCalendar");
+    assert.equal(saved.source, "FinanceCalendar+TreasuryDirect");
     assert.equal(saved.displayTimezone, "Europe/Warsaw");
     assert.deepEqual(await fs.readdir(path.dirname(outputPath)), ["macro-calendar.json"]);
 });
 
 test("HTTP, JSON, envelope, partial and total validation errors preserve previous bytes", async t => {
     const outputPath = await workspace(t);
-    const previous = JSON.stringify(buildSnapshot([record("previous")], now));
+    const previous = "previous invalid bytes";
     await fs.writeFile(outputPath, previous);
     for (const fetchImpl of [
         async () => { throw new Error("offline"); },

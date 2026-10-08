@@ -10,6 +10,7 @@ const path = require("node:path");
 const vm = require("node:vm");
 const modelSource = fs.readFileSync(path.join(__dirname, "../js/calendar-model.js"), "utf8");
 const { buildSnapshot } = require("../js/calendar-model.js");
+const treasurySource = fs.readFileSync(path.join(__dirname, "../js/treasury-model.js"), "utf8");
 const source = fs.readFileSync(path.join(__dirname, "../js/calendar.js"), "utf8");
 
 class Element {
@@ -86,6 +87,7 @@ function harness(data = [], options = {}) {
         clearTimeout: id => timers.delete(id),
         setInterval: (callback, ms) => { intervals.push({ callback, ms }); return intervals.length; }
     });
+    vm.runInContext(treasurySource, context, { filename: "treasury-model.js" });
     vm.runInContext(modelSource, context, { filename: "calendar-model.js" });
     vm.runInContext(source, context, { filename: "calendar.js" });
     const flush = () => new Promise(resolve => setImmediate(resolve));
@@ -459,4 +461,118 @@ test("successful JSON refresh clears a stale API result", async () => {
     assert.deepEqual(names(h), ["JSON recovery"]);
     assert.equal(h.container.getAttribute("data-stale"), null);
     assert.equal(h.container.title, "");
+});
+
+const { buildCombinedSnapshot } = require("../js/calendar-model.js");
+const { normalizeTreasury, ENDPOINT } = require("../js/treasury-model.js");
+const treasuryBond = require("./fixtures/treasury-samples.json")[0];
+function combinedSnapshot({ generated = "2026-10-08T10:00:00Z", finance = [], treasury = [treasuryBond],
+    treasuryStatus = "fresh", treasurySuccess = generated } = {}) {
+    const at = Date.parse(generated);
+    return buildCombinedSnapshot(
+        require("../js/calendar-model.js").normalizeFinanceCalendar(finance),
+        normalizeTreasury(treasury, Date.parse(treasurySuccess || generated)),
+        {
+            FinanceCalendar: { endpoint: "https://www.financecalendar.com/wp-json/fc/v1/calendar",
+                status: "fresh", checkedAt: generated, lastSuccessAt: generated },
+            TreasuryDirect: { endpoint: ENDPOINT, status: treasuryStatus,
+                checkedAt: generated, lastSuccessAt: treasurySuccess }
+        }, at);
+}
+
+test("fresh v2 JSON renders Treasury in the same row layout, Warsaw time, identity tooltip and source category", async () => {
+    const h = harness([], { snapshot: combinedSnapshot() });
+    await h.flush();
+    assert.deepEqual(names(h), ["US Treasury 30Y Auction (reopening)"]);
+    assert.equal(time(h).textContent, "19:00");
+    assert.match(time(h).title, /ofert konkurencyjnych/);
+    assert.equal(h.container.children[0].className, "calendar-event");
+    assert.match(h.container.children[0].title, /912810UW6.*2026-10-15/);
+    assert.equal(h.container.getAttribute("data-stale"), null);
+    assert.equal(h.requests.length, 0);
+});
+
+test("fresh FinanceCalendar plus stale Treasury renders both and identifies the stale source and its last real fetch", async () => {
+    const snapshot = combinedSnapshot({ generated: "2026-10-08T11:00:00Z",
+        finance: [record("FC fresh", "2026-10-08T12:00:00Z")],
+        treasuryStatus: "stale", treasurySuccess: "2026-10-08T10:00:00Z" });
+    const h = harness([], { snapshot, now: "2026-10-08T11:00:00Z" });
+    await h.flush();
+    assert.deepEqual(names(h), ["FC fresh", "US Treasury 30Y Auction (reopening)"]);
+    assert.equal(h.container.getAttribute("data-stale"), "true");
+    assert.match(h.container.title, /TreasuryDirect.*ostatnie poprawne pobranie/);
+    assert.equal(h.container.children[0].getAttribute("data-stale"), null);
+    assert.equal(h.container.children[1].getAttribute("data-stale"), "true");
+    assert.equal(h.requests.length, 0);
+});
+
+test("live FinanceCalendar fallback retains Treasury when a v2 JSON file is old", async () => {
+    const h = harness([record("live FC", "2026-10-08T16:00:00Z")], {
+        snapshot: combinedSnapshot({ generated: "2026-10-08T00:00:00Z" })
+    });
+    await h.flush();
+    assert.deepEqual(names(h), ["live FC", "US Treasury 30Y Auction (reopening)"]);
+    assert.equal(h.requests.length, 1);
+    assert.equal(h.container.getAttribute("data-stale"), "true");
+    assert.match(h.container.title, /TreasuryDirect/);
+});
+
+test("missing JSON on refresh preserves in-memory Treasury while refreshing FinanceCalendar and marks retained Treasury stale", async () => {
+    let missing = false;
+    const h = harness([record("live FC", "2026-10-08T12:00:00Z")], {
+        snapshot: () => { if (missing) throw new Error("offline"); return combinedSnapshot(); }
+    });
+    await h.flush();
+    missing = true;
+    await h.refresh();
+    assert.deepEqual(names(h), ["live FC", "US Treasury 30Y Auction (reopening)"]);
+    assert.equal(h.container.getAttribute("data-stale"), "true");
+    assert.equal(h.container.children[1].getAttribute("data-stale"), "true");
+});
+
+test("Treasury unavailability does not turn fresh FinanceCalendar into an API outage; partial empty data is not authoritative emptiness", async () => {
+    const withFC = combinedSnapshot({ finance: [record("FC fresh", "2026-10-08T12:00:00Z")],
+        treasury: [], treasuryStatus: "unavailable", treasurySuccess: null });
+    const h = harness([], { snapshot: withFC });
+    await h.flush();
+    assert.deepEqual(names(h), ["FC fresh"]);
+    assert.equal(h.requests.length, 0);
+    assert.match(h.container.title, /TreasuryDirect: dane niedostępne/);
+    const empty = harness([], { snapshot: combinedSnapshot({
+        treasury: [], treasuryStatus: "unavailable", treasurySuccess: null
+    }) });
+    await empty.flush();
+    assert.equal(empty.container.textContent, "kalendarz niedostępny");
+    assert.equal(empty.container.getAttribute("data-stale"), "true");
+});
+
+test("tentative Treasury time remains a dash with visible tentative category", async () => {
+    const h = harness([], { snapshot: combinedSnapshot({
+        treasury: [{ ...treasuryBond, pdfFilenameAnnouncement: "", offeringAmount: "" }]
+    }) });
+    await h.flush();
+    assert.equal(time(h).textContent, "—");
+    assert.match(time(h).title, /niepotwierdzona/);
+    assert.match(h.container.textContent, /wstępny termin/);
+});
+
+test("v2 recovery clears source stale indicators, and expired auctions vanish during live fallback", async () => {
+    let file = combinedSnapshot({ treasuryStatus: "stale" });
+    const h = harness([], { snapshot: () => file });
+    await h.flush();
+    assert.equal(h.container.getAttribute("data-stale"), "true");
+    file = combinedSnapshot();
+    await h.refresh();
+    assert.equal(h.container.getAttribute("data-stale"), null);
+    assert.equal(h.container.title, "");
+    h.setNow("2026-10-08T17:01:00Z");
+    h.respond([record("later FC", "2026-10-09T12:00:00Z")]);
+    await h.refresh();
+    assert.deepEqual(names(h), ["later FC"]);
+});
+
+test("Treasury dependency is loaded once before the shared model and panel", () => {
+    const html = fs.readFileSync(path.join(__dirname, "../index.html"), "utf8");
+    assert.equal((html.match(/src="js\/treasury-model\.js"/g) || []).length, 1);
+    assert.ok(html.indexOf('src="js/treasury-model.js"') < html.indexOf('src="js/calendar-model.js"'));
 });
