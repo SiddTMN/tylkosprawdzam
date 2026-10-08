@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-08T14:04:56.077Z",
+  "generatedAt": "2026-10-08T18:51:03.603Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,43 +12,17 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-10-08T14:04:56.077Z",
-      "lastSuccessAt": "2026-10-08T14:04:56.077Z"
+      "checkedAt": "2026-10-08T18:51:03.603Z",
+      "lastSuccessAt": "2026-10-08T18:51:03.603Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "fresh",
-      "checkedAt": "2026-10-08T14:04:56.077Z",
-      "lastSuccessAt": "2026-10-08T14:04:56.077Z"
+      "checkedAt": "2026-10-08T18:51:03.603Z",
+      "lastSuccessAt": "2026-10-08T18:51:03.603Z"
     }
   },
   "events": [
-    {
-      "source": "TreasuryDirect",
-      "id": "TreasuryDirect:912810UW6:2026-10-08",
-      "name": "US Treasury 30Y Auction (reopening)",
-      "category": "TreasuryDirect · potwierdzona",
-      "impact": "high",
-      "kind": "timed",
-      "sortAt": 1791478800000,
-      "expiresAt": 1791478800000,
-      "cusip": "912810UW6",
-      "securityType": "Bond",
-      "originalTerm": "30-Year",
-      "remainingTerm": "29-Year 10-Month",
-      "reopening": true,
-      "auctionDate": "2026-10-08",
-      "settlementDate": "2026-10-15",
-      "announcementDate": "2026-10-01",
-      "maturityDate": "2056-08-15",
-      "confirmation": "announced",
-      "timeZone": "America/New_York",
-      "timeBasis": "competitive-bid-close",
-      "competitiveClose": "13:00",
-      "noncompetitiveClose": "12:00",
-      "offeringAmount": "22000000000",
-      "announcementUrl": "https://www.treasurydirect.gov/instit/annceresult/press/preanre/2026/A_20261001_4.pdf"
-    },
     {
       "name": "Canada Labour Force Survey",
       "category": "economic-indicators",
