@@ -8,6 +8,8 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
+const modelSource = fs.readFileSync(path.join(__dirname, "../js/calendar-model.js"), "utf8");
+const { buildSnapshot } = require("../js/calendar-model.js");
 const source = fs.readFileSync(path.join(__dirname, "../js/calendar.js"), "utf8");
 
 class Element {
@@ -52,6 +54,8 @@ function harness(data = [], options = {}) {
     const timers = new Map();
     const requests = [];
     const warnings = [];
+    const fileWarnings = [];
+    const snapshotRequests = [];
     let timerId = 0;
     class Clock extends Date {
         constructor(...args) { super(...(args.length ? args : [now])); }
@@ -65,20 +69,28 @@ function harness(data = [], options = {}) {
             createDocumentFragment: () => new Element("#fragment")
         },
         fetch: async (url, request) => {
+            if (url === "./data/macro-calendar.json") {
+                snapshotRequests.push({ url, ...request });
+                if (!Object.hasOwn(options, "snapshot")) throw new Error("File missing");
+                const payload = typeof options.snapshot === "function"
+                    ? await options.snapshot(request.signal) : options.snapshot;
+                return { ok: true, json: async () => structuredClone(payload) };
+            }
             requests.push({ url, ...request });
+            if (options.fetch) return options.fetch(url, request);
             const payload = await handler(request.signal);
             return { ok: true, status: 200, json: async () => structuredClone(payload) };
         },
-        console: { warn: (...args) => warnings.push(args) },
+        console: { warn: (...args) => (String(args[0]).startsWith("Plik") ? fileWarnings : warnings).push(args) },
         setTimeout: (callback, ms) => { timers.set(++timerId, { callback, ms }); return timerId; },
         clearTimeout: id => timers.delete(id),
         setInterval: (callback, ms) => { intervals.push({ callback, ms }); return intervals.length; }
     });
-    if (options.fetch) context.fetch = options.fetch;
+    vm.runInContext(modelSource, context, { filename: "calendar-model.js" });
     vm.runInContext(source, context, { filename: "calendar.js" });
     const flush = () => new Promise(resolve => setImmediate(resolve));
     return {
-        container, intervals, timers, requests, warnings, flush,
+        container, intervals, timers, requests, snapshotRequests, warnings, fileWarnings, flush,
         respond: next => { handler = typeof next === "function" ? next : () => next; },
         setNow: value => { now = Date.parse(value); },
         refresh: async () => { await intervals[0].callback(); await flush(); }
@@ -236,15 +248,14 @@ test("date-only events expire at Warsaw midnight on 23-hour and 25-hour DST days
 test("preserves the last list on failed refresh and clears stale state after recovery", async () => {
     const h = harness([record("original", "2026-10-08T12:00:00Z")]);
     await h.flush();
-    const row = h.container.children[0];
     h.respond(() => { throw new Error("API unavailable"); });
     await h.refresh();
-    assert.equal(h.container.children[0], row);
+    assert.deepEqual(names(h), ["original"]);
     assert.equal(h.container.getAttribute("data-stale"), "true");
     assert.match(h.container.title, /zachowano/);
     h.respond({ events: "bad" });
     await h.refresh();
-    assert.equal(h.container.children[0], row);
+    assert.deepEqual(names(h), ["original"]);
     h.respond([record("recovered", "2026-10-08T13:00:00Z")]);
     await h.refresh();
     assert.deepEqual(names(h), ["recovered"]);
@@ -252,7 +263,7 @@ test("preserves the last list on failed refresh and clears stale state after rec
     assert.equal(h.container.title, "");
 });
 
-test("preserves a valid empty result on failure and recovers from an initial failure", async () => {
+test("recovers initial failure and marks an unavailable refresh after an empty result", async () => {
     const h = harness(null);
     await h.flush();
     assert.equal(h.container.textContent, "kalendarz niedostępny");
@@ -261,7 +272,7 @@ test("preserves a valid empty result on failure and recovers from an initial fai
     assert.equal(h.container.textContent, "brak nadchodzących wydarzeń");
     h.respond(() => { throw new Error("offline"); });
     await h.refresh();
-    assert.equal(h.container.textContent, "brak nadchodzących wydarzeń");
+    assert.equal(h.container.textContent, "kalendarz niedostępny");
     assert.equal(h.container.getAttribute("data-stale"), "true");
 });
 
@@ -330,4 +341,122 @@ test("index loads the classic script once and app.js no longer owns the calendar
     assert.ok(html.indexOf('id="calendar-events"') < html.indexOf('src="js/calendar.js"'));
     assert.equal(/updateCalendar|financecalendar\.com/.test(app), false);
     assert.match(html, /CAPITALCOM:DXY/);
+});
+
+test("fresh snapshot is primary, relative to Pages subpath, without API requests", async () => {
+    const snapshot = buildSnapshot([record("JSON", "2026-10-08T13:00:00Z")], Date.parse("2026-10-08T10:00:00Z"));
+    const h = harness([], { snapshot });
+    await h.flush();
+    assert.deepEqual(names(h), ["JSON"]);
+    assert.equal(h.requests.length, 0);
+    assert.equal(h.snapshotRequests[0].url, "./data/macro-calendar.json");
+    assert.equal(h.snapshotRequests[0].cache, "no-store");
+    assert.equal(h.warnings.length + h.fileWarnings.length, 0);
+});
+
+test("stale JSON uses API, then falls back to old JSON on API failure", async () => {
+    const snapshot = buildSnapshot([record("cached", "2026-10-09T13:00:00Z", { date: "2026-10-09" })],
+        Date.parse("2026-10-08T00:00:00Z"));
+    const h = harness([], { snapshot, fetch: async () => { throw new Error("offline"); } });
+    await h.flush();
+    assert.deepEqual(names(h), ["cached"]);
+    assert.equal(h.requests.length, 1);
+    assert.equal(h.container.getAttribute("data-stale"), "true");
+    const recovered = harness([record("API", "2026-10-09T14:00:00Z")], { snapshot });
+    await recovered.flush();
+    assert.deepEqual(names(recovered), ["API"]);
+    assert.equal(recovered.container.getAttribute("data-stale"), null);
+});
+
+test("rejects malformed snapshot metadata and events before using the API", async () => {
+    const valid = buildSnapshot([record("JSON", "2026-10-08T13:00:00Z")], Date.parse("2026-10-08T10:00:00Z"));
+    for (const snapshot of [
+        { ...valid, schemaVersion: 2 }, { ...valid, source: "Treasury" },
+        { ...valid, generatedAt: "2026-10-09T00:00:00Z" },
+        { ...valid, range: { from: "2026-10-08", to: "2026-10-23" } },
+        { ...valid, events: [{ ...valid.events[0], kind: "bad" }] },
+        { ...valid, events: [{ ...valid.events[0], expiresAt: "bad" }] },
+        { ...valid, events: [null] }
+    ]) {
+        const h = harness([record("API", "2026-10-08T14:00:00Z")], { snapshot });
+        await h.flush();
+        assert.deepEqual(names(h), ["API"]);
+        assert.equal(h.requests.length, 1);
+        assert.equal(h.fileWarnings.length, 1);
+    }
+});
+
+test("expires cached publications and never presents stale emptiness as a current empty calendar", async () => {
+    const snapshot = buildSnapshot([record("soon", "2026-10-08T10:30:00Z")], Date.parse("2026-10-08T10:00:00Z"));
+    let fail = false;
+    const h = harness([], { snapshot: () => { if (fail) throw new Error("offline"); return snapshot; } });
+    await h.flush();
+    assert.deepEqual(names(h), ["soon"]);
+    fail = true;
+    h.respond(() => { throw new Error("offline"); });
+    h.setNow("2026-10-08T11:00:00Z");
+    await h.refresh();
+    assert.equal(h.container.textContent, "kalendarz niedostępny");
+    assert.equal(h.container.getAttribute("data-stale"), "true");
+});
+
+test("a timed-out JSON request gets a separate live API timeout and can recover", async () => {
+    const h = harness([record("API", "2026-10-08T14:00:00Z")], {
+        snapshot: signal => new Promise((resolve, reject) => {
+            signal.addEventListener("abort", () => reject(new Error("timeout")), { once: true });
+        })
+    });
+    await h.flush();
+    await h.refresh();
+    assert.equal(h.snapshotRequests.length, 1);
+    const timeout = [...h.timers.values()][0];
+    assert.equal(timeout.ms, 15000);
+    timeout.callback();
+    await h.flush();
+    assert.deepEqual(names(h), ["API"]);
+    assert.equal(h.snapshotRequests[0].signal.aborted, true);
+    assert.equal(h.requests[0].signal.aborted, false);
+    assert.equal(h.timers.size, 0);
+});
+
+test("fresh empty snapshot is authoritative and avoids the direct API", async () => {
+    const snapshot = buildSnapshot([], Date.parse("2026-10-08T10:00:00Z"));
+    const h = harness([record("should not load", "2026-10-08T14:00:00Z")], { snapshot });
+    await h.flush();
+    assert.equal(h.container.textContent, "brak nadchodzących wydarzeń");
+    assert.equal(h.requests.length, 0);
+});
+
+test("loads the shared model exactly once before the panel", () => {
+    const html = fs.readFileSync(path.join(__dirname, "../index.html"), "utf8");
+    assert.equal((html.match(/src="js\/calendar-model\.js"/g) || []).length, 1);
+    assert.ok(html.indexOf('src="js/calendar-model.js"') < html.indexOf('src="js/calendar.js"'));
+});
+
+test("prefers newer in-memory data over an older stale JSON during an outage", async () => {
+    const snapshot = buildSnapshot([record("older file", "2026-10-09T13:00:00Z")],
+        Date.parse("2026-10-08T00:00:00Z"));
+    const h = harness([record("newer memory", "2026-10-09T14:00:00Z")], { snapshot });
+    await h.flush();
+    assert.deepEqual(names(h), ["newer memory"]);
+    h.setNow("2026-10-08T20:00:00Z");
+    h.respond(() => { throw new Error("offline"); });
+    await h.refresh();
+    assert.deepEqual(names(h), ["newer memory"]);
+    assert.equal(h.container.getAttribute("data-stale"), "true");
+});
+
+test("successful JSON refresh clears a stale API result", async () => {
+    let file = null;
+    const h = harness([record("API", "2026-10-09T14:00:00Z")], { snapshot: () => file });
+    await h.flush();
+    h.respond(() => { throw new Error("offline"); });
+    await h.refresh();
+    assert.equal(h.container.getAttribute("data-stale"), "true");
+    file = buildSnapshot([record("JSON recovery", "2026-10-09T15:00:00Z")],
+        Date.parse("2026-10-08T10:00:00Z"));
+    await h.refresh();
+    assert.deepEqual(names(h), ["JSON recovery"]);
+    assert.equal(h.container.getAttribute("data-stale"), null);
+    assert.equal(h.container.title, "");
 });

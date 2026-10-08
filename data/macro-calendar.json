@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "source": "FinanceCalendar",
+  "generatedAt": "2026-10-08T11:53:09.436Z",
+  "queryTimezone": "UTC",
+  "displayTimezone": "Europe/Warsaw",
+  "range": {
+    "from": "2026-10-08",
+    "to": "2026-10-22"
+  },
+  "events": [
+    {
+      "name": "Jobless claims",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1791462600000,
+      "expiresAt": 1791462600000
+    },
+    {
+      "name": "Canada Labour Force Survey",
+      "category": "economic-indicators",
+      "impact": "high",
+      "kind": "timed",
+      "sortAt": 1791549000000,
+      "expiresAt": 1791549000000
+    },
+    {
+      "name": "Existing Home Sales",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1791900000000,
+      "expiresAt": 1791900000000
+    },
+    {
+      "name": "China CPI",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1791941400000,
+      "expiresAt": 1791941400000
+    },
+    {
+      "name": "US CPI",
+      "category": "economic-indicators",
+      "impact": "high",
+      "kind": "timed",
+      "sortAt": 1791981000000,
+      "expiresAt": 1791981000000
+    },
+    {
+      "name": "Australia Labour Force",
+      "category": "economic-indicators",
+      "impact": "high",
+      "kind": "timed",
+      "sortAt": 1792024200000,
+      "expiresAt": 1792024200000
+    },
+    {
+      "name": "UK GDP",
+      "category": "economic-indicators",
+      "impact": "high",
+      "kind": "timed",
+      "sortAt": 1792044000000,
+      "expiresAt": 1792044000000
+    },
+    {
+      "name": "Jobless claims",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1792067400000,
+      "expiresAt": 1792067400000
+    },
+    {
+      "name": "Retail Sales",
+      "category": "economic-indicators",
+      "impact": "high",
+      "kind": "timed",
+      "sortAt": 1792067400000,
+      "expiresAt": 1792067400000
+    },
+    {
+      "name": "PPI",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1792067400000,
+      "expiresAt": 1792067400000
+    },
+    {
+      "name": "Industrial Production",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1792156500000,
+      "expiresAt": 1792156500000
+    },
+    {
+      "name": "China GDP",
+      "category": "economic-indicators",
+      "impact": "high",
+      "kind": "timed",
+      "sortAt": 1792375200000,
+      "expiresAt": 1792375200000
+    },
+    {
+      "name": "Canada CPI",
+      "category": "economic-indicators",
+      "impact": "high",
+      "kind": "timed",
+      "sortAt": 1792413000000,
+      "expiresAt": 1792413000000
+    },
+    {
+      "name": "PBoC Loan Prime Rate",
+      "category": "central-banks-monetary-policy",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1792458000000,
+      "expiresAt": 1792458000000
+    },
+    {
+      "name": "UK Labour Market Report",
+      "category": "economic-indicators",
+      "impact": "high",
+      "kind": "timed",
+      "sortAt": 1792476000000,
+      "expiresAt": 1792476000000
+    },
+    {
+      "name": "Housing starts",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1792499400000,
+      "expiresAt": 1792499400000
+    },
+    {
+      "name": "UK CPI Inflation",
+      "category": "economic-indicators",
+      "impact": "high",
+      "kind": "timed",
+      "sortAt": 1792562400000,
+      "expiresAt": 1792562400000
+    },
+    {
+      "name": "Jobless claims",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1792672200000,
+      "expiresAt": 1792672200000
+    }
+  ]
+}
