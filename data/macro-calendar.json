@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-10T09:49:28.875Z",
+  "generatedAt": "2026-10-10T15:52:24.962Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,14 +12,14 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-10-10T09:49:28.875Z",
-      "lastSuccessAt": "2026-10-10T09:49:28.875Z"
+      "checkedAt": "2026-10-10T15:52:24.962Z",
+      "lastSuccessAt": "2026-10-10T15:52:24.962Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "fresh",
-      "checkedAt": "2026-10-10T09:49:28.875Z",
-      "lastSuccessAt": "2026-10-10T09:49:28.875Z"
+      "checkedAt": "2026-10-10T15:52:24.962Z",
+      "lastSuccessAt": "2026-10-10T15:52:24.962Z"
     }
   },
   "events": [
@@ -69,15 +69,6 @@
       "source": "FinanceCalendar"
     },
     {
-      "name": "Jobless claims",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1792067400000,
-      "expiresAt": 1792067400000,
-      "source": "FinanceCalendar"
-    },
-    {
       "name": "Retail Sales",
       "category": "economic-indicators",
       "impact": "high",
@@ -88,6 +79,15 @@
     },
     {
       "name": "PPI",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1792067400000,
+      "expiresAt": 1792067400000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Jobless claims",
       "category": "economic-indicators",
       "impact": "medium",
       "kind": "timed",
