@@ -35,7 +35,7 @@ html {
 
 body {
     margin: 0;
-    min-width: 1050px;
+    min-width: 320px;
     background:
         radial-gradient(
             circle at 40% -20%,
@@ -256,9 +256,21 @@ body {
 
 /* CHART */
 
+.chart-panel {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.chart-panel > .panel-header {
+    flex-shrink: 0;
+}
+
 #tradingview-chart {
     width: 100%;
-    height: clamp(320px, 42vh, 520px);
+    height: 320px;
+    min-height: 320px;
+    flex: 1 0 320px;
 
     background: var(--panel);
 }
@@ -666,6 +678,35 @@ body {
     }
 }
 
+.events-panel {
+    min-width: 0;
+}
+
+.calendar-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.calendar-column {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-column + .calendar-column {
+    border-left: 1px solid var(--border);
+}
+
+.calendar-column .panel-header {
+    padding: 12px 10px;
+    align-items: flex-start;
+}
+
+.calendar-column .panel-header h2 {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
 .calendar-events {
     display: flex;
     flex-direction: column;
@@ -673,80 +714,86 @@ body {
 
 .calendar-event {
     display: grid;
-    grid-template-columns: 62px 1fr auto;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
-    gap: 12px;
-    padding: 16px;
+    gap: 5px 6px;
+    padding: 9px 10px;
     border-bottom: 1px solid var(--border);
 }
 
 .calendar-date {
     display: flex;
-    flex-direction: column;
-    gap: 3px;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 3px 6px;
+    font-variant-numeric: tabular-nums;
 }
 
 .calendar-date span {
     color: var(--muted);
-    font-size: 10px;
+    font-size: 9px;
     text-transform: uppercase;
 }
 
 .calendar-date strong {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
 }
 
 .calendar-info {
+    grid-column: 1 / -1;
+    grid-row: 2;
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 3px;
+    overflow-wrap: anywhere;
 }
 
 .calendar-info strong {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
+    line-height: 1.4;
 }
 
 .calendar-info span {
     color: var(--muted);
     font-size: 9px;
+    line-height: 1.4;
 }
 
 .calendar-impact {
+    grid-column: 2;
+    grid-row: 1;
     padding: 3px 5px;
     border: 1px solid var(--border);
     font-size: 8px;
     font-weight: 700;
 }
 
-.calendar-impact.high {
-    color: var(--red);
-}
-
-.calendar-impact.medium {
-    color: var(--yellow);
-}
+.calendar-impact.high { color: var(--red); }
+.calendar-impact.medium { color: var(--yellow); }
+.calendar-impact.low { color: var(--muted); }
 
 .calendar-loading {
-    padding: 20px 16px;
+    padding: 20px 10px;
     color: var(--muted);
     font-size: 11px;
 }
 
 .calendar-source {
     display: block;
-    padding: 9px 16px;
+    padding: 9px 10px;
     color: var(--muted);
     font-size: 8px;
     text-decoration: none;
     text-align: right;
+    overflow-wrap: anywhere;
 }
 
-.calendar-source:hover {
-    color: var(--text);
-}
+.calendar-test-note { margin: 0; }
+
+.calendar-source:hover { color: var(--text); }
 
 .chart-price-pln {
     display: block;
@@ -754,4 +801,41 @@ body {
     color: var(--muted);
     font-size: 11px;
     font-weight: 500;
+}
+
+/* Stack the top panels before the desktop calendars become too narrow. */
+@media (max-width: 1100px) {
+    .dashboard {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .topbar {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .market-bar {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .asset:nth-child(2n) {
+        border-right: none;
+    }
+
+    .asset:nth-child(n + 3) {
+        border-top: 1px solid var(--border);
+    }
+}
+
+@media (max-width: 420px) {
+    .calendar-columns {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .calendar-column + .calendar-column {
+        border-left: 0;
+        border-top: 1px solid var(--border);
+    }
 }
