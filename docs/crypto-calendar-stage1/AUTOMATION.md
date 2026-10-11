@@ -28,7 +28,13 @@ https://github.com/SiddTMN/tylkosprawdzam/actions/runs/38143347883
 Commit 2138bc6990d8e9dd5d9290b7bd9c8f0e8af672bf.
 11.10.2026 13:29:14.936 UTC: HTTP 200, 345433 bajty, jedno zapytanie,
 4 przyszłe wydarzenia ETH, 111/111 testów, build/deploy pominięte.
-Końcowy dowód po dodatkowych testach harmonogramu: verification.actions.json.
+Końcowy test: https://github.com/SiddTMN/tylkosprawdzam/actions/runs/38143946012
+Commit kodu 3ad5125cfa0b9db3e3c3bbf5f040bb2d7aa5ccee.
+11.10.2026 13:38:04.871 UTC: świeże HTTP 200, 345433 bajty, jedno zapytanie,
+4 rzeczywiste wydarzenia, 115/115 testów, build/deploy pominięte.
+Pobrano i sprawdzono wszystkie trzy pliki artefaktu.
+Dowód: verification.actions.json; artefakt:
+https://github.com/SiddTMN/tylkosprawdzam/actions/runs/38143946012/artifacts/11703767744
 
 | Wydarzenie | Data | Europe/Warsaw |
 | --- | --- | --- |

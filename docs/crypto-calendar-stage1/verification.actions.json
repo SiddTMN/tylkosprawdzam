@@ -1,7 +1,7 @@
 {
   "passed": true,
-  "commit": "2138bc6990d8e9dd5d9290b7bd9c8f0e8af672bf",
-  "generatedAt": "2026-10-11T13:29:14.936Z",
+  "commit": "3ad5125cfa0b9db3e3c3bbf5f040bb2d7aa5ccee",
+  "generatedAt": "2026-10-11T13:38:04.871Z",
   "timezone": "Europe/Warsaw",
   "window": {
     "from": "2026-10-11",
@@ -18,8 +18,8 @@
       "transport": "http-200",
       "httpStatus": 200,
       "bytes": 345433,
-      "sha256": "886809da287894746e9fb5d69ca260d0bb0687a7b26121782f95bfd5535a2d9e",
-      "checkedAt": "2026-10-11T13:29:14.936Z",
+      "sha256": "ad1c6a75050b68edf250403f3d51e336014a1556b8fd33dc2843d411f9a195aa",
+      "checkedAt": "2026-10-11T13:38:04.871Z",
       "eligibleEvents": 4,
       "error": null
     }
@@ -33,7 +33,7 @@
       "startsAt": "2026-10-15T14:00:00.000Z",
       "warsawTime": "16:00",
       "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
-      "verifiedAt": "2026-10-11T13:29:14.936Z"
+      "verifiedAt": "2026-10-11T13:38:04.871Z"
     },
     {
       "token": "ETH",
@@ -42,7 +42,7 @@
       "startsAt": "2026-10-22T14:00:00.000Z",
       "warsawTime": "16:00",
       "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
-      "verifiedAt": "2026-10-11T13:29:14.936Z"
+      "verifiedAt": "2026-10-11T13:38:04.871Z"
     },
     {
       "token": "ETH",
@@ -51,7 +51,7 @@
       "startsAt": "2026-10-29T14:00:00.000Z",
       "warsawTime": "15:00",
       "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
-      "verifiedAt": "2026-10-11T13:29:14.936Z"
+      "verifiedAt": "2026-10-11T13:38:04.871Z"
     },
     {
       "token": "ETH",
@@ -60,14 +60,15 @@
       "startsAt": "2026-11-05T14:00:00.000Z",
       "warsawTime": "15:00",
       "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
-      "verifiedAt": "2026-10-11T13:29:14.936Z"
+      "verifiedAt": "2026-10-11T13:38:04.871Z"
     }
   ],
   "publicationApproved": false,
-  "runUrl": "https://github.com/SiddTMN/tylkosprawdzam/actions/runs/38143347883",
+  "runUrl": "https://github.com/SiddTMN/tylkosprawdzam/actions/runs/38143946012",
+  "artifactUrl": "https://github.com/SiddTMN/tylkosprawdzam/actions/runs/38143946012/artifacts/11703767744",
   "tests": {
-    "total": 111,
-    "passed": 111,
+    "total": 115,
+    "passed": 115,
     "failed": 0
   },
   "build": "skipped",
