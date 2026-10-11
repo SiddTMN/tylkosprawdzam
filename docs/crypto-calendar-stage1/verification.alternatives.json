@@ -1,0 +1,192 @@
+{
+  "verifiedAt": "2026-10-11T12:35:28.096Z",
+  "tests": {
+    "command": "node --test tests/*.test.js",
+    "exitCode": 0,
+    "total": 82,
+    "passed": 82,
+    "originalPrototypeTestsUnchanged": true
+  },
+  "originalMode": {
+    "exitCode": 0,
+    "requests": 0,
+    "counts": {
+      "ETH": 0,
+      "DOT": 0,
+      "XLM": 0
+    }
+  },
+  "alternativeMode": {
+    "exitCode": 0,
+    "requests": 0,
+    "accepted": {
+      "ETH": 0,
+      "DOT": 0,
+      "XLM": 0
+    },
+    "reviewRequired": {
+      "ETH": 24,
+      "DOT": 0,
+      "XLM": 1
+    },
+    "allElevenSourcesAvailable": true,
+    "firstAlternativeHttpReads": [
+      {
+        "id": "eth-protocol-calls",
+        "status": 200,
+        "verifiedAt": "2026-10-11T12:23:32.765Z",
+        "sha256": "74e7871b4a2769d8cd72d362f2d4d0a658711ccd4c69b891edb70526ccd56a97"
+      },
+      {
+        "id": "eth-event-gardeners",
+        "status": 200,
+        "verifiedAt": "2026-10-11T12:23:33.391Z",
+        "sha256": "6756e46a93545362b0b437fe3e2bbcfd88e791ebde35cc9f36f5f5eba373b390"
+      },
+      {
+        "id": "xlm-sdf-calendar",
+        "status": 200,
+        "verifiedAt": "2026-10-11T12:23:33.659Z",
+        "sha256": "210721ca2213040ddc1d3455c3bd69c1d0c7d2e876e1b24895773ccc5fe810b3"
+      },
+      {
+        "id": "xlm-meridian-side-calendar",
+        "status": 200,
+        "verifiedAt": "2026-10-11T12:23:33.892Z",
+        "sha256": "e7fa63f8673f7613c0ff0f7e79c8dbe0fc2112014fec72d6ade4e30ae9cef54c"
+      },
+      {
+        "id": "dot-opengov",
+        "status": 200,
+        "verifiedAt": "2026-10-11T12:23:34.336Z",
+        "sha256": "0100b583d9aaa0f8ca99d87b16c53618570041d768152c78343ec0faf0206e62"
+      }
+    ]
+  },
+  "schemaChecks": {
+    "requiredFields": true,
+    "futureWindow": true,
+    "approvedUrls": true,
+    "freshnessMatchesSourceReceipt": true
+  },
+  "scope": {
+    "changedExisting": [
+      "docs/crypto-calendar-stage1/.gitignore",
+      "docs/crypto-calendar-stage1/event.schema.json",
+      "docs/crypto-calendar-stage1/README.md",
+      "scripts/test-crypto-calendar.cjs"
+    ],
+    "unexpectedChanges": [],
+    "unchangedExisting": [
+      {
+        "path": ".github/workflows/macro-calendar.yml",
+        "sha256": "defc78f04146f87adb0397907f9efa17761cef3d84306621a89c942ab802092b"
+      },
+      {
+        "path": "css/style.css",
+        "sha256": "9f6321da29490454fb657d9a41f7f6acd735d4753120e0dc9664051e889439e7"
+      },
+      {
+        "path": "data/macro-calendar.json",
+        "sha256": "dab37cbf349a2872ab8bdb82e87b86ef28a47f7b4ee91908615324324bd68540"
+      },
+      {
+        "path": "docs/crypto-calendar-stage1/events.cache-check.json",
+        "sha256": "cd83432ab5ea8631ef3b241f2e353d2e0cb43f5adf3154b3b44fe2d81a8288ce"
+      },
+      {
+        "path": "docs/crypto-calendar-stage1/events.historical-check.json",
+        "sha256": "d24b2901e5101b06b981afa4b52bf4bb6fe308200100d0a332d8051bf6cc3f2b"
+      },
+      {
+        "path": "docs/crypto-calendar-stage1/events.revalidation-check.json",
+        "sha256": "ed97bdcfd0dd9eb1f6489212b3449475e2ff982fb8cbf2d274ae2d33ecb532ea"
+      },
+      {
+        "path": "docs/crypto-calendar-stage1/events.sample.json",
+        "sha256": "38ccf3874f615a0d4612bae3fd1d3ae337673a45ac5c5d59d38fb91dfa78f806"
+      },
+      {
+        "path": "docs/crypto-calendar-stage1/source-audit.json",
+        "sha256": "bc411090f2117245df259de6bff43946529f460df6bd92476b04b22be120d91c"
+      },
+      {
+        "path": "docs/crypto-calendar-stage1/STELLAR-DOCS-LICENSE.txt",
+        "sha256": "4830a57c4cff7580dc552a1f9da4949d4a51f906f63e15350c0c7e78386f61be"
+      },
+      {
+        "path": "docs/crypto-calendar-stage1/THIRD-PARTY-NOTICES.md",
+        "sha256": "76fbca760c34d8b3e57841f64c707ecf55e3e0ea93ed08f2097ebfeb942f8a2f"
+      },
+      {
+        "path": "docs/crypto-calendar-stage1/verification.json",
+        "sha256": "b270782eccced38d55a4ee5026be79bbe14d66d1c5e7dd6c775eadd8c7facfcf"
+      },
+      {
+        "path": "docs/macro-calendar.md",
+        "sha256": "3c4fb9807c276b068c0ac74391749194979e0a1e1710c9edb1a5cf12ad7776dd"
+      },
+      {
+        "path": "index.html",
+        "sha256": "86850c1b5c983549d5ec4905cf127cdfc01942f37b77e28f7a01c1cf859cacaf"
+      },
+      {
+        "path": "js/app.js",
+        "sha256": "5460e201e3bc9620f4f60c7722f06a4d124cec6f221e71408c951922c78f1db3"
+      },
+      {
+        "path": "js/calendar-model.js",
+        "sha256": "0febf6067916d347eb2bc639c16d6b18fc3db1e67d41d4c909aa9e0ca183da10"
+      },
+      {
+        "path": "js/calendar.js",
+        "sha256": "836bfc1da98071eefa89a7b49cbcce4e90b7c199180abb1c2bae92c3a6d6e26b"
+      },
+      {
+        "path": "js/dxy.js",
+        "sha256": "629107117fc60ff77e360c82dc7d94840f30f7b8bedf65e50994fc54f098ebc2"
+      },
+      {
+        "path": "js/news.js",
+        "sha256": "f6ce91fc860c63577b530d989deb4f0fa1e9fe0b1bf00561309d9c4aec2c650c"
+      },
+      {
+        "path": "js/snapshot.js",
+        "sha256": "b1b4f9aec53b28c4d0b2a56fd4c131ebeffb3677dc413d45d5141b2eb9853a99"
+      },
+      {
+        "path": "js/treasury-model.js",
+        "sha256": "3c53bb0a5f8a6c1d496bba3718a78d7506efd61492123143b0ce84bf4d8aedee"
+      },
+      {
+        "path": "scripts/generate-macro-calendar.cjs",
+        "sha256": "452d2dc643c6046e6521c6e0d3514b5ba582399d6f5c23118dc458ca8917280e"
+      },
+      {
+        "path": "tests/calendar-generator.test.js",
+        "sha256": "48402e21b2095064a5e95e69dd7d163ea85e3c6e2f83ac36abca928cc75829f4"
+      },
+      {
+        "path": "tests/calendar.test.js",
+        "sha256": "effff08c321b95781ad4d04305d969e8a71581f6e62e5dbfbb2c90238d5c185c"
+      },
+      {
+        "path": "tests/crypto-calendar-prototype.test.js",
+        "sha256": "28d565aa6bd51ca4ab92ef4daced1acf39c671766979bfdb50c9e989cbc2a049"
+      },
+      {
+        "path": "tests/fixtures/treasury-samples.json",
+        "sha256": "ea979af7e24b8d93e0ba6f751832dd5ed15908cae45ad29a8ec645b106bf8a26"
+      },
+      {
+        "path": "tests/fixtures/treasury-upcoming.json",
+        "sha256": "8ba195f66697b55b4ccb22d16c665ad30d6e268ca285e356c090733460f96a78"
+      },
+      {
+        "path": "tests/treasury.test.js",
+        "sha256": "ce6b3aeb17bdf853e46bed4893d6ae5b04e946fc1f06b9a5468666f196858585"
+      }
+    ],
+    "noCommitOrPushPerformed": true
+  }
+}

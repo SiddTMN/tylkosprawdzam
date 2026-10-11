@@ -1,0 +1,1518 @@
+{
+  "schemaVersion": 1,
+  "mode": "stage1-alternative-audit",
+  "generatedAt": "2026-10-11T12:30:08.832Z",
+  "window": {
+    "from": "2026-10-11",
+    "toExclusive": "2026-11-10",
+    "timezone": "Europe/Warsaw",
+    "timedAfter": "2026-10-11T12:30:08.069Z"
+  },
+  "counts": {
+    "ETH": 0,
+    "DOT": 0,
+    "XLM": 0
+  },
+  "coverage": {
+    "ETH": "Licensed EIP schedules plus public organizer ICS; republication of ICS facts held for clarification",
+    "DOT": "Public Parity Dotlake referendum results and ongoing monitoring; no inferred UTC deadlines",
+    "XLM": "Licensed protocol schedules plus SDF ICS and Meridian side calendar; no main Meridian event found in either feed"
+  },
+  "complete": false,
+  "requests": 0,
+  "reviewRequiredCounts": {
+    "ETH": 24,
+    "DOT": 0,
+    "XLM": 1
+  },
+  "reviewRequiredEvents": [
+    {
+      "id": "ETH:ics:dl6c3453rhhp3b36kajc3cpc3c@google.com:2026-10-12T14:00:00Z",
+      "token": "ETH",
+      "date": "2026-10-12",
+      "startsAt": "2026-10-12T14:00:00.000Z",
+      "time": "14:00:00",
+      "timezone": "UTC",
+      "title": "All Core Devs - Testing",
+      "type": "protocol-meeting",
+      "priority": "medium",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": true,
+      "recurrenceId": "2026-10-12T14:00:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-10-12T15:00:00.000Z",
+      "endDateExclusive": null
+    },
+    {
+      "id": "ETH:ics:apl6ekf146s96ndkeqpo2rp1ds@google.com:2026-10-13T13:00:00Z",
+      "token": "ETH",
+      "date": "2026-10-13",
+      "startsAt": "2026-10-13T13:00:00.000Z",
+      "time": "13:00:00",
+      "timezone": "UTC",
+      "title": "FOCIL Breakout",
+      "type": "protocol-meeting",
+      "priority": "low",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": true,
+      "recurrenceId": "2026-10-13T13:00:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-10-13T14:00:00.000Z",
+      "endDateExclusive": null
+    },
+    {
+      "id": "XLM:ics:evt-6kH2HwpyZJsXLT2@events.lu.ma:2026-10-13T15:00:00Z",
+      "token": "XLM",
+      "date": "2026-10-13",
+      "startsAt": "2026-10-13T15:00:00.000Z",
+      "time": "15:00:00",
+      "timezone": "UTC",
+      "title": "Legal 101 for Stablecoin Payment Providers",
+      "type": "ecosystem-event",
+      "priority": "low",
+      "sourceUrl": "https://luma.com/stellar-ap4y",
+      "verifiedAt": "2026-10-11T12:23:33.659Z",
+      "sourceId": "xlm-sdf-calendar",
+      "publisherStatus": "TENTATIVE",
+      "recurring": false,
+      "recurrenceId": "2026-10-13T15:00:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public ICS supported by Luma. Organizer permission and interaction with SDF terms for public aggregation not expressly settled.",
+        "publisher-status-tentative"
+      ],
+      "endsAt": "2026-10-13T16:00:00.000Z",
+      "endDateExclusive": null
+    },
+    {
+      "id": "ETH:ics:faubka2um0urh50rllvdfka8k4@google.com:2026-10-14T13:00:00Z",
+      "token": "ETH",
+      "date": "2026-10-14",
+      "startsAt": "2026-10-14T13:00:00.000Z",
+      "time": "13:00:00",
+      "timezone": "UTC",
+      "title": "PQ Transaction Signatures",
+      "type": "protocol-meeting",
+      "priority": "low",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": true,
+      "recurrenceId": "2026-10-14T13:00:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-10-14T14:00:00.000Z",
+      "endDateExclusive": null
+    },
+    {
+      "id": "ETH:ics:304onlr49bq4qfbisk71s4oa88@google.com:2026-10-14T15:00:00Z",
+      "token": "ETH",
+      "date": "2026-10-14",
+      "startsAt": "2026-10-14T15:00:00.000Z",
+      "time": "15:00:00",
+      "timezone": "UTC",
+      "title": "L1-zkEVM Breakout",
+      "type": "protocol-meeting",
+      "priority": "low",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": true,
+      "recurrenceId": "2026-10-14T15:00:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-10-14T16:00:00.000Z",
+      "endDateExclusive": null
+    },
+    {
+      "id": "ETH:ics:8ep6ohk1vfpr2rbh6259js60js@google.com:2026-10-14T15:00:00Z",
+      "token": "ETH",
+      "date": "2026-10-14",
+      "startsAt": "2026-10-14T15:00:00.000Z",
+      "time": "15:00:00",
+      "timezone": "UTC",
+      "title": "Encrypt the Mempool",
+      "type": "protocol-meeting",
+      "priority": "low",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": true,
+      "recurrenceId": "2026-10-14T15:00:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-10-14T16:00:00.000Z",
+      "endDateExclusive": null
+    },
+    {
+      "id": "ETH:ics:osmr6ifiekj8mhrtfbbhk280p1@google.com:2026-10-15T14:00:00Z",
+      "token": "ETH",
+      "date": "2026-10-15",
+      "startsAt": "2026-10-15T14:00:00.000Z",
+      "time": "14:00:00",
+      "timezone": "UTC",
+      "title": "All Core Devs - Consensus",
+      "type": "protocol-meeting",
+      "priority": "medium",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": true,
+      "recurrenceId": "2026-10-15T14:00:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-10-15T15:30:00.000Z",
+      "endDateExclusive": null
+    },
+    {
+      "id": "ETH:ics:dl6c3453rhhp3b36kajc3cpc3c@google.com:2026-10-19T14:00:00Z",
+      "token": "ETH",
+      "date": "2026-10-19",
+      "startsAt": "2026-10-19T14:00:00.000Z",
+      "time": "14:00:00",
+      "timezone": "UTC",
+      "title": "All Core Devs - Testing",
+      "type": "protocol-meeting",
+      "priority": "medium",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": true,
+      "recurrenceId": "2026-10-19T14:00:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-10-19T15:00:00.000Z",
+      "endDateExclusive": null
+    },
+    {
+      "id": "ETH:ics:bdlrq9mtdo9lmg981ut44k2of4@google.com:2026-10-19T15:00:00Z",
+      "token": "ETH",
+      "date": "2026-10-19",
+      "startsAt": "2026-10-19T15:00:00.000Z",
+      "time": "15:00:00",
+      "timezone": "UTC",
+      "title": "RPC Standards",
+      "type": "protocol-meeting",
+      "priority": "low",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": true,
+      "recurrenceId": "2026-10-19T15:00:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-10-19T16:00:00.000Z",
+      "endDateExclusive": null
+    },
+    {
+      "id": "ETH:ics:r7a2ljpa2e745p7ca9fekhg3u0@google.com:2026-10-20T14:00:00Z",
+      "token": "ETH",
+      "date": "2026-10-20",
+      "startsAt": "2026-10-20T14:00:00.000Z",
+      "time": "14:00:00",
+      "timezone": "UTC",
+      "title": "Frame Transaction Breakout",
+      "type": "protocol-meeting",
+      "priority": "low",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": true,
+      "recurrenceId": "2026-10-20T14:00:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-10-20T15:00:00.000Z",
+      "endDateExclusive": null
+    },
+    {
+      "id": "ETH:ics:ace5eqk9j5fasnmvr8g14ejo98@google.com:2026-10-21T15:30:00Z",
+      "token": "ETH",
+      "date": "2026-10-21",
+      "startsAt": "2026-10-21T15:30:00.000Z",
+      "time": "15:30:00",
+      "timezone": "UTC",
+      "title": "P2P Networking",
+      "type": "protocol-meeting",
+      "priority": "low",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": true,
+      "recurrenceId": "2026-10-21T15:30:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-10-21T16:30:00.000Z",
+      "endDateExclusive": null
+    },
+    {
+      "id": "ETH:ics:57ps65gogbsddi4inar38i23vk@google.com:2026-10-21T16:00:00Z",
+      "token": "ETH",
+      "date": "2026-10-21",
+      "startsAt": "2026-10-21T16:00:00.000Z",
+      "time": "16:00:00",
+      "timezone": "UTC",
+      "title": "EIPIP Meeting",
+      "type": "protocol-meeting",
+      "priority": "low",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": false,
+      "recurrenceId": "2026-10-21T16:00:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-10-21T17:00:00.000Z",
+      "endDateExclusive": null,
+      "alsoSeenUids": [
+        "ETH:ics:iv5tfm9lgpgeadncqqm6h12om8@google.com:2026-10-21T16:00:00Z"
+      ]
+    },
+    {
+      "id": "ETH:ics:0dfndba713oduma6m9vj63cmj4@google.com:2026-10-21T18:00:00Z",
+      "token": "ETH",
+      "date": "2026-10-21",
+      "startsAt": "2026-10-21T18:00:00.000Z",
+      "time": "18:00:00",
+      "timezone": "UTC",
+      "title": "All Wallet Devs",
+      "type": "protocol-meeting",
+      "priority": "low",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": true,
+      "recurrenceId": "2026-10-21T18:00:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-10-21T19:00:00.000Z",
+      "endDateExclusive": null
+    },
+    {
+      "id": "ETH:ics:02cu1b1g1mscunv7d3p0ilg3gg@google.com:2026-10-22T14:00:00Z",
+      "token": "ETH",
+      "date": "2026-10-22",
+      "startsAt": "2026-10-22T14:00:00.000Z",
+      "time": "14:00:00",
+      "timezone": "UTC",
+      "title": "All Core Devs - Execution",
+      "type": "protocol-meeting",
+      "priority": "medium",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": true,
+      "recurrenceId": "2026-10-22T14:00:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-10-22T15:30:00.000Z",
+      "endDateExclusive": null
+    },
+    {
+      "id": "ETH:ics:dl6c3453rhhp3b36kajc3cpc3c@google.com:2026-10-26T14:00:00Z",
+      "token": "ETH",
+      "date": "2026-10-26",
+      "startsAt": "2026-10-26T14:00:00.000Z",
+      "time": "14:00:00",
+      "timezone": "UTC",
+      "title": "All Core Devs - Testing",
+      "type": "protocol-meeting",
+      "priority": "medium",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": true,
+      "recurrenceId": "2026-10-26T14:00:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-10-26T15:00:00.000Z",
+      "endDateExclusive": null
+    },
+    {
+      "id": "ETH:ics:apl6ekf146s96ndkeqpo2rp1ds@google.com:2026-10-27T13:00:00Z",
+      "token": "ETH",
+      "date": "2026-10-27",
+      "startsAt": "2026-10-27T13:00:00.000Z",
+      "time": "13:00:00",
+      "timezone": "UTC",
+      "title": "FOCIL Breakout",
+      "type": "protocol-meeting",
+      "priority": "low",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": true,
+      "recurrenceId": "2026-10-27T13:00:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-10-27T14:00:00.000Z",
+      "endDateExclusive": null
+    },
+    {
+      "id": "ETH:ics:faubka2um0urh50rllvdfka8k4@google.com:2026-10-28T13:00:00Z",
+      "token": "ETH",
+      "date": "2026-10-28",
+      "startsAt": "2026-10-28T13:00:00.000Z",
+      "time": "13:00:00",
+      "timezone": "UTC",
+      "title": "PQ Transaction Signatures",
+      "type": "protocol-meeting",
+      "priority": "low",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": true,
+      "recurrenceId": "2026-10-28T13:00:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-10-28T14:00:00.000Z",
+      "endDateExclusive": null
+    },
+    {
+      "id": "ETH:ics:iv5tfm9lgpgeadncqqm6h12om8@google.com:2026-10-28T16:00:00Z",
+      "token": "ETH",
+      "date": "2026-10-28",
+      "startsAt": "2026-10-28T16:00:00.000Z",
+      "time": "16:00:00",
+      "timezone": "UTC",
+      "title": "EIPIP Meeting",
+      "type": "protocol-meeting",
+      "priority": "low",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": true,
+      "recurrenceId": "2026-10-28T16:00:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-10-28T17:00:00.000Z",
+      "endDateExclusive": null
+    },
+    {
+      "id": "ETH:ics:osmr6ifiekj8mhrtfbbhk280p1@google.com:2026-10-29T14:00:00Z",
+      "token": "ETH",
+      "date": "2026-10-29",
+      "startsAt": "2026-10-29T14:00:00.000Z",
+      "time": "14:00:00",
+      "timezone": "UTC",
+      "title": "All Core Devs - Consensus",
+      "type": "protocol-meeting",
+      "priority": "medium",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": true,
+      "recurrenceId": "2026-10-29T14:00:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-10-29T15:30:00.000Z",
+      "endDateExclusive": null
+    },
+    {
+      "id": "ETH:ics:dl6c3453rhhp3b36kajc3cpc3c@google.com:2026-11-02T14:00:00Z",
+      "token": "ETH",
+      "date": "2026-11-02",
+      "startsAt": "2026-11-02T14:00:00.000Z",
+      "time": "14:00:00",
+      "timezone": "UTC",
+      "title": "All Core Devs - Testing",
+      "type": "protocol-meeting",
+      "priority": "medium",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": true,
+      "recurrenceId": "2026-11-02T14:00:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-11-02T15:00:00.000Z",
+      "endDateExclusive": null
+    },
+    {
+      "id": "ETH:ics:bdlrq9mtdo9lmg981ut44k2of4@google.com:2026-11-02T15:00:00Z",
+      "token": "ETH",
+      "date": "2026-11-02",
+      "startsAt": "2026-11-02T15:00:00.000Z",
+      "time": "15:00:00",
+      "timezone": "UTC",
+      "title": "RPC Standards",
+      "type": "protocol-meeting",
+      "priority": "low",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": true,
+      "recurrenceId": "2026-11-02T15:00:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-11-02T16:00:00.000Z",
+      "endDateExclusive": null
+    },
+    {
+      "id": "ETH:ics:r7a2ljpa2e745p7ca9fekhg3u0@google.com:2026-11-03T14:00:00Z",
+      "token": "ETH",
+      "date": "2026-11-03",
+      "startsAt": "2026-11-03T14:00:00.000Z",
+      "time": "14:00:00",
+      "timezone": "UTC",
+      "title": "Frame Transaction Breakout",
+      "type": "protocol-meeting",
+      "priority": "low",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": true,
+      "recurrenceId": "2026-11-03T14:00:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-11-03T15:00:00.000Z",
+      "endDateExclusive": null
+    },
+    {
+      "id": "ETH:ics:ace5eqk9j5fasnmvr8g14ejo98@google.com:2026-11-04T15:30:00Z",
+      "token": "ETH",
+      "date": "2026-11-04",
+      "startsAt": "2026-11-04T15:30:00.000Z",
+      "time": "15:30:00",
+      "timezone": "UTC",
+      "title": "P2P Networking",
+      "type": "protocol-meeting",
+      "priority": "low",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": true,
+      "recurrenceId": "2026-11-04T15:30:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-11-04T16:30:00.000Z",
+      "endDateExclusive": null
+    },
+    {
+      "id": "ETH:ics:02cu1b1g1mscunv7d3p0ilg3gg@google.com:2026-11-05T14:00:00Z",
+      "token": "ETH",
+      "date": "2026-11-05",
+      "startsAt": "2026-11-05T14:00:00.000Z",
+      "time": "14:00:00",
+      "timezone": "UTC",
+      "title": "All Core Devs - Execution",
+      "type": "protocol-meeting",
+      "priority": "medium",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": true,
+      "recurrenceId": "2026-11-05T14:00:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-11-05T15:30:00.000Z",
+      "endDateExclusive": null
+    },
+    {
+      "id": "ETH:ics:dl6c3453rhhp3b36kajc3cpc3c@google.com:2026-11-09T14:00:00Z",
+      "token": "ETH",
+      "date": "2026-11-09",
+      "startsAt": "2026-11-09T14:00:00.000Z",
+      "time": "14:00:00",
+      "timezone": "UTC",
+      "title": "All Core Devs - Testing",
+      "type": "protocol-meeting",
+      "priority": "medium",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "sourceId": "eth-protocol-calls",
+      "publisherStatus": "CONFIRMED",
+      "recurring": true,
+      "recurrenceId": "2026-11-09T14:00:00Z",
+      "reuse": "review-required",
+      "reviewReasons": [
+        "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar."
+      ],
+      "endsAt": "2026-11-09T15:00:00.000Z",
+      "endDateExclusive": null
+    }
+  ],
+  "monitoring": [
+    {
+      "token": "DOT",
+      "referendumIndex": 1950,
+      "state": "Ongoing",
+      "chain": "polkadot_asset_hub",
+      "endDate": null,
+      "endBlock": null,
+      "sourceUrl": "https://api.data.parity.io/docs",
+      "attribution": "Data: Parity Dotlake API",
+      "verifiedAt": "2026-10-11T12:23:34.336Z"
+    },
+    {
+      "token": "DOT",
+      "referendumIndex": 1949,
+      "state": "Ongoing",
+      "chain": "polkadot_asset_hub",
+      "endDate": null,
+      "endBlock": null,
+      "sourceUrl": "https://api.data.parity.io/docs",
+      "attribution": "Data: Parity Dotlake API",
+      "verifiedAt": "2026-10-11T12:23:34.336Z"
+    },
+    {
+      "token": "DOT",
+      "referendumIndex": 1948,
+      "state": "Ongoing",
+      "chain": "polkadot_asset_hub",
+      "endDate": null,
+      "endBlock": null,
+      "sourceUrl": "https://api.data.parity.io/docs",
+      "attribution": "Data: Parity Dotlake API",
+      "verifiedAt": "2026-10-11T12:23:34.336Z"
+    },
+    {
+      "token": "DOT",
+      "referendumIndex": 1947,
+      "state": "Ongoing",
+      "chain": "polkadot_asset_hub",
+      "endDate": null,
+      "endBlock": null,
+      "sourceUrl": "https://api.data.parity.io/docs",
+      "attribution": "Data: Parity Dotlake API",
+      "verifiedAt": "2026-10-11T12:23:34.336Z"
+    },
+    {
+      "token": "DOT",
+      "referendumIndex": 1946,
+      "state": "Ongoing",
+      "chain": "polkadot_asset_hub",
+      "endDate": null,
+      "endBlock": null,
+      "sourceUrl": "https://api.data.parity.io/docs",
+      "attribution": "Data: Parity Dotlake API",
+      "verifiedAt": "2026-10-11T12:23:34.336Z"
+    }
+  ],
+  "sources": [
+    {
+      "id": "eth-glamsterdam",
+      "token": "ETH",
+      "kind": "eip",
+      "status": "cached",
+      "verifiedAt": "2026-10-11T11:58:22.197Z",
+      "transport": "cache-not-reverified",
+      "url": "https://api.github.com/repos/ethereum/EIPs/contents/EIPS/eip-7773.md",
+      "httpStatus": 304,
+      "checkedAt": "2026-10-11T11:58:22.197Z",
+      "rateRemaining": "31",
+      "rateReset": "1791721580",
+      "retryAfter": null,
+      "inspected": 3,
+      "parsedEvents": 1,
+      "futureDated": null,
+      "reuse": "licensed-source",
+      "reuseReason": null,
+      "terms": null,
+      "attribution": null,
+      "minRefreshHours": 6,
+      "license": "CC0-1.0",
+      "licenseUrl": "https://github.com/ethereum/EIPs/blob/master/LICENSE.md",
+      "note": null
+    },
+    {
+      "id": "xlm-protocols",
+      "token": "XLM",
+      "kind": "stellar",
+      "status": "cached",
+      "verifiedAt": "2026-10-11T11:58:22.482Z",
+      "transport": "cache-not-reverified",
+      "url": "https://api.github.com/repos/stellar/stellar-docs/contents/docs/networks/software-versions.mdx",
+      "httpStatus": 304,
+      "checkedAt": "2026-10-11T11:58:22.482Z",
+      "rateRemaining": "30",
+      "rateReset": "1791721580",
+      "retryAfter": null,
+      "inspected": 22,
+      "parsedEvents": 16,
+      "futureDated": null,
+      "reuse": "licensed-source",
+      "reuseReason": null,
+      "terms": null,
+      "attribution": null,
+      "minRefreshHours": 6,
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/stellar/stellar-docs/blob/main/LICENSE",
+      "note": null
+    },
+    {
+      "id": "eth-geth",
+      "token": "ETH",
+      "kind": "releases",
+      "status": "cached",
+      "verifiedAt": "2026-10-11T11:58:22.757Z",
+      "transport": "cache-not-reverified",
+      "url": "https://api.github.com/repos/ethereum/go-ethereum/releases?per_page=10",
+      "httpStatus": 304,
+      "checkedAt": "2026-10-11T11:58:22.757Z",
+      "rateRemaining": "29",
+      "rateReset": "1791721580",
+      "retryAfter": null,
+      "inspected": 10,
+      "parsedEvents": 0,
+      "futureDated": null,
+      "reuse": "licensed-source",
+      "reuseReason": null,
+      "terms": null,
+      "attribution": null,
+      "minRefreshHours": 6,
+      "license": null,
+      "licenseUrl": null,
+      "note": "Monitoring only: release bodies require a dedicated reviewed schedule adapter; published_at is never an event date."
+    },
+    {
+      "id": "dot-sdk",
+      "token": "DOT",
+      "kind": "releases",
+      "status": "cached",
+      "verifiedAt": "2026-10-11T11:58:23.239Z",
+      "transport": "cache-not-reverified",
+      "url": "https://api.github.com/repos/paritytech/polkadot-sdk/releases?per_page=10",
+      "httpStatus": 304,
+      "checkedAt": "2026-10-11T11:58:23.239Z",
+      "rateRemaining": "28",
+      "rateReset": "1791721580",
+      "retryAfter": null,
+      "inspected": 10,
+      "parsedEvents": 0,
+      "futureDated": null,
+      "reuse": "licensed-source",
+      "reuseReason": null,
+      "terms": null,
+      "attribution": null,
+      "minRefreshHours": 6,
+      "license": null,
+      "licenseUrl": null,
+      "note": "Monitoring only: release bodies require a dedicated reviewed schedule adapter; published_at is never an event date."
+    },
+    {
+      "id": "dot-runtime",
+      "token": "DOT",
+      "kind": "releases",
+      "status": "cached",
+      "verifiedAt": "2026-10-11T11:58:23.806Z",
+      "transport": "cache-not-reverified",
+      "url": "https://api.github.com/repos/polkadot-fellows/runtimes/releases?per_page=10",
+      "httpStatus": 304,
+      "checkedAt": "2026-10-11T11:58:23.806Z",
+      "rateRemaining": "27",
+      "rateReset": "1791721580",
+      "retryAfter": null,
+      "inspected": 10,
+      "parsedEvents": 0,
+      "futureDated": null,
+      "reuse": "licensed-source",
+      "reuseReason": null,
+      "terms": null,
+      "attribution": null,
+      "minRefreshHours": 6,
+      "license": null,
+      "licenseUrl": null,
+      "note": "Monitoring only: release bodies require a dedicated reviewed schedule adapter; published_at is never an event date."
+    },
+    {
+      "id": "xlm-core",
+      "token": "XLM",
+      "kind": "releases",
+      "status": "cached",
+      "verifiedAt": "2026-10-11T11:58:24.124Z",
+      "transport": "cache-not-reverified",
+      "url": "https://api.github.com/repos/stellar/stellar-core/releases?per_page=10",
+      "httpStatus": 304,
+      "checkedAt": "2026-10-11T11:58:24.124Z",
+      "rateRemaining": "26",
+      "rateReset": "1791721580",
+      "retryAfter": null,
+      "inspected": 10,
+      "parsedEvents": 0,
+      "futureDated": null,
+      "reuse": "licensed-source",
+      "reuseReason": null,
+      "terms": null,
+      "attribution": null,
+      "minRefreshHours": 6,
+      "license": null,
+      "licenseUrl": null,
+      "note": "Monitoring only: release bodies require a dedicated reviewed schedule adapter; published_at is never an event date."
+    },
+    {
+      "id": "eth-protocol-calls",
+      "token": "ETH",
+      "kind": "ics",
+      "status": "cached",
+      "verifiedAt": "2026-10-11T12:23:32.765Z",
+      "transport": "cache-not-reverified",
+      "url": "https://calendar.google.com/calendar/ical/c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com/public/basic.ics",
+      "httpStatus": 200,
+      "checkedAt": "2026-10-11T12:23:32.765Z",
+      "rateRemaining": null,
+      "rateReset": null,
+      "retryAfter": null,
+      "bytes": 346170,
+      "sha256": "74e7871b4a2769d8cd72d362f2d4d0a658711ccd4c69b891edb70526ccd56a97",
+      "hasMorePages": false,
+      "inspected": 516,
+      "parsedEvents": 24,
+      "futureDated": 24,
+      "reuse": "review-required",
+      "reuseReason": "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar.",
+      "terms": "https://support.google.com/calendar/answer/37083",
+      "attribution": null,
+      "minRefreshHours": 6,
+      "license": null,
+      "licenseUrl": null,
+      "note": "Only explicit DTSTART and organizer RRULE; respects exceptions, exclusions, cancellations and timezones. No article/release dates. Only minimal facts retained."
+    },
+    {
+      "id": "eth-event-gardeners",
+      "token": "ETH",
+      "kind": "ics",
+      "status": "cached",
+      "verifiedAt": "2026-10-11T12:23:33.391Z",
+      "transport": "cache-not-reverified",
+      "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-w4F5OCEtiPWTF9H",
+      "httpStatus": 200,
+      "checkedAt": "2026-10-11T12:23:33.391Z",
+      "rateRemaining": null,
+      "rateReset": null,
+      "retryAfter": null,
+      "bytes": 1224,
+      "sha256": "6756e46a93545362b0b437fe3e2bbcfd88e791ebde35cc9f36f5f5eba373b390",
+      "hasMorePages": false,
+      "inspected": 2,
+      "parsedEvents": 0,
+      "futureDated": 0,
+      "reuse": "review-required",
+      "reuseReason": "Documented public ICS and supported-interface exception in Luma terms; scope of public aggregation and organizer rights needs clarification.",
+      "terms": "https://luma.com/terms",
+      "attribution": null,
+      "minRefreshHours": 12,
+      "license": null,
+      "licenseUrl": null,
+      "note": "Only explicit DTSTART and organizer RRULE; respects exceptions, exclusions, cancellations and timezones. No article/release dates. Only minimal facts retained."
+    },
+    {
+      "id": "xlm-sdf-calendar",
+      "token": "XLM",
+      "kind": "ics",
+      "status": "cached",
+      "verifiedAt": "2026-10-11T12:23:33.659Z",
+      "transport": "cache-not-reverified",
+      "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-4SDwG16dMzxx2eh",
+      "httpStatus": 200,
+      "checkedAt": "2026-10-11T12:23:33.659Z",
+      "rateRemaining": null,
+      "rateReset": null,
+      "retryAfter": null,
+      "bytes": 17875,
+      "sha256": "210721ca2213040ddc1d3455c3bd69c1d0c7d2e876e1b24895773ccc5fe810b3",
+      "hasMorePages": false,
+      "inspected": 31,
+      "parsedEvents": 1,
+      "futureDated": 1,
+      "reuse": "review-required",
+      "reuseReason": "Public ICS supported by Luma. Organizer permission and interaction with SDF terms for public aggregation not expressly settled.",
+      "terms": "https://luma.com/terms",
+      "attribution": null,
+      "minRefreshHours": 12,
+      "license": null,
+      "licenseUrl": null,
+      "note": "Only explicit DTSTART and organizer RRULE; respects exceptions, exclusions, cancellations and timezones. No article/release dates. Only minimal facts retained."
+    },
+    {
+      "id": "xlm-meridian-side-calendar",
+      "token": "XLM",
+      "kind": "ics",
+      "status": "cached",
+      "verifiedAt": "2026-10-11T12:23:33.892Z",
+      "transport": "cache-not-reverified",
+      "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-j4WD21uqn69rXHy",
+      "httpStatus": 200,
+      "checkedAt": "2026-10-11T12:23:33.892Z",
+      "rateRemaining": null,
+      "rateReset": null,
+      "retryAfter": null,
+      "bytes": 2846,
+      "sha256": "e7fa63f8673f7613c0ff0f7e79c8dbe0fc2112014fec72d6ade4e30ae9cef54c",
+      "hasMorePages": false,
+      "inspected": 5,
+      "parsedEvents": 0,
+      "futureDated": 5,
+      "reuse": "review-required",
+      "reuseReason": "Official Meridian website links this community side-event calendar; this does not establish permission to republish host content.",
+      "terms": "https://luma.com/terms",
+      "attribution": null,
+      "minRefreshHours": 12,
+      "license": null,
+      "licenseUrl": null,
+      "note": "Only explicit DTSTART and organizer RRULE; respects exceptions, exclusions, cancellations and timezones. No article/release dates. Only minimal facts retained."
+    },
+    {
+      "id": "dot-opengov",
+      "token": "DOT",
+      "kind": "opengov",
+      "status": "cached",
+      "verifiedAt": "2026-10-11T12:23:34.336Z",
+      "transport": "cache-not-reverified",
+      "url": "https://api.data.parity.io/api/daily-opengov-referenda-results?relay_chain=polkadot&chain=polkadot_asset_hub",
+      "httpStatus": 200,
+      "checkedAt": "2026-10-11T12:23:34.336Z",
+      "rateRemaining": null,
+      "rateReset": null,
+      "retryAfter": null,
+      "bytes": 2676,
+      "sha256": "0100b583d9aaa0f8ca99d87b16c53618570041d768152c78343ec0faf0206e62",
+      "hasMorePages": false,
+      "inspected": 9,
+      "parsedEvents": 0,
+      "futureDated": null,
+      "reuse": "allowed-with-attribution",
+      "reuseReason": null,
+      "terms": "https://api.data.parity.io/openapi.json",
+      "attribution": "Data: Parity Dotlake API",
+      "minRefreshHours": 6,
+      "license": null,
+      "licenseUrl": null,
+      "note": "Historical results API, not a future UTC schedule. Ongoing records monitored separately; block heights, periods, start_date and observed end_date never become predicted calendar events."
+    }
+  ],
+  "disabledSources": [
+    {
+      "url": "https://ethereum.org/community/events/",
+      "reason": "Terms prohibit automated access; not collected.",
+      "terms": "https://ethereum.org/terms-of-use/"
+    },
+    {
+      "url": "https://blog.ethereum.org/feed.xml",
+      "reason": "EF website terms prohibit automated access; RSS presence is not an exception.",
+      "terms": "https://ethereum.org/terms-of-use/"
+    },
+    {
+      "url": "https://stellar.org/events",
+      "reason": "Public reuse not cleared under website terms; not collected.",
+      "terms": "https://stellar.org/terms-of-service"
+    },
+    {
+      "url": "https://stellar.org/blog",
+      "reason": "Public reuse not cleared under website terms; not collected.",
+      "terms": "https://stellar.org/terms-of-service"
+    },
+    {
+      "url": "https://forum.polkadot.network/latest.rss",
+      "reason": "Forum terms prohibit automated monitoring; not collected.",
+      "terms": "https://forum.polkadot.network/tos"
+    }
+  ],
+  "events": [],
+  "rejected": [
+    {
+      "source": "eth-glamsterdam",
+      "network": "Hoodi",
+      "reason": "no-confirmed-activation-date"
+    },
+    {
+      "source": "eth-glamsterdam",
+      "network": "Mainnet",
+      "reason": "no-confirmed-activation-date"
+    },
+    {
+      "source": "xlm-protocols",
+      "heading": "## Whisk, Protocol 23 Release Candidate (Testnet only, July 17, 2025)",
+      "reason": "unsupported-or-not-explicit-network-date"
+    },
+    {
+      "source": "xlm-protocols",
+      "heading": "## Protocol 21 (Testnet only, May 20, 2024)",
+      "reason": "unsupported-or-not-explicit-network-date"
+    },
+    {
+      "source": "xlm-protocols",
+      "heading": "## Protocol 21: Preview 1 (Testnet only, April 12, 2024)",
+      "reason": "unsupported-or-not-explicit-network-date"
+    },
+    {
+      "source": "xlm-protocols",
+      "heading": "## Protocol 20: Soroban Phase 2 (March 19, 2024)",
+      "reason": "unsupported-or-not-explicit-network-date"
+    },
+    {
+      "source": "xlm-protocols",
+      "heading": "## Protocol 20: Soroban Phase 1 (February 27, 2024)",
+      "reason": "unsupported-or-not-explicit-network-date"
+    },
+    {
+      "source": "xlm-protocols",
+      "heading": "## Protocol 20: Soroban Phase 0 (Mainnet, February 20, 2024)",
+      "reason": "unsupported-or-not-explicit-network-date"
+    },
+    {
+      "source": "eth-geth",
+      "sourceUrl": "https://github.com/ethereum/go-ethereum/releases/tag/v1.17.8",
+      "tag": "v1.17.8",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-10-08T16:35:36Z"
+    },
+    {
+      "source": "eth-geth",
+      "sourceUrl": "https://github.com/ethereum/go-ethereum/releases/tag/v1.17.7",
+      "tag": "v1.17.7",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-09-30T11:48:08Z"
+    },
+    {
+      "source": "eth-geth",
+      "sourceUrl": "https://github.com/ethereum/go-ethereum/releases/tag/v1.17.6",
+      "tag": "v1.17.6",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-09-23T02:21:47Z"
+    },
+    {
+      "source": "eth-geth",
+      "sourceUrl": "https://github.com/ethereum/go-ethereum/releases/tag/v1.17.5",
+      "tag": "v1.17.5",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-07-27T08:17:40Z"
+    },
+    {
+      "source": "eth-geth",
+      "sourceUrl": "https://github.com/ethereum/go-ethereum/releases/tag/v1.17.4",
+      "tag": "v1.17.4",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-06-22T07:47:09Z"
+    },
+    {
+      "source": "eth-geth",
+      "sourceUrl": "https://github.com/ethereum/go-ethereum/releases/tag/v1.17.3",
+      "tag": "v1.17.3",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-05-11T15:23:41Z"
+    },
+    {
+      "source": "eth-geth",
+      "sourceUrl": "https://github.com/ethereum/go-ethereum/releases/tag/v1.17.2",
+      "tag": "v1.17.2",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-03-30T11:24:52Z"
+    },
+    {
+      "source": "eth-geth",
+      "sourceUrl": "https://github.com/ethereum/go-ethereum/releases/tag/v1.17.1",
+      "tag": "v1.17.1",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-03-03T12:47:43Z"
+    },
+    {
+      "source": "eth-geth",
+      "sourceUrl": "https://github.com/ethereum/go-ethereum/releases/tag/v1.17.0",
+      "tag": "v1.17.0",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-02-17T16:15:02Z"
+    },
+    {
+      "source": "eth-geth",
+      "sourceUrl": "https://github.com/ethereum/go-ethereum/releases/tag/v1.16.9",
+      "tag": "v1.16.9",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-02-17T16:06:58Z"
+    },
+    {
+      "source": "dot-sdk",
+      "sourceUrl": "https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2606-3",
+      "tag": "polkadot-stable2606-3",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-10-08T14:33:03Z"
+    },
+    {
+      "source": "dot-sdk",
+      "sourceUrl": "https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2603-7",
+      "tag": "polkadot-stable2603-7",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-10-01T14:59:07Z"
+    },
+    {
+      "source": "dot-sdk",
+      "sourceUrl": "https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2609-rc2",
+      "tag": "polkadot-stable2609-rc2",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-09-18T11:40:52Z"
+    },
+    {
+      "source": "dot-sdk",
+      "sourceUrl": "https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2606-2",
+      "tag": "polkadot-stable2606-2",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-09-15T09:48:35Z"
+    },
+    {
+      "source": "dot-sdk",
+      "sourceUrl": "https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2609-rc1",
+      "tag": "polkadot-stable2609-rc1",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-09-04T08:57:00Z"
+    },
+    {
+      "source": "dot-sdk",
+      "sourceUrl": "https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2603-6",
+      "tag": "polkadot-stable2603-6",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-08-27T14:39:24Z"
+    },
+    {
+      "source": "dot-sdk",
+      "sourceUrl": "https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2512-8",
+      "tag": "polkadot-stable2512-8",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-08-20T11:40:18Z"
+    },
+    {
+      "source": "dot-sdk",
+      "sourceUrl": "https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2509-11",
+      "tag": "polkadot-stable2509-11",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-08-13T17:06:01Z"
+    },
+    {
+      "source": "dot-sdk",
+      "sourceUrl": "https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2606-1",
+      "tag": "polkadot-stable2606-1",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-08-10T09:44:24Z"
+    },
+    {
+      "source": "dot-sdk",
+      "sourceUrl": "https://github.com/paritytech/polkadot-sdk/releases/tag/polkadot-stable2603-5",
+      "tag": "polkadot-stable2603-5",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-07-30T13:14:54Z"
+    },
+    {
+      "source": "dot-runtime",
+      "sourceUrl": "https://github.com/polkadot-fellows/runtimes/releases/tag/v2.5.0",
+      "tag": "v2.5.0",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-09-05T17:37:30Z"
+    },
+    {
+      "source": "dot-runtime",
+      "sourceUrl": "https://github.com/polkadot-fellows/runtimes/releases/tag/v2.4.0",
+      "tag": "v2.4.0",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-08-26T19:26:56Z"
+    },
+    {
+      "source": "dot-runtime",
+      "sourceUrl": "https://github.com/polkadot-fellows/runtimes/releases/tag/v2.3.2",
+      "tag": "v2.3.2",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-07-23T16:14:30Z"
+    },
+    {
+      "source": "dot-runtime",
+      "sourceUrl": "https://github.com/polkadot-fellows/runtimes/releases/tag/v2.3.1",
+      "tag": "v2.3.1",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-06-15T08:46:05Z"
+    },
+    {
+      "source": "dot-runtime",
+      "sourceUrl": "https://github.com/polkadot-fellows/runtimes/releases/tag/v2.3.0",
+      "tag": "v2.3.0",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-06-05T19:54:44Z"
+    },
+    {
+      "source": "dot-runtime",
+      "sourceUrl": "https://github.com/polkadot-fellows/runtimes/releases/tag/v2.2.2",
+      "tag": "v2.2.2",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-04-23T12:59:39Z"
+    },
+    {
+      "source": "dot-runtime",
+      "sourceUrl": "https://github.com/polkadot-fellows/runtimes/releases/tag/v2.2.1",
+      "tag": "v2.2.1",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-04-17T15:54:57Z"
+    },
+    {
+      "source": "dot-runtime",
+      "sourceUrl": "https://github.com/polkadot-fellows/runtimes/releases/tag/v2.2.0",
+      "tag": "v2.2.0",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-04-12T19:47:07Z"
+    },
+    {
+      "source": "dot-runtime",
+      "sourceUrl": "https://github.com/polkadot-fellows/runtimes/releases/tag/v2.1.1",
+      "tag": "v2.1.1",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-03-13T18:20:33Z"
+    },
+    {
+      "source": "dot-runtime",
+      "sourceUrl": "https://github.com/polkadot-fellows/runtimes/releases/tag/v2.1.0",
+      "tag": "v2.1.0",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-03-09T10:29:20Z"
+    },
+    {
+      "source": "xlm-core",
+      "sourceUrl": "https://github.com/stellar/stellar-core/releases/tag/v29.0.0",
+      "tag": "v29.0.0",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-10-05T19:19:08Z"
+    },
+    {
+      "source": "xlm-core",
+      "sourceUrl": "https://github.com/stellar/stellar-core/releases/tag/v29.0.0-internal",
+      "tag": "v29.0.0-internal",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-10-01T17:22:41Z"
+    },
+    {
+      "source": "xlm-core",
+      "sourceUrl": "https://github.com/stellar/stellar-core/releases/tag/v28.0.1",
+      "tag": "v28.0.1",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-09-01T07:01:54Z"
+    },
+    {
+      "source": "xlm-core",
+      "sourceUrl": "https://github.com/stellar/stellar-core/releases/tag/v28.0.0",
+      "tag": "v28.0.0",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-08-13T20:05:30Z"
+    },
+    {
+      "source": "xlm-core",
+      "sourceUrl": "https://github.com/stellar/stellar-core/releases/tag/v27.1.0",
+      "tag": "v27.1.0",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-06-25T19:16:20Z"
+    },
+    {
+      "source": "xlm-core",
+      "sourceUrl": "https://github.com/stellar/stellar-core/releases/tag/v27.0.0",
+      "tag": "v27.0.0",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-06-05T19:51:25Z"
+    },
+    {
+      "source": "xlm-core",
+      "sourceUrl": "https://github.com/stellar/stellar-core/releases/tag/v26.1.0",
+      "tag": "v26.1.0",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-05-15T18:03:49Z"
+    },
+    {
+      "source": "xlm-core",
+      "sourceUrl": "https://github.com/stellar/stellar-core/releases/tag/v26.0.1",
+      "tag": "v26.0.1",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-04-13T19:13:45Z"
+    },
+    {
+      "source": "xlm-core",
+      "sourceUrl": "https://github.com/stellar/stellar-core/releases/tag/v26.0.0",
+      "tag": "v26.0.0",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-03-31T23:35:24Z"
+    },
+    {
+      "source": "xlm-core",
+      "sourceUrl": "https://github.com/stellar/stellar-core/releases/tag/v25.2.2-external",
+      "tag": "v25.2.2-external",
+      "reason": "software-release-is-not-a-scheduled-network-event",
+      "publishedAt": "2026-03-24T23:28:54Z"
+    },
+    {
+      "source": "xlm-meridian-side-calendar",
+      "token": "XLM",
+      "title": "Padel Warm-Up: Meridian",
+      "date": "2026-10-26",
+      "startsAt": "2026-10-26T16:30:00.000Z",
+      "sourceUrl": "https://luma.com/6qxf799a",
+      "reason": "community-social-side-event-not-major-ecosystem-event"
+    },
+    {
+      "source": "xlm-meridian-side-calendar",
+      "token": "XLM",
+      "title": "Riserva Lisbon | Stablecoins over wine at Stellar Meridian",
+      "date": "2026-10-27",
+      "startsAt": "2026-10-27T18:00:00.000Z",
+      "sourceUrl": "https://luma.com/8ph6fevz",
+      "reason": "community-social-side-event-not-major-ecosystem-event"
+    },
+    {
+      "source": "xlm-meridian-side-calendar",
+      "token": "XLM",
+      "title": "DeFi x RWA: Cocktail Hour",
+      "date": "2026-10-27",
+      "startsAt": "2026-10-27T19:00:00.000Z",
+      "sourceUrl": "https://luma.com/rqt96zxr",
+      "reason": "community-social-side-event-not-major-ecosystem-event"
+    },
+    {
+      "source": "xlm-meridian-side-calendar",
+      "token": "XLM",
+      "title": "Blendy's Booze Brokerage w/ Zenex",
+      "date": "2026-10-27",
+      "startsAt": "2026-10-27T20:00:00.000Z",
+      "sourceUrl": "https://luma.com/59xi68ra",
+      "reason": "community-social-side-event-not-major-ecosystem-event"
+    },
+    {
+      "source": "xlm-meridian-side-calendar",
+      "token": "XLM",
+      "title": "VIP Dinner with Stellar, Boys Club, and WalletConnect",
+      "date": "2026-10-28",
+      "startsAt": "2026-10-28T19:45:00.000Z",
+      "sourceUrl": "https://luma.com/aog3a69d",
+      "reason": "community-social-side-event-not-major-ecosystem-event"
+    },
+    {
+      "source": "dot-opengov",
+      "token": "DOT",
+      "referendumIndex": 1945,
+      "reason": "historical-referendum-result",
+      "date": "2026-09-17"
+    },
+    {
+      "source": "dot-opengov",
+      "token": "DOT",
+      "referendumIndex": 1950,
+      "reason": "no-confirmed-calendar-deadline",
+      "date": null
+    },
+    {
+      "source": "dot-opengov",
+      "token": "DOT",
+      "referendumIndex": 1949,
+      "reason": "no-confirmed-calendar-deadline",
+      "date": null
+    },
+    {
+      "source": "dot-opengov",
+      "token": "DOT",
+      "referendumIndex": 1948,
+      "reason": "no-confirmed-calendar-deadline",
+      "date": null
+    },
+    {
+      "source": "dot-opengov",
+      "token": "DOT",
+      "referendumIndex": 1947,
+      "reason": "no-confirmed-calendar-deadline",
+      "date": null
+    },
+    {
+      "source": "dot-opengov",
+      "token": "DOT",
+      "referendumIndex": 1946,
+      "reason": "no-confirmed-calendar-deadline",
+      "date": null
+    },
+    {
+      "source": "dot-opengov",
+      "token": "DOT",
+      "referendumIndex": 1951,
+      "reason": "historical-referendum-result",
+      "date": "2026-09-24"
+    },
+    {
+      "source": "dot-opengov",
+      "token": "DOT",
+      "referendumIndex": 1952,
+      "reason": "historical-referendum-result",
+      "date": "2026-10-02"
+    },
+    {
+      "source": "dot-opengov",
+      "token": "DOT",
+      "referendumIndex": 1953,
+      "reason": "historical-referendum-result",
+      "date": "2026-10-02"
+    },
+    {
+      "sourceUrl": "https://github.com/stellar/stellar-docs/blob/main/docs/networks/software-versions.mdx",
+      "token": "XLM",
+      "date": "2024-06-18",
+      "reason": "outside-requested-window"
+    },
+    {
+      "sourceUrl": "https://github.com/stellar/stellar-docs/blob/main/docs/networks/software-versions.mdx",
+      "token": "XLM",
+      "date": "2024-12-05",
+      "reason": "outside-requested-window"
+    },
+    {
+      "sourceUrl": "https://github.com/stellar/stellar-docs/blob/main/docs/networks/software-versions.mdx",
+      "token": "XLM",
+      "date": "2025-08-14",
+      "reason": "outside-requested-window"
+    },
+    {
+      "sourceUrl": "https://github.com/stellar/stellar-docs/blob/main/docs/networks/software-versions.mdx",
+      "token": "XLM",
+      "date": "2025-09-03",
+      "reason": "outside-requested-window"
+    },
+    {
+      "sourceUrl": "https://github.com/stellar/stellar-docs/blob/main/docs/networks/software-versions.mdx",
+      "token": "XLM",
+      "date": "2025-10-21",
+      "reason": "outside-requested-window"
+    },
+    {
+      "sourceUrl": "https://github.com/stellar/stellar-docs/blob/main/docs/networks/software-versions.mdx",
+      "token": "XLM",
+      "date": "2025-10-22",
+      "reason": "outside-requested-window"
+    },
+    {
+      "sourceUrl": "https://github.com/stellar/stellar-docs/blob/main/docs/networks/software-versions.mdx",
+      "token": "XLM",
+      "date": "2026-01-07",
+      "reason": "outside-requested-window"
+    },
+    {
+      "sourceUrl": "https://github.com/stellar/stellar-docs/blob/main/docs/networks/software-versions.mdx",
+      "token": "XLM",
+      "date": "2026-01-22",
+      "reason": "outside-requested-window"
+    },
+    {
+      "sourceUrl": "https://github.com/stellar/stellar-docs/blob/main/docs/networks/software-versions.mdx",
+      "token": "XLM",
+      "date": "2026-04-16",
+      "reason": "outside-requested-window"
+    },
+    {
+      "sourceUrl": "https://github.com/stellar/stellar-docs/blob/main/docs/networks/software-versions.mdx",
+      "token": "XLM",
+      "date": "2026-05-06",
+      "reason": "outside-requested-window"
+    },
+    {
+      "sourceUrl": "https://github.com/stellar/stellar-docs/blob/main/docs/networks/software-versions.mdx",
+      "token": "XLM",
+      "date": "2026-06-18",
+      "reason": "outside-requested-window"
+    },
+    {
+      "sourceUrl": "https://github.com/stellar/stellar-docs/blob/main/docs/networks/software-versions.mdx",
+      "token": "XLM",
+      "date": "2026-07-08",
+      "reason": "outside-requested-window"
+    },
+    {
+      "sourceUrl": "https://github.com/stellar/stellar-docs/blob/main/docs/networks/software-versions.mdx",
+      "token": "XLM",
+      "date": "2026-08-27",
+      "reason": "outside-requested-window"
+    },
+    {
+      "sourceUrl": "https://github.com/stellar/stellar-docs/blob/main/docs/networks/software-versions.mdx",
+      "token": "XLM",
+      "date": "2026-09-16",
+      "reason": "outside-requested-window"
+    },
+    {
+      "sourceUrl": "https://github.com/stellar/stellar-docs/blob/main/docs/networks/software-versions.mdx",
+      "token": "XLM",
+      "date": "2026-09-29",
+      "reason": "outside-requested-window"
+    },
+    {
+      "sourceUrl": "https://github.com/stellar/stellar-docs/blob/main/docs/networks/software-versions.mdx",
+      "token": "XLM",
+      "date": "2026-10-01",
+      "reason": "outside-requested-window"
+    },
+    {
+      "sourceUrl": "https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7773.md",
+      "token": "ETH",
+      "date": "2026-10-06",
+      "reason": "outside-requested-window"
+    }
+  ]
+}

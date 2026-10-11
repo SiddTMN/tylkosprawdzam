@@ -839,3 +839,8 @@ body {
         border-top: 1px solid var(--border);
     }
 }
+
+/* Crypto rows reuse the existing calendar layout. */
+.crypto-event-link { color: inherit; text-decoration: none; }
+.crypto-event-link:hover { text-decoration: underline; }
+.calendar-info .crypto-stale-note { color: var(--yellow); }

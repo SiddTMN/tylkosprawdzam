@@ -155,35 +155,11 @@
                     <h2 id="crypto-calendar-title">Kalendarz krypto</h2>
                 </div>
             </div>
-            <!-- Static examples only, not confirmed market events. Times: Europe/Warsaw. -->
-            <div id="crypto-calendar-events" class="calendar-events">
-                <div class="calendar-event">
-                    <div class="calendar-date"><span>12 PAŹ</span><strong>14:00</strong></div>
-                    <div class="calendar-info"><strong>ETH — aktualizacja sieci</strong><span>Ethereum · test</span></div>
-                    <span class="calendar-impact high">HIGH</span>
-                </div>
-                <div class="calendar-event">
-                    <div class="calendar-date"><span>13 PAŹ</span><strong>16:00</strong></div>
-                    <div class="calendar-info"><strong>DOT — głosowanie</strong><span>Polkadot · test</span></div>
-                    <span class="calendar-impact medium">MEDIUM</span>
-                </div>
-                <div class="calendar-event">
-                    <div class="calendar-date"><span>14 PAŹ</span><strong>15:00</strong></div>
-                    <div class="calendar-info"><strong>XLM — spotkanie ekosystemu</strong><span>Stellar · test</span></div>
-                    <span class="calendar-impact medium">MEDIUM</span>
-                </div>
-                <div class="calendar-event">
-                    <div class="calendar-date"><span>15 PAŹ</span><strong>12:00</strong></div>
-                    <div class="calendar-info"><strong>ATH — prezentacja projektu</strong><span>Aethir · test</span></div>
-                    <span class="calendar-impact low">LOW</span>
-                </div>
-                <div class="calendar-event">
-                    <div class="calendar-date"><span>16 PAŹ</span><strong>18:00</strong></div>
-                    <div class="calendar-info"><strong>BONK — sesja AMA</strong><span>BONK — test</span></div>
-                    <span class="calendar-impact low">LOW</span>
-                </div>
+            <!-- Confirmed crypto calendar facts. Times: Europe/Warsaw. -->
+            <div id="crypto-calendar-events" class="calendar-events" aria-live="polite">
+                <div class="calendar-loading">pobieranie kalendarza...</div>
             </div>
-            <p class="calendar-source calendar-test-note">przykłady · czas: Warszawa</p>
+            <p id="crypto-calendar-status" class="calendar-source calendar-test-note" role="status">wersja lokalna · czas: Warszawa</p>
         </section>
     </div>
 </section>
@@ -301,6 +277,8 @@
     <script src="js/treasury-model.js"></script>
     <script src="js/calendar-model.js"></script>
     <script src="js/calendar.js"></script>
+    <script src="js/crypto-calendar-model.js"></script>
+    <script src="js/crypto-calendar.js"></script>
     <script src="js/news.js"></script>
     <script src="js/snapshot.js"></script>
 

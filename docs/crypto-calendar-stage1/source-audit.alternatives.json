@@ -1,0 +1,690 @@
+{
+  "schemaVersion": 1,
+  "auditDate": "2026-10-11",
+  "window": {
+    "from": "2026-10-11",
+    "toExclusive": "2026-11-10",
+    "timezone": "Europe/Warsaw",
+    "timedAfter": "2026-10-11T12:30:08.069Z"
+  },
+  "generatedAt": "2026-10-11T12:30:08.832Z",
+  "publicationStatus": "Local audit only; not published",
+  "counts": {
+    "accepted": {
+      "ETH": 0,
+      "DOT": 0,
+      "XLM": 0
+    },
+    "reviewRequired": {
+      "ETH": 24,
+      "DOT": 0,
+      "XLM": 1
+    },
+    "rejectedDatedInWindow": {
+      "ETH": 0,
+      "DOT": 0,
+      "XLM": 5
+    },
+    "undatedActiveReferenda": 5
+  },
+  "sources": [
+    {
+      "id": "eth-protocol-calls",
+      "token": "ETH",
+      "kind": "ics",
+      "url": "https://calendar.google.com/calendar/ical/c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com/public/basic.ics",
+      "pageUrl": "https://github.com/ethereum/pm",
+      "calendarUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "reuse": "review-required",
+      "reuseReason": "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar.",
+      "terms": "https://support.google.com/calendar/answer/37083",
+      "technicalReceipt": {
+        "id": "eth-protocol-calls",
+        "token": "ETH",
+        "kind": "ics",
+        "status": "cached",
+        "verifiedAt": "2026-10-11T12:23:32.765Z",
+        "transport": "cache-not-reverified",
+        "url": "https://calendar.google.com/calendar/ical/c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com/public/basic.ics",
+        "httpStatus": 200,
+        "checkedAt": "2026-10-11T12:23:32.765Z",
+        "rateRemaining": null,
+        "rateReset": null,
+        "retryAfter": null,
+        "bytes": 346170,
+        "sha256": "74e7871b4a2769d8cd72d362f2d4d0a658711ccd4c69b891edb70526ccd56a97",
+        "hasMorePages": false,
+        "inspected": 516,
+        "parsedEvents": 24,
+        "futureDated": 24,
+        "reuse": "review-required",
+        "reuseReason": "Public subscription and embedding supported; no explicit permission found for republication of derived calendar records. Repository CC-BY-SA-3.0 is not assumed to license the external calendar.",
+        "terms": "https://support.google.com/calendar/answer/37083",
+        "attribution": null,
+        "minRefreshHours": 6,
+        "license": null,
+        "licenseUrl": null,
+        "note": "Only explicit DTSTART and organizer RRULE; respects exceptions, exclusions, cancellations and timezones. No article/release dates. Only minimal facts retained."
+      },
+      "accepted": 0,
+      "reviewRequired": 24,
+      "rejected": []
+    },
+    {
+      "id": "eth-event-gardeners",
+      "token": "ETH",
+      "kind": "ics",
+      "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-w4F5OCEtiPWTF9H",
+      "pageUrl": "https://luma.com/ethereumeg",
+      "reuse": "review-required",
+      "reuseReason": "Documented public ICS and supported-interface exception in Luma terms; scope of public aggregation and organizer rights needs clarification.",
+      "terms": "https://luma.com/terms",
+      "minRefreshHours": 12,
+      "technicalReceipt": {
+        "id": "eth-event-gardeners",
+        "token": "ETH",
+        "kind": "ics",
+        "status": "cached",
+        "verifiedAt": "2026-10-11T12:23:33.391Z",
+        "transport": "cache-not-reverified",
+        "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-w4F5OCEtiPWTF9H",
+        "httpStatus": 200,
+        "checkedAt": "2026-10-11T12:23:33.391Z",
+        "rateRemaining": null,
+        "rateReset": null,
+        "retryAfter": null,
+        "bytes": 1224,
+        "sha256": "6756e46a93545362b0b437fe3e2bbcfd88e791ebde35cc9f36f5f5eba373b390",
+        "hasMorePages": false,
+        "inspected": 2,
+        "parsedEvents": 0,
+        "futureDated": 0,
+        "reuse": "review-required",
+        "reuseReason": "Documented public ICS and supported-interface exception in Luma terms; scope of public aggregation and organizer rights needs clarification.",
+        "terms": "https://luma.com/terms",
+        "attribution": null,
+        "minRefreshHours": 12,
+        "license": null,
+        "licenseUrl": null,
+        "note": "Only explicit DTSTART and organizer RRULE; respects exceptions, exclusions, cancellations and timezones. No article/release dates. Only minimal facts retained."
+      },
+      "accepted": 0,
+      "reviewRequired": 0,
+      "rejected": []
+    },
+    {
+      "id": "xlm-sdf-calendar",
+      "token": "XLM",
+      "kind": "ics",
+      "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-4SDwG16dMzxx2eh",
+      "pageUrl": "https://luma.com/stellar.org",
+      "reuse": "review-required",
+      "reuseReason": "Public ICS supported by Luma. Organizer permission and interaction with SDF terms for public aggregation not expressly settled.",
+      "terms": "https://luma.com/terms",
+      "minRefreshHours": 12,
+      "technicalReceipt": {
+        "id": "xlm-sdf-calendar",
+        "token": "XLM",
+        "kind": "ics",
+        "status": "cached",
+        "verifiedAt": "2026-10-11T12:23:33.659Z",
+        "transport": "cache-not-reverified",
+        "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-4SDwG16dMzxx2eh",
+        "httpStatus": 200,
+        "checkedAt": "2026-10-11T12:23:33.659Z",
+        "rateRemaining": null,
+        "rateReset": null,
+        "retryAfter": null,
+        "bytes": 17875,
+        "sha256": "210721ca2213040ddc1d3455c3bd69c1d0c7d2e876e1b24895773ccc5fe810b3",
+        "hasMorePages": false,
+        "inspected": 31,
+        "parsedEvents": 1,
+        "futureDated": 1,
+        "reuse": "review-required",
+        "reuseReason": "Public ICS supported by Luma. Organizer permission and interaction with SDF terms for public aggregation not expressly settled.",
+        "terms": "https://luma.com/terms",
+        "attribution": null,
+        "minRefreshHours": 12,
+        "license": null,
+        "licenseUrl": null,
+        "note": "Only explicit DTSTART and organizer RRULE; respects exceptions, exclusions, cancellations and timezones. No article/release dates. Only minimal facts retained."
+      },
+      "accepted": 0,
+      "reviewRequired": 1,
+      "rejected": []
+    },
+    {
+      "id": "xlm-meridian-side-calendar",
+      "token": "XLM",
+      "kind": "ics",
+      "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-j4WD21uqn69rXHy",
+      "pageUrl": "https://luma.com/meridian-2026-side-events",
+      "reuse": "review-required",
+      "reuseReason": "Official Meridian website links this community side-event calendar; this does not establish permission to republish host content.",
+      "terms": "https://luma.com/terms",
+      "minRefreshHours": 12,
+      "technicalReceipt": {
+        "id": "xlm-meridian-side-calendar",
+        "token": "XLM",
+        "kind": "ics",
+        "status": "cached",
+        "verifiedAt": "2026-10-11T12:23:33.892Z",
+        "transport": "cache-not-reverified",
+        "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-j4WD21uqn69rXHy",
+        "httpStatus": 200,
+        "checkedAt": "2026-10-11T12:23:33.892Z",
+        "rateRemaining": null,
+        "rateReset": null,
+        "retryAfter": null,
+        "bytes": 2846,
+        "sha256": "e7fa63f8673f7613c0ff0f7e79c8dbe0fc2112014fec72d6ade4e30ae9cef54c",
+        "hasMorePages": false,
+        "inspected": 5,
+        "parsedEvents": 0,
+        "futureDated": 5,
+        "reuse": "review-required",
+        "reuseReason": "Official Meridian website links this community side-event calendar; this does not establish permission to republish host content.",
+        "terms": "https://luma.com/terms",
+        "attribution": null,
+        "minRefreshHours": 12,
+        "license": null,
+        "licenseUrl": null,
+        "note": "Only explicit DTSTART and organizer RRULE; respects exceptions, exclusions, cancellations and timezones. No article/release dates. Only minimal facts retained."
+      },
+      "accepted": 0,
+      "reviewRequired": 0,
+      "rejected": [
+        {
+          "source": "xlm-meridian-side-calendar",
+          "token": "XLM",
+          "title": "Padel Warm-Up: Meridian",
+          "date": "2026-10-26",
+          "startsAt": "2026-10-26T16:30:00.000Z",
+          "sourceUrl": "https://luma.com/6qxf799a",
+          "reason": "community-social-side-event-not-major-ecosystem-event"
+        },
+        {
+          "source": "xlm-meridian-side-calendar",
+          "token": "XLM",
+          "title": "Riserva Lisbon | Stablecoins over wine at Stellar Meridian",
+          "date": "2026-10-27",
+          "startsAt": "2026-10-27T18:00:00.000Z",
+          "sourceUrl": "https://luma.com/8ph6fevz",
+          "reason": "community-social-side-event-not-major-ecosystem-event"
+        },
+        {
+          "source": "xlm-meridian-side-calendar",
+          "token": "XLM",
+          "title": "DeFi x RWA: Cocktail Hour",
+          "date": "2026-10-27",
+          "startsAt": "2026-10-27T19:00:00.000Z",
+          "sourceUrl": "https://luma.com/rqt96zxr",
+          "reason": "community-social-side-event-not-major-ecosystem-event"
+        },
+        {
+          "source": "xlm-meridian-side-calendar",
+          "token": "XLM",
+          "title": "Blendy's Booze Brokerage w/ Zenex",
+          "date": "2026-10-27",
+          "startsAt": "2026-10-27T20:00:00.000Z",
+          "sourceUrl": "https://luma.com/59xi68ra",
+          "reason": "community-social-side-event-not-major-ecosystem-event"
+        },
+        {
+          "source": "xlm-meridian-side-calendar",
+          "token": "XLM",
+          "title": "VIP Dinner with Stellar, Boys Club, and WalletConnect",
+          "date": "2026-10-28",
+          "startsAt": "2026-10-28T19:45:00.000Z",
+          "sourceUrl": "https://luma.com/aog3a69d",
+          "reason": "community-social-side-event-not-major-ecosystem-event"
+        }
+      ]
+    },
+    {
+      "id": "dot-opengov",
+      "token": "DOT",
+      "kind": "opengov",
+      "url": "https://api.data.parity.io/api/daily-opengov-referenda-results?relay_chain=polkadot&chain=polkadot_asset_hub",
+      "pageUrl": "https://api.data.parity.io/docs",
+      "reuse": "allowed-with-attribution",
+      "attribution": "Data: Parity Dotlake API",
+      "terms": "https://api.data.parity.io/openapi.json",
+      "technicalReceipt": {
+        "id": "dot-opengov",
+        "token": "DOT",
+        "kind": "opengov",
+        "status": "cached",
+        "verifiedAt": "2026-10-11T12:23:34.336Z",
+        "transport": "cache-not-reverified",
+        "url": "https://api.data.parity.io/api/daily-opengov-referenda-results?relay_chain=polkadot&chain=polkadot_asset_hub",
+        "httpStatus": 200,
+        "checkedAt": "2026-10-11T12:23:34.336Z",
+        "rateRemaining": null,
+        "rateReset": null,
+        "retryAfter": null,
+        "bytes": 2676,
+        "sha256": "0100b583d9aaa0f8ca99d87b16c53618570041d768152c78343ec0faf0206e62",
+        "hasMorePages": false,
+        "inspected": 9,
+        "parsedEvents": 0,
+        "futureDated": null,
+        "reuse": "allowed-with-attribution",
+        "reuseReason": null,
+        "terms": "https://api.data.parity.io/openapi.json",
+        "attribution": "Data: Parity Dotlake API",
+        "minRefreshHours": 6,
+        "license": null,
+        "licenseUrl": null,
+        "note": "Historical results API, not a future UTC schedule. Ongoing records monitored separately; block heights, periods, start_date and observed end_date never become predicted calendar events."
+      },
+      "accepted": 0,
+      "reviewRequired": 0,
+      "rejected": [
+        {
+          "source": "dot-opengov",
+          "token": "DOT",
+          "referendumIndex": 1945,
+          "reason": "historical-referendum-result",
+          "date": "2026-09-17"
+        },
+        {
+          "source": "dot-opengov",
+          "token": "DOT",
+          "referendumIndex": 1950,
+          "reason": "no-confirmed-calendar-deadline",
+          "date": null
+        },
+        {
+          "source": "dot-opengov",
+          "token": "DOT",
+          "referendumIndex": 1949,
+          "reason": "no-confirmed-calendar-deadline",
+          "date": null
+        },
+        {
+          "source": "dot-opengov",
+          "token": "DOT",
+          "referendumIndex": 1948,
+          "reason": "no-confirmed-calendar-deadline",
+          "date": null
+        },
+        {
+          "source": "dot-opengov",
+          "token": "DOT",
+          "referendumIndex": 1947,
+          "reason": "no-confirmed-calendar-deadline",
+          "date": null
+        },
+        {
+          "source": "dot-opengov",
+          "token": "DOT",
+          "referendumIndex": 1946,
+          "reason": "no-confirmed-calendar-deadline",
+          "date": null
+        },
+        {
+          "source": "dot-opengov",
+          "token": "DOT",
+          "referendumIndex": 1951,
+          "reason": "historical-referendum-result",
+          "date": "2026-09-24"
+        },
+        {
+          "source": "dot-opengov",
+          "token": "DOT",
+          "referendumIndex": 1952,
+          "reason": "historical-referendum-result",
+          "date": "2026-10-02"
+        },
+        {
+          "source": "dot-opengov",
+          "token": "DOT",
+          "referendumIndex": 1953,
+          "reason": "historical-referendum-result",
+          "date": "2026-10-02"
+        }
+      ]
+    }
+  ],
+  "additionalFindings": [
+    {
+      "source": "Subsquare",
+      "technical": "HTTP 200; public Next.js JSON embedded in HTML contains five active referenda and block-based timing fields. No periodic collector or private endpoint used.",
+      "reuse": "prohibited-without-permission",
+      "terms": "https://polkadot.subsquare.io/terms",
+      "termsSource": "https://github.com/opensquare-network/subsquare/blob/main/packages/next-common/components/pages/terms/terms-of-service.md",
+      "calendarEvents": 0
+    },
+    {
+      "source": "Polkassembly",
+      "technical": "Documented public GET on-chain-post #1950: HTTP 200, no Authorization. end=null, ended_at=null, enactment_at_block=0. Top-level status DecisionDepositPlaced, history includes Deciding; not interchangeable with current chain state.",
+      "documentation": "https://docs.polkassembly.io/jekyll/2023-10-17-api-and-resources.html",
+      "reuse": "Published API access supported; public republication of content needs clarification under forum terms sections 4/5.",
+      "terms": "https://polkadot.polkassembly.io/terms-and-conditions",
+      "calendarEvents": 0
+    }
+  ],
+  "controls": [
+    {
+      "name": "Meridian 2026",
+      "verificationMethod": "Manual official-site control, never injected into collector events",
+      "date": "2026-10-28",
+      "endDateInclusive": "2026-10-29",
+      "sourceUrl": "https://meridian.stellar.org/event-details",
+      "foundInSdfIcs": false,
+      "foundInMeridianSideIcs": false,
+      "verdict": "Confirmed dates, but no permitted automated source for the main conference established among inspected channels.",
+      "inspectedEventDetailsPageHasIcsOrEventJsonLd": false
+    },
+    {
+      "name": "Lumen Loop Meridian placeholder",
+      "url": "https://luma.com/meridian2026ll",
+      "httpStatus": 404,
+      "verdict": "Independent placeholder in search index, not an official organizer source; never added."
+    }
+  ],
+  "discoveryRequests": [
+    {
+      "url": "https://luma.com/ethereumeg",
+      "status": 200,
+      "finalUrl": "https://luma.com/ethereumeg",
+      "type": "text/html; charset=utf-8",
+      "bytes": 106502,
+      "sha256": "e8d7c563ee76701bc3dff08844f69d3b6429d243f7ed1927e9d9cd071961a640",
+      "checkedAt": "2026-10-11T12:13:26.085Z",
+      "localEvidencePath": ".cache/alternatives/discovery-0.txt"
+    },
+    {
+      "url": "https://luma.com/stellar.org",
+      "status": 200,
+      "finalUrl": "https://luma.com/stellar.org",
+      "type": "text/html; charset=utf-8",
+      "bytes": 123748,
+      "sha256": "d807c8a386d0c8fb48390bcf00036de1468c1306dc34decec3de571b15c5529d",
+      "checkedAt": "2026-10-11T12:13:26.633Z",
+      "localEvidencePath": ".cache/alternatives/discovery-1.txt"
+    },
+    {
+      "url": "https://luma.com/terms",
+      "status": 200,
+      "finalUrl": "https://luma.com/terms",
+      "type": "text/html; charset=utf-8",
+      "bytes": 38968,
+      "sha256": "c6c88355065308d74e55d7636126705becc08ad4b9b1d325b78dcc9ef1568608",
+      "checkedAt": "2026-10-11T12:13:27.090Z",
+      "localEvidencePath": ".cache/alternatives/discovery-2.txt"
+    },
+    {
+      "url": "https://help.luma.com/p/ical-syncing",
+      "status": 200,
+      "finalUrl": "https://help.luma.com/p/ical-syncing",
+      "type": "text/html; charset=utf-8",
+      "bytes": 30180,
+      "sha256": "5dd6a3700596c7b6347f388b3ef0df988edf4a00c4e860b4dcf920c415b44adc",
+      "checkedAt": "2026-10-11T12:13:28.432Z",
+      "localEvidencePath": ".cache/alternatives/discovery-3.txt"
+    },
+    {
+      "url": "https://api.github.com/repos/ethereum/pm/contents/README.md",
+      "status": 200,
+      "finalUrl": "https://api.github.com/repos/ethereum/pm/contents/README.md",
+      "type": "application/json; charset=utf-8",
+      "bytes": 231173,
+      "sha256": "6f95a7ebc0e5d5f28f3d311e06000aec91cc69b81d406becf962a05a13f5b27f",
+      "checkedAt": "2026-10-11T12:13:29.089Z",
+      "localEvidencePath": ".cache/alternatives/discovery-4.txt"
+    },
+    {
+      "url": "https://api.github.com/repos/ethereumeg/.github/contents/profile/README.md",
+      "status": 200,
+      "finalUrl": "https://api.github.com/repos/ethereumeg/.github/contents/profile/README.md",
+      "type": "application/json; charset=utf-8",
+      "bytes": 2408,
+      "sha256": "ac4a3ca46f34093a5549939f42227f6fea3b060560ad41562f3b78e304ecc7f1",
+      "checkedAt": "2026-10-11T12:13:29.323Z",
+      "localEvidencePath": ".cache/alternatives/discovery-5.txt"
+    },
+    {
+      "url": "https://api.data.parity.io/openapi.json",
+      "status": 200,
+      "finalUrl": "https://api.data.parity.io/openapi.json",
+      "type": "application/json",
+      "bytes": 129110,
+      "sha256": "d82c23167d0ae5fc21d30a5605bbfe3ea25378c938fcc032b8d59ecba03da8e3",
+      "checkedAt": "2026-10-11T12:13:30.181Z",
+      "localEvidencePath": ".cache/alternatives/discovery-6.txt"
+    },
+    {
+      "url": "https://polkadot.subsquare.io",
+      "status": 200,
+      "finalUrl": "https://polkadot.subsquare.io/",
+      "type": "text/html; charset=utf-8",
+      "bytes": 665131,
+      "sha256": "6112aca2df297f4c262a9e2fbd5a7811239e42bd74def222390ad619e314aff5",
+      "checkedAt": "2026-10-11T12:13:31.503Z",
+      "localEvidencePath": ".cache/alternatives/discovery-7.txt"
+    },
+    {
+      "url": "https://polkadot.polkassembly.io",
+      "status": 200,
+      "finalUrl": "https://polkadot.polkassembly.io/",
+      "type": "text/html; charset=utf-8",
+      "bytes": 341921,
+      "sha256": "e7f119eaf1c4a14014cb0d068deb0588f379408a3a13868804fc8ac23f52adc7",
+      "checkedAt": "2026-10-11T12:13:38.880Z",
+      "localEvidencePath": ".cache/alternatives/discovery-8.txt"
+    },
+    {
+      "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-w4F5OCEtiPWTF9H",
+      "status": 200,
+      "finalUrl": "https://api.lu.ma/ics/get?entity=calendar&id=cal-w4F5OCEtiPWTF9H",
+      "type": "text/calendar; charset=utf-8",
+      "bytes": 1224,
+      "sha256": "846aac5dcc716a04f7d5477630648b04ea3bb7d650899a9dbe5fc97ceb1cc8a4",
+      "checkedAt": "2026-10-11T12:17:27.902Z",
+      "localEvidencePath": ".cache/alternatives/probe-0.txt"
+    },
+    {
+      "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-4SDwG16dMzxx2eh",
+      "status": 200,
+      "finalUrl": "https://api.lu.ma/ics/get?entity=calendar&id=cal-4SDwG16dMzxx2eh",
+      "type": "text/calendar; charset=utf-8",
+      "bytes": 17875,
+      "sha256": "83a0d03225c6f0433ff365650601a5416c0f34dfd0bf39769e080e96ff691c02",
+      "checkedAt": "2026-10-11T12:17:28.190Z",
+      "localEvidencePath": ".cache/alternatives/probe-1.txt"
+    },
+    {
+      "url": "https://calendar.google.com/calendar/ical/c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com/public/basic.ics",
+      "status": 200,
+      "finalUrl": "https://calendar.google.com/calendar/ical/c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com/public/basic.ics",
+      "type": "text/calendar; charset=utf-8",
+      "bytes": 346170,
+      "sha256": "a85356146fdd00630e2ab2fcab7e696bc04293b75f9efd8de620b1a9834ca859",
+      "checkedAt": "2026-10-11T12:17:28.976Z",
+      "localEvidencePath": ".cache/alternatives/probe-2.txt"
+    },
+    {
+      "url": "https://api.data.parity.io/api/daily-opengov-referenda-results?relay_chain=polkadot&chain=polkadot&start_date=2026-10-01&end_date=2026-10-11",
+      "status": 200,
+      "finalUrl": "https://api.data.parity.io/api/daily-opengov-referenda-results?relay_chain=polkadot&chain=polkadot&start_date=2026-10-01&end_date=2026-10-11",
+      "type": "application/json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "checkedAt": "2026-10-11T12:17:29.358Z",
+      "localEvidencePath": ".cache/alternatives/probe-3.txt"
+    },
+    {
+      "url": "https://meridian.stellar.org/side-events",
+      "status": 200,
+      "finalUrl": "https://meridian.stellar.org/side-events",
+      "type": "text/html; charset=utf-8",
+      "bytes": 143300,
+      "sha256": "64b259136aa7b056f98cb3ba38583835f40660fc6bb435f2261dedf865c1195c",
+      "checkedAt": "2026-10-11T12:17:29.979Z",
+      "localEvidencePath": ".cache/alternatives/probe-4.txt"
+    },
+    {
+      "url": "https://api.github.com/repos/ethereum/pm/contents/LICENSE",
+      "status": 200,
+      "finalUrl": "https://api.github.com/repos/ethereum/pm/contents/LICENSE",
+      "type": "application/json; charset=utf-8",
+      "bytes": 31362,
+      "sha256": "695c52f9026d0a65b1723ddb2249552d4f83920fa9d9c6f2b3b75adb3286fd21",
+      "checkedAt": "2026-10-11T12:17:30.419Z",
+      "localEvidencePath": ".cache/alternatives/probe-5.txt"
+    },
+    {
+      "url": "https://polkadot.subsquare.io/terms",
+      "status": 200,
+      "finalUrl": "https://polkadot.subsquare.io/terms",
+      "type": "text/html; charset=utf-8",
+      "bytes": 154232,
+      "sha256": "69fc30c2e75bd0d2e160eee17a5cedfb030fd8b30925582c4070cada4ef4b56c",
+      "checkedAt": "2026-10-11T12:17:30.737Z",
+      "localEvidencePath": ".cache/alternatives/probe-6.txt"
+    },
+    {
+      "url": "https://polkadot.polkassembly.io/terms-and-conditions",
+      "status": 200,
+      "finalUrl": "https://polkadot.polkassembly.io/terms-and-conditions",
+      "type": "text/html; charset=utf-8",
+      "bytes": 215609,
+      "sha256": "40206c2d8a1138d1a2ca90b4c53434551ff470c8192be07629ea49a54e87cc23",
+      "checkedAt": "2026-10-11T12:17:31.156Z",
+      "localEvidencePath": ".cache/alternatives/probe-7.txt"
+    },
+    {
+      "url": "https://luma.com/meridian-2026-side-events",
+      "status": 200,
+      "finalUrl": "https://luma.com/meridian-2026-side-events",
+      "type": "text/html; charset=utf-8",
+      "bytes": 279749,
+      "sha256": "645e56658ff78322c67d9c2161a406c056f435d859131e99ce2495d0cd4343b2",
+      "checkedAt": "2026-10-11T12:18:32.678Z",
+      "localEvidencePath": ".cache/alternatives/follow-0.txt"
+    },
+    {
+      "url": "https://api.data.parity.io/api/daily-opengov-referenda-results?relay_chain=polkadot&start_date=2026-09-01&end_date=2026-10-11",
+      "status": 200,
+      "finalUrl": "https://api.data.parity.io/api/daily-opengov-referenda-results?relay_chain=polkadot&start_date=2026-09-01&end_date=2026-10-11",
+      "type": "application/json",
+      "bytes": 3901,
+      "sha256": "d805b5c3ac8eb00e124491a925e7be0979e9de30c50eb3fb6efab4cea9aaa926",
+      "checkedAt": "2026-10-11T12:18:33.558Z",
+      "localEvidencePath": ".cache/alternatives/follow-1.txt"
+    },
+    {
+      "url": "https://docs.polkassembly.io",
+      "status": 200,
+      "finalUrl": "https://docs.polkassembly.io/",
+      "type": "text/html; charset=utf-8",
+      "bytes": 20726,
+      "sha256": "12f8770e9aec221db37f895e9ecee7403ce031e6ec6c719f46eb80d5a98892c5",
+      "checkedAt": "2026-10-11T12:18:33.929Z",
+      "localEvidencePath": ".cache/alternatives/follow-2.txt"
+    },
+    {
+      "url": "https://polkassembly.io/terms-and-conditions",
+      "status": 404,
+      "finalUrl": "https://polkassembly.io/terms-and-conditions",
+      "type": "text/html; charset=utf-8",
+      "bytes": 9379,
+      "sha256": "b620507312c5e97566a3c6cfaf99144fefc18a0da7d941401dfa0f5f58fb0368",
+      "checkedAt": "2026-10-11T12:18:34.625Z",
+      "localEvidencePath": ".cache/alternatives/follow-3.txt"
+    },
+    {
+      "url": "https://api.github.com/repos/opensquare-network/subsquare/git/trees/main?recursive=1",
+      "status": 200,
+      "finalUrl": "https://api.github.com/repos/opensquare-network/subsquare/git/trees/main?recursive=1",
+      "type": "application/json; charset=utf-8",
+      "bytes": 1916971,
+      "sha256": "5068721446a74d1ded7d8b4aeedbb4acd9c24425d0e5c4898c0f3f69041ef223",
+      "checkedAt": "2026-10-11T12:18:35.666Z",
+      "localEvidencePath": ".cache/alternatives/follow-4.txt"
+    },
+    {
+      "url": "https://api.lu.ma/ics/get?entity=calendar&id=cal-j4WD21uqn69rXHy",
+      "status": 200,
+      "finalUrl": "https://api.lu.ma/ics/get?entity=calendar&id=cal-j4WD21uqn69rXHy",
+      "type": "text/calendar; charset=utf-8",
+      "bytes": 2846,
+      "sha256": "cce39223ca270e3849dcf92e686fc6941c3e2fc44a44c8daa9e8c0f58c131c65",
+      "checkedAt": "2026-10-11T12:19:36.463Z",
+      "localEvidencePath": ".cache/alternatives/detail-0.txt"
+    },
+    {
+      "url": "https://api.github.com/repos/opensquare-network/subsquare/contents/packages/next-common/components/pages/terms/terms-of-service.md",
+      "status": 200,
+      "finalUrl": "https://api.github.com/repos/opensquare-network/subsquare/contents/packages/next-common/components/pages/terms/terms-of-service.md",
+      "type": "application/json; charset=utf-8",
+      "bytes": 19327,
+      "sha256": "21baeaf284bb5fad9eee18c4b7e28add8f1d1cfca8552d2337284668f75ad17a",
+      "checkedAt": "2026-10-11T12:19:36.968Z",
+      "localEvidencePath": ".cache/alternatives/detail-1.txt"
+    },
+    {
+      "url": "https://api.github.com/repos/opensquare-network/subsquare/contents/packages/next/.env.example",
+      "status": 200,
+      "finalUrl": "https://api.github.com/repos/opensquare-network/subsquare/contents/packages/next/.env.example",
+      "type": "application/json; charset=utf-8",
+      "bytes": 2232,
+      "sha256": "c6a97d82d991a08acae88c849ad0a90270d66f39b150b2f71ce54ae5208c52dc",
+      "checkedAt": "2026-10-11T12:19:37.234Z",
+      "localEvidencePath": ".cache/alternatives/detail-2.txt"
+    },
+    {
+      "url": "https://meridian.stellar.org/event-details",
+      "status": 200,
+      "finalUrl": "https://meridian.stellar.org/event-details",
+      "type": "text/html; charset=utf-8",
+      "bytes": 113708,
+      "sha256": "a9511f1acd2cdd4756ed0f4fe5e4b85a808a8270f88c4d58fb64a7c2c9a7c326",
+      "checkedAt": "2026-10-11T12:19:37.607Z",
+      "localEvidencePath": ".cache/alternatives/detail-3.txt"
+    },
+    {
+      "url": "https://luma.com/meridian2026ll",
+      "status": 404,
+      "finalUrl": "https://luma.com/meridian2026ll",
+      "type": "text/html; charset=utf-8",
+      "bytes": 27916,
+      "sha256": "f47e59f807ed098930c75777ee394cea9b34be2c2f6d27878b38b038771c1611",
+      "checkedAt": "2026-10-11T12:19:38.057Z",
+      "localEvidencePath": ".cache/alternatives/detail-4.txt"
+    },
+    {
+      "url": "https://api.github.com/repos/kewisch/ical.js/contents/package.json",
+      "status": 200,
+      "finalUrl": "https://api.github.com/repos/kewisch/ical.js/contents/package.json",
+      "type": "application/json; charset=utf-8",
+      "bytes": 4732,
+      "sha256": "75bdbea763f176816acc97f774c7cf5c3c8f6e46b2f66889c8bc23068cd2d159",
+      "checkedAt": "2026-10-11T12:19:38.293Z",
+      "localEvidencePath": ".cache/alternatives/detail-5.txt"
+    },
+    {
+      "url": "https://polkadot.polkassembly.io/api/v1/posts/on-chain-post?postId=1950&proposalType=referendums_v2",
+      "status": 200,
+      "finalUrl": "https://polkadot.polkassembly.io/api/v1/posts/on-chain-post?postId=1950&proposalType=referendums_v2",
+      "type": "application/json",
+      "bytes": 8393,
+      "sha256": "01a8d51cfaa499e2900c4baf810b0902445e6d16be70c215ef9a300bfcfb7632",
+      "checkedAt": "2026-10-11T12:28:07.682Z",
+      "localEvidencePath": ".cache/alternatives/polkassembly-0.txt"
+    },
+    {
+      "url": "https://docs.polkassembly.io/jekyll/2023-10-17-api-and-resources.html",
+      "status": 200,
+      "finalUrl": "https://docs.polkassembly.io/jekyll/2023-10-17-api-and-resources.html",
+      "type": "text/html; charset=utf-8",
+      "bytes": 44851,
+      "sha256": "4e3b3da6d589c9a5aad63062b6007b079519931d592127bda6f3923bc649dd55",
+      "checkedAt": "2026-10-11T12:28:08.523Z",
+      "localEvidencePath": ".cache/alternatives/polkassembly-1.txt"
+    }
+  ]
+}

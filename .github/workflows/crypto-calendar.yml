@@ -1,0 +1,56 @@
+name: Crypto calendar data
+
+on:
+  schedule:
+    - cron: '43 */6 * * *' # UTC: 00:43, 06:43, 12:43, 18:43; execution can be delayed by GitHub.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Same main-branch lock as macro: independent jobs/files, serialized bot commits.
+concurrency:
+  group: calendar-data-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  update:
+    if: github.ref == 'refs/heads/main' && vars.CRYPTO_CALENDAR_ENABLED == 'true' && vars.CRYPTO_CALENDAR_APPROVED_SOURCES != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      CRYPTO_CALENDAR_ENABLED: ${{ vars.CRYPTO_CALENDAR_ENABLED }}
+      CRYPTO_CALENDAR_APPROVED_SOURCES: ${{ vars.CRYPTO_CALENDAR_APPROVED_SOURCES }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          ref: main
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: '24'
+      - name: Install pinned ICS parser
+        run: npm ci --prefix docs/crypto-calendar-stage1 --ignore-scripts --no-audit --no-fund
+      - name: Test checked-out code
+        run: node --test tests/*.test.js
+      - name: Fetch and validate fresh crypto data
+        run: node scripts/update-crypto-calendar.cjs
+      - name: Validate final JSON before commit
+        run: node scripts/update-crypto-calendar.cjs --validate
+      - name: Commit only crypto JSON without overwriting concurrent changes
+        shell: bash
+        run: |
+          git fetch origin main
+          if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
+            echo "Main advanced during generation; discard this candidate and retry next run."
+            exit 1
+          fi
+          git add -- data/crypto-calendar.json
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'Update crypto calendar data'
+            git push origin HEAD:main
+          fi
+          # No force push, Pages permissions, deployment or changes to macro JSON.
