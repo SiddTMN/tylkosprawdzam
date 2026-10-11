@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Local crypto calendar snapshot",
+  "title": "Crypto calendar snapshot",
   "type": "object",
   "required": [
     "schemaVersion",
@@ -17,7 +17,10 @@
       "const": 1
     },
     "mode": {
-      "const": "local-prototype"
+      "enum": [
+        "local-prototype",
+        "automated-calendar"
+      ]
     },
     "publication": {
       "type": "object",
@@ -26,7 +29,7 @@
       ],
       "properties": {
         "approved": {
-          "const": false
+          "type": "boolean"
         }
       }
     },
@@ -98,7 +101,10 @@
             "format": "date-time"
           },
           "reuse": {
-            "const": "review-required"
+            "enum": [
+              "review-required",
+              "approved-by-repository-setting"
+            ]
           }
         }
       }
@@ -175,5 +181,27 @@
         }
       }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "automated-calendar"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "publication": {
+            "properties": {
+              "approved": {
+                "const": true
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
 }

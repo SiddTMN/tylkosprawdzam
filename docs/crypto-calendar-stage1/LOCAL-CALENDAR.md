@@ -1,5 +1,7 @@
 # Lokalny automatyczny kalendarz krypto
 
+Ten dokument opisuje historyczny etap lokalnego prototypu. Aktualne przygotowanie Actions i wyniki testu technicznego: [AUTOMATION.md](AUTOMATION.md).
+
 Pierwsza wersja korzysta z istniejącego audytu i przypiętego ical.js 2.2.1. Nie dodano nowych zależności ani workflow. Obecnie aktywny jest tylko Ethereum Protocol Calls: AllCoreDevs Execution i Consensus. JSON nie zawiera fikcyjnych pozycji DOT, XLM, ATH ani BONK.
 
 ## Uruchomienie

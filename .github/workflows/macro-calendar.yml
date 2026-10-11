@@ -27,7 +27,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: macro-calendar-${{ github.ref }}
+  group: calendar-data-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:

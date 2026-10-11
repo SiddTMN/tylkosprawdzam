@@ -1,0 +1,75 @@
+{
+  "passed": true,
+  "commit": "2138bc6990d8e9dd5d9290b7bd9c8f0e8af672bf",
+  "generatedAt": "2026-10-11T13:29:14.936Z",
+  "timezone": "Europe/Warsaw",
+  "window": {
+    "from": "2026-10-11",
+    "toExclusive": "2026-11-10",
+    "timezone": "Europe/Warsaw"
+  },
+  "requests": 1,
+  "checks": [
+    {
+      "id": "eth-protocol-calls",
+      "url": "https://calendar.google.com/calendar/ical/c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com/public/basic.ics",
+      "passed": true,
+      "status": "fresh",
+      "transport": "http-200",
+      "httpStatus": 200,
+      "bytes": 345433,
+      "sha256": "886809da287894746e9fb5d69ca260d0bb0687a7b26121782f95bfd5535a2d9e",
+      "checkedAt": "2026-10-11T13:29:14.936Z",
+      "eligibleEvents": 4,
+      "error": null
+    }
+  ],
+  "displayedEvents": 4,
+  "events": [
+    {
+      "token": "ETH",
+      "title": "AllCoreDevs Consensus",
+      "date": "2026-10-15",
+      "startsAt": "2026-10-15T14:00:00.000Z",
+      "warsawTime": "16:00",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T13:29:14.936Z"
+    },
+    {
+      "token": "ETH",
+      "title": "AllCoreDevs Execution",
+      "date": "2026-10-22",
+      "startsAt": "2026-10-22T14:00:00.000Z",
+      "warsawTime": "16:00",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T13:29:14.936Z"
+    },
+    {
+      "token": "ETH",
+      "title": "AllCoreDevs Consensus",
+      "date": "2026-10-29",
+      "startsAt": "2026-10-29T14:00:00.000Z",
+      "warsawTime": "15:00",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T13:29:14.936Z"
+    },
+    {
+      "token": "ETH",
+      "title": "AllCoreDevs Execution",
+      "date": "2026-11-05",
+      "startsAt": "2026-11-05T14:00:00.000Z",
+      "warsawTime": "15:00",
+      "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
+      "verifiedAt": "2026-10-11T13:29:14.936Z"
+    }
+  ],
+  "publicationApproved": false,
+  "runUrl": "https://github.com/SiddTMN/tylkosprawdzam/actions/runs/38143347883",
+  "tests": {
+    "total": 111,
+    "passed": 111,
+    "failed": 0
+  },
+  "build": "skipped",
+  "deploy": "skipped"
+}
