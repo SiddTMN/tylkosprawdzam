@@ -1,4 +1,4 @@
-name: Crypto calendar data (disabled until approved)
+name: Crypto calendar data
 
 on:
   schedule:
@@ -34,7 +34,7 @@ jobs:
         run: npm ci --prefix docs/crypto-calendar-stage1 --ignore-scripts --no-audit --no-fund
       - name: Test checked-out code
         run: node --test tests/*.test.js
-      - name: Update or retain validated future data
+      - name: Fetch and validate fresh crypto data
         run: node scripts/update-crypto-calendar.cjs
       - name: Validate final JSON before commit
         run: node scripts/update-crypto-calendar.cjs --validate

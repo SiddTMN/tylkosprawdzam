@@ -78,3 +78,11 @@ test('missing crypto container does not make requests or start timers',async()=>
 test('index has one model and renderer, no static test events, and retains macro scripts',()=>{
  const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');assert.equal((html.match(/src="js\/crypto-calendar.js"/g)||[]).length,1);assert.ok(html.indexOf('src="js/crypto-calendar-model.js"')<html.indexOf('src="js/crypto-calendar.js"'));assert.equal((html.match(/src="js\/calendar.js"/g)||[]).length,1);assert.doesNotMatch(html,/Ethereum · test|Polkadot · test|Aethir · test|BONK — test/);
 });
+
+test('production calendar keeps the existing layout and identifies automatic factual updates',async()=>{
+ const data=snapshot();data.mode='automated-calendar';data.publication={approved:true,scope:'project-publication-only',licenseConfirmed:false};
+ const h=harness(data);await h.flush();
+ assert.equal(h.container.children.length,1);assert.equal(h.container.children[0].className,'calendar-event');
+ assert.match(h.note.textContent,/kalendarz aktualizowany automatycznie/);
+ assert.doesNotMatch(h.note.textContent,/wersja lokalna/);
+});

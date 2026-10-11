@@ -7,7 +7,7 @@ const SOURCE={id:'eth-protocol-calls',token:'ETH',kind:'ics',name:'Ethereum Prot
 function normalizeTitle(title){return title.replace(/All\s*Core\s*Devs/i,'AllCoreDevs').replace(/[—–-]/g,' ').replace(/\s+/g,' ').trim().toLowerCase();}
 function parse(text,verifiedAt,now){
  const result=parseIcs(text,verifiedAt,SOURCE,makeWindow(now));
- return result.events.filter(e=>['allcoredevs execution','allcoredevs consensus'].includes(normalizeTitle(e.title))&&!/^TENTATIVE$/i.test(e.publisherStatus||'')).map(e=>{
+ return result.events.filter(e=>e.startsAt&&['allcoredevs execution','allcoredevs consensus'].includes(normalizeTitle(e.title))&&!/^TENTATIVE$/i.test(e.publisherStatus||'')).map(e=>{
    const execution=normalizeTitle(e.title)==='allcoredevs execution';
    return {id:e.id,token:'ETH',date:e.startsAt?dayInWarsaw(Date.parse(e.startsAt)):e.date,startsAt:e.startsAt,
      title:execution?'AllCoreDevs Execution':'AllCoreDevs Consensus',category:'protocol-meeting',priority:'medium',

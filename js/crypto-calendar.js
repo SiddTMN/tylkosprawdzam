@@ -28,7 +28,7 @@
       row.append(date,info,el('span','calendar-impact '+event.priority,event.priority.toUpperCase()));container.append(row);
     }
     if(note){const times=Object.values(result.sources).map(s=>M.timestamp(s.verifiedAt)).filter(t=>t!==null);const latest=times.length?Math.max(...times):null;
-      note.textContent=(unhealthy?'nieświeże dane / błąd aktualizacji':'wersja lokalna')+' · czas: Warszawa'+(latest!==null?' · weryfikacja '+verifiedFormat.format(latest):'');
+      note.textContent=(unhealthy?'nieświeże dane / błąd aktualizacji':result.mode==='automated-calendar'?'kalendarz aktualizowany automatycznie':'wersja lokalna')+' · czas: Warszawa'+(latest!==null?' · weryfikacja '+verifiedFormat.format(latest):'');
     }
   }
   async function update(){

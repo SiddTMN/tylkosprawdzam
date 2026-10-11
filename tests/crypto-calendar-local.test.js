@@ -35,6 +35,8 @@ test('adapter rejects tentative entries and does not manufacture cancelled or mi
  const e=event('tentative','All Core Devs - Consensus','DTSTART:20261015T140000Z\r\nDTEND:20261015T150000Z','TENTATIVE');
  assert.deepEqual(adapter.parse(wrap(e),verifiedAt,now),[]);assert.deepEqual(adapter.parse(wrap(main.replace('STATUS:CONFIRMED','STATUS:CANCELLED')),verifiedAt,now),[]);
  assert.throws(()=>adapter.parse('not ICS',verifiedAt,now));
+ const allDay=event('date-only','AllCoreDevs Execution','DTSTART;VALUE=DATE:20261015');
+ assert.deepEqual(adapter.parse(wrap(allDay),verifiedAt,now),[]);
 });
 test('common model uses Warsaw civil boundaries and DST without fixed offsets',()=>{
  const fmt=new Intl.DateTimeFormat('pl-PL',{timeZone:M.TIME_ZONE,hour:'2-digit',minute:'2-digit'});

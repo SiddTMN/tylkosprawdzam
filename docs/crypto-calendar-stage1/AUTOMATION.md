@@ -1,5 +1,7 @@
 # Automatyzacja kalendarza krypto — przygotowanie bez wdrożenia
 
+Ten dokument opisuje historyczne przygotowanie przed zgodą na publikację. Aktualne zasady produkcyjne: [DEPLOYMENT.md](DEPLOYMENT.md).
+
 Gałąź `feature/crypto-calendar`, oparta na `origin/main` 9305c97 i prototypie e7af5cb.
 Kod strony i kalendarza makro nie został przebudowany. Nie połączono gałęzi z main,
 nie uruchomiono publikacji danych ani Pages, nie zmieniono zmiennych repozytorium.

@@ -41,15 +41,20 @@ test('production authorization rejects feature branches, missing enablement and 
  for(const bad of [{...env,GITHUB_REF:'refs/heads/feature/crypto-calendar'},{...env,CRYPTO_CALENDAR_ENABLED:''},{...env,CRYPTO_CALENDAR_APPROVED_SOURCES:''}])assert.throws(()=>authorize(bad),/Production disabled/);
  assert.throws(()=>authorize(env,[adapter,{...adapter,id:'new-source'}]),/Production disabled/);
 });
-test('scheduled refresh recovers fallback on a clean runner, retains verification and flags even an immediate outage',async t=>{
+test('scheduled refresh publishes only fresh validated data and preserves prior bytes on outages',async t=>{
  const dir=await setup(t),outputPath=path.join(dir,'published.json'),options={outputPath,now,approvedSourceIds:[adapter.id]};
  const fresh=await updateScheduled({...options,fetchImpl:async()=>new Response(ics,{headers:{'content-type':'text/calendar'}})});
- assert.equal(fresh.mode,'automated-calendar');assert.equal(fresh.publication.approved,true);M.parseSnapshot(fresh,now);assert.throws(()=>M.parseSnapshot({...fresh,publication:{approved:false}},now));
- const outage=await updateScheduled({...options,now:now+1000,fetchImpl:async()=>{throw new Error('fixture network failure');}});
- assert.equal(outage.sources[adapter.id].status,'stale');assert.equal(outage.events.length,1);
- assert.equal(outage.events[0].verifiedAt,fresh.events[0].verifiedAt);assert.equal(outage.generatedAt,new Date(now+1000).toISOString());
- const expired=await updateScheduled({...options,now:Date.parse('2026-10-16T12:00:00Z'),fetchImpl:async()=>{throw new Error('outage');}});
- assert.equal(expired.events.length,0);assert.equal(expired.sources[adapter.id].status,'stale');
+ assert.equal(fresh.mode,'automated-calendar');assert.equal(fresh.publication.approved,true);
+ assert.equal(fresh.publication.licenseConfirmed,false);assert.equal(fresh.sources[adapter.id].reuse,'review-required');
+ assert.equal(fresh.sources[adapter.id].fetch.httpStatus,200);
+ M.parseSnapshot(fresh,now);assert.throws(()=>M.parseSnapshot({...fresh,publication:{approved:false}},now));
+ const before=await fs.readFile(outputPath,'utf8');
+ for(const failedAt of [now+1000,Date.parse('2026-10-16T12:00:00Z')]){
+  await assert.rejects(updateScheduled({...options,now:failedAt,fetchImpl:async()=>{throw new Error('fixture network failure');}}),/public file preserved/);
+  assert.equal(await fs.readFile(outputPath,'utf8'),before);
+ }
+ assert.equal(M.sourceIsStale(fresh.sources[adapter.id],now+M.MAX_AGE_MS+1),true);
+ assert.equal(M.selectUpcoming(fresh.events,Date.parse('2026-10-16T12:00:00Z')).length,0);
  const recovered=await updateScheduled({...options,now:Date.parse('2026-10-16T13:00:00Z'),fetchImpl:async()=>new Response(ics.replace(/BEGIN:VEVENT[\s\S]*END:VEVENT\r\n/,''),{headers:{'content-type':'text/calendar'}})});
  assert.equal(recovered.sources[adapter.id].status,'fresh');assert.equal(recovered.events.length,0);
 });
@@ -61,15 +66,20 @@ test('scheduled first-run errors, corrupt fallback and missing approval preserve
  await fs.writeFile(outputPath,'invalid prior bytes');
  await assert.rejects(updateScheduled({...options,fetchImpl:network}),/public file preserved/);
  assert.equal(await fs.readFile(outputPath,'utf8'),'invalid prior bytes');
- await assert.rejects(updateScheduled({...options,approvedSourceIds:[],fetchImpl:async()=>assert.fail('No unauthorized request')}),/explicit public reuse approval/);
+ await assert.rejects(updateScheduled({...options,approvedSourceIds:[],fetchImpl:async()=>assert.fail('No unauthorized request')}),/explicit project publication authorization/);
  assert.equal(await fs.readFile(outputPath,'utf8'),'invalid prior bytes');
 });
-test('scheduled malformed ICS cannot replace last good facts; changed source URLs cannot inherit old facts',async t=>{
+test('scheduled malformed ICS, changed URLs and forged freshness cannot overwrite last good data',async t=>{
  const dir=await setup(t),outputPath=path.join(dir,'published.json'),options={outputPath,now,approvedSourceIds:[adapter.id]};
- const fresh=await updateScheduled({...options,fetchImpl:async()=>new Response(ics,{headers:{'content-type':'text/calendar'}})});
- const bad=await updateScheduled({...options,now:now+1000,fetchImpl:async()=>new Response('malformed',{headers:{'content-type':'text/calendar'}})});
- assert.equal(bad.events.length,1);assert.equal(bad.events[0].verifiedAt,fresh.events[0].verifiedAt);assert.equal(bad.sources[adapter.id].status,'stale');
- const replaced={...adapter,url:'https://example.org/new-source',load:async()=>{throw new Error('fixture outage');}};
- const switched=await updateScheduled({...options,adapters:[replaced],now:now+2000});
- assert.equal(switched.events.length,0);assert.equal(switched.sources[adapter.id].status,'unavailable');
+ await updateScheduled({...options,fetchImpl:async()=>new Response(ics,{headers:{'content-type':'text/calendar'}})});
+ const before=await fs.readFile(outputPath,'utf8');
+ await assert.rejects(updateScheduled({...options,now:now+1000,fetchImpl:async()=>new Response('malformed',{headers:{'content-type':'text/calendar'}})}),/public file preserved/);
+ assert.equal(await fs.readFile(outputPath,'utf8'),before);
+ for(const replaced of [
+  {...adapter,url:'https://example.org/new-source',load:async()=>{throw new Error('fixture outage');}},
+  {...adapter,load:async()=>({events:[],verifiedAt:new Date(now+2000).toISOString(),transport:'http-200'})}
+ ]){
+  await assert.rejects(updateScheduled({...options,adapters:[replaced],now:now+2000}),/public file preserved/);
+  assert.equal(await fs.readFile(outputPath,'utf8'),before);
+ }
 });
