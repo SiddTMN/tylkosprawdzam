@@ -1,0 +1,40 @@
+name: Crypto calendar technical test
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    # Never runs publication tasks, writes commits, restores source caches or deploys Pages.
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: '24'
+      - name: Install pinned ICS parser
+        run: npm ci --prefix docs/crypto-calendar-stage1 --ignore-scripts --no-audit --no-fund
+      - name: Run complete test suite
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/crypto-calendar-test"
+          set -o pipefail
+          node --test --test-reporter=tap tests/*.test.js | tee "$RUNNER_TEMP/crypto-calendar-test/tests.tap"
+      - name: Fetch fresh ICS and validate generated JSON
+        run: node scripts/test-crypto-calendar-live.cjs "$RUNNER_TEMP/crypto-calendar-test"
+      - name: Upload technical evidence only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: crypto-calendar-test-${{ github.run_id }}
+          path: ${{ runner.temp }}/crypto-calendar-test/
+          if-no-files-found: error
+          retention-days: 7
+          # Raw ICS, source cache and credentials are never part of this artifact.

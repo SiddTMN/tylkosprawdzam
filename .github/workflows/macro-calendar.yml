@@ -31,6 +31,12 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  crypto-calendar-test:
+    # Branch-only bridge: the registered workflow can dispatch the separate test
+    # before its own workflow_dispatch becomes available on the default branch.
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/feature/crypto-calendar'
+    uses: ./.github/workflows/crypto-calendar-test.yml
+
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -41,6 +47,8 @@ jobs:
       - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
         with:
           node-version: '24'
+      - name: Install pinned ICS parser
+        run: npm ci --prefix docs/crypto-calendar-stage1 --ignore-scripts --no-audit --no-fund
       - name: Test calendar and generator
         run: node --test tests/*.test.js
 
@@ -60,6 +68,8 @@ jobs:
         with:
           node-version: '24'
       # Main may have advanced while the run was queued. Test checked-out code too.
+      - name: Install pinned ICS parser
+        run: npm ci --prefix docs/crypto-calendar-stage1 --ignore-scripts --no-audit --no-fund
       - name: Test current main
         run: node --test tests/*.test.js
       - name: Generate FinanceCalendar and TreasuryDirect JSON
