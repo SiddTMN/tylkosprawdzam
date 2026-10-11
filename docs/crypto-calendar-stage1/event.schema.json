@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Crypto calendar event (stage 1)",
+  "description": "Schema of a confirmed dated event. The live sample may contain an empty events array.",
+  "type": "object",
+  "required": [
+    "token",
+    "date",
+    "time",
+    "title",
+    "type",
+    "priority",
+    "sourceUrl",
+    "verifiedAt"
+  ],
+  "properties": {
+    "token": {
+      "enum": [
+        "ETH",
+        "DOT",
+        "XLM"
+      ]
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "time": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9]{2}:[0-9]{2}:[0-9]{2}$"
+    },
+    "timezone": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "startsAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "type": {
+      "enum": [
+        "protocol-upgrade",
+        "governance",
+        "economic-change",
+        "technology-change",
+        "ecosystem-event",
+        "protocol-meeting"
+      ]
+    },
+    "priority": {
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "sourceUrl": {
+      "type": "string",
+      "format": "uri"
+    },
+    "verifiedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

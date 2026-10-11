@@ -1,0 +1,9 @@
+{
+  "name": "tylkosprawdzam-calendar-audit",
+  "private": true,
+  "version": "0.2.0",
+  "description": "Optional ICS parser for the existing stage 1 audit only",
+  "dependencies": {
+    "ical.js": "2.2.1"
+  }
+}

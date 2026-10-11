@@ -1,0 +1,83 @@
+{
+  "checkedAt": "2026-10-11T13:08:42.556Z",
+  "tests": {
+    "command": "node --test tests/*.test.js",
+    "exitCode": 0,
+    "total": 107,
+    "passed": 107,
+    "failed": 0,
+    "preserved": 82,
+    "added": 25
+  },
+  "http": {
+    "url": "http://127.0.0.1:4173/",
+    "exitCode": 0,
+    "checks": [
+      {
+        "route": "/",
+        "status": 200,
+        "type": "text/html; charset=utf-8"
+      },
+      {
+        "route": "/data/crypto-calendar.json",
+        "status": 200,
+        "type": "application/json; charset=utf-8",
+        "events": 4,
+        "statuses": [
+          "stale"
+        ]
+      },
+      {
+        "route": "/js/crypto-calendar.js",
+        "status": 200,
+        "type": "text/javascript; charset=utf-8"
+      },
+      {
+        "route": "/.git/HEAD",
+        "status": 404,
+        "type": null
+      },
+      {
+        "route": "/docs/crypto-calendar-stage1/.cache/eth-protocol-calls.json",
+        "status": 404,
+        "type": null
+      }
+    ]
+  },
+  "events": 4,
+  "sourceVerifiedAt": "2026-10-11T12:23:32.765Z",
+  "sourceStatus": "stale",
+  "liveRefresh": {
+    "checkedAt": "2026-10-11T13:04:53.808Z",
+    "successful": false,
+    "error": "fetch failed",
+    "fallback": "Previously HTTP-verified raw ICS and last-good normalized cache; original verifiedAt preserved."
+  },
+  "macroUnchanged": true,
+  "workflowChanged": false,
+  "committed": false,
+  "pushed": false,
+  "visualCheck": {
+    "completed": false,
+    "reason": "Computer Use ended because the current browser URL could not be determined with sufficient confidence."
+  },
+  "modifiedFiles": [
+    "index.html",
+    "css/style.css",
+    "scripts/test-crypto-calendar.cjs"
+  ],
+  "addedFiles": [
+    "scripts/crypto-calendar/shared.cjs",
+    "scripts/crypto-calendar/sources.cjs",
+    "scripts/crypto-calendar/adapters/ethereum-protocol-calls.cjs",
+    "scripts/generate-crypto-calendar.cjs",
+    "scripts/preview-crypto-calendar.cjs",
+    "js/crypto-calendar-model.js",
+    "js/crypto-calendar.js",
+    "data/crypto-calendar.json",
+    "tests/crypto-calendar-local.test.js",
+    "tests/crypto-calendar-ui.test.js",
+    "docs/crypto-calendar-stage1/LOCAL-CALENDAR.md",
+    "docs/crypto-calendar-stage1/local-calendar.schema.json"
+  ]
+}

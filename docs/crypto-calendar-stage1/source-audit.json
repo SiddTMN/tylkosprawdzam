@@ -1,0 +1,216 @@
+{
+  "checkedDate": "2026-10-11",
+  "mode": "one-time-source-access-audit",
+  "authorization": "Public read-only discovery; no auth headers",
+  "http": [
+    {
+      "url": "https://api.github.com/repos/paritytech/polkadot-sdk/releases?per_page=10",
+      "status": 200,
+      "finalUrl": "https://api.github.com/repos/paritytech/polkadot-sdk/releases?per_page=10",
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 816979,
+      "rateRemaining": "49",
+      "checkedAt": "2026-10-11T11:51:36.945Z",
+      "sha256": "199386b11f07f3fc302eac349f4114f17b089bcfd3be77338f3d19db01ac000d"
+    },
+    {
+      "url": "https://api.github.com/repos/stellar/stellar-core/releases?per_page=10",
+      "status": 200,
+      "finalUrl": "https://api.github.com/repos/stellar/stellar-core/releases?per_page=10",
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 39497,
+      "rateRemaining": "48",
+      "checkedAt": "2026-10-11T11:51:37.245Z",
+      "sha256": "f5a761534172885782c49983b0c5a9b4ad2a5a47cd36f01b8e78030b59f4e039"
+    },
+    {
+      "url": "https://github.com/ethereum/go-ethereum/releases.atom",
+      "status": 200,
+      "finalUrl": "https://github.com/ethereum/go-ethereum/releases.atom",
+      "contentType": "application/atom+xml; charset=utf-8",
+      "bytes": 321584,
+      "rateRemaining": null,
+      "checkedAt": "2026-10-11T11:51:38.643Z",
+      "sha256": "fa9468eafebd6157cb0c52b1fc43460f47cd1592c508dabfd7a909c90bde44a3"
+    },
+    {
+      "url": "https://github.com/paritytech/polkadot-sdk/releases.atom",
+      "status": 200,
+      "finalUrl": "https://github.com/paritytech/polkadot-sdk/releases.atom",
+      "contentType": "application/atom+xml; charset=utf-8",
+      "bytes": 30560,
+      "rateRemaining": null,
+      "checkedAt": "2026-10-11T11:51:39.007Z",
+      "sha256": "74a62f0d033d120d2d671503d221e8a01399ae542e4aa3bdf359f3347847e9f1"
+    },
+    {
+      "url": "https://github.com/stellar/stellar-core/releases.atom",
+      "status": 200,
+      "finalUrl": "https://github.com/stellar/stellar-core/releases.atom",
+      "contentType": "application/atom+xml; charset=utf-8",
+      "bytes": 149968,
+      "rateRemaining": null,
+      "checkedAt": "2026-10-11T11:51:39.683Z",
+      "sha256": "6e85470461d7ef463bab3eee4aadd7c125251ec12e23c3618f65ab9aa60910cb"
+    },
+    {
+      "url": "https://forum.polkadot.network/robots.txt",
+      "status": 200,
+      "finalUrl": "https://forum.polkadot.network/robots.txt",
+      "contentType": "text/plain; charset=utf-8",
+      "bytes": 1003,
+      "rateRemaining": null,
+      "checkedAt": "2026-10-11T11:51:40.309Z",
+      "sha256": "2e8798cdaf2ddaca14838d105ad6561316b97df674fc9d3c1aa124d39e2c578e"
+    },
+    {
+      "url": "https://forum.polkadot.network/tos",
+      "status": 200,
+      "finalUrl": "https://forum.polkadot.network/tos",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 28055,
+      "rateRemaining": null,
+      "checkedAt": "2026-10-11T11:51:40.412Z",
+      "sha256": "ef805e4c271d47ae8d6b7c1cf3c21645b0b176e7220854d34274131ddad600a3"
+    },
+    {
+      "url": "https://forum.polkadot.network/latest.rss",
+      "status": 200,
+      "finalUrl": "https://forum.polkadot.network/latest.rss",
+      "contentType": "application/rss+xml; charset=utf-8",
+      "bytes": 169564,
+      "rateRemaining": null,
+      "checkedAt": "2026-10-11T11:51:40.881Z",
+      "sha256": "c98e58e4faf581474c3b1b5d54e895d7fb921a689e366a105b25c7fb1c6d6e6f"
+    },
+    {
+      "url": "https://polkadot.com/robots.txt",
+      "status": 404,
+      "finalUrl": "https://polkadot.com/robots.txt",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 10741,
+      "rateRemaining": null,
+      "checkedAt": "2026-10-11T11:51:41.166Z",
+      "sha256": "7f030de22d84367ab9cdbd7a2875cfa1aac0aa454ad19a4679221a37d6932966"
+    },
+    {
+      "url": "https://polkadot.com/",
+      "status": 200,
+      "finalUrl": "https://polkadot.com/",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 10496,
+      "rateRemaining": null,
+      "checkedAt": "2026-10-11T11:51:41.401Z",
+      "sha256": "47164f73151b5a9d520800e8534132c3ff96598cf297393ec7621bf2dc7d19a3"
+    },
+    {
+      "url": "https://api.github.com/repos/ethereum/go-ethereum/contents/params/config.go",
+      "status": 200,
+      "finalUrl": "https://api.github.com/repos/ethereum/go-ethereum/contents/params/config.go",
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 74339,
+      "rateRemaining": "47",
+      "checkedAt": "2026-10-11T11:51:41.877Z",
+      "sha256": "6d6015c137b6caa7e4510ea6fc65b08d10fff385a240796b237c8696329befee"
+    },
+    {
+      "url": "https://api.github.com/repos/ethereum/EIPs/contents/EIPS/eip-7773.md",
+      "status": 200,
+      "finalUrl": "https://api.github.com/repos/ethereum/EIPs/contents/EIPS/eip-7773.md",
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 5231,
+      "rateRemaining": "46",
+      "checkedAt": "2026-10-11T11:51:42.093Z",
+      "sha256": "9ee0b763bce228623d5d26b61282bc52a67a5ed8866f35f4b80f8b45e4ef3297"
+    },
+    {
+      "url": "https://api.github.com/repos/stellar/stellar-docs/contents",
+      "status": 200,
+      "finalUrl": "https://api.github.com/repos/stellar/stellar-docs/contents",
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 23969,
+      "rateRemaining": "45",
+      "checkedAt": "2026-10-11T11:51:42.339Z",
+      "sha256": "28c95d1f0c763c98786870f7250ff7262cb91b406d0325d1f02055d2945ad6e3"
+    },
+    {
+      "url": "https://api.github.com/repos/polkadot-fellows/runtimes/releases?per_page=10",
+      "status": 200,
+      "finalUrl": "https://api.github.com/repos/polkadot-fellows/runtimes/releases?per_page=10",
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 354190,
+      "rateRemaining": "44",
+      "checkedAt": "2026-10-11T11:51:42.764Z",
+      "sha256": "a3aa8ad696b59dab644e1ad693e0e127fd9d5bb0d84544a115edfefe048be256"
+    },
+    {
+      "url": "https://api.github.com/repos/stellar/stellar-docs/contents/LICENSE",
+      "status": 200,
+      "bytes": 16509,
+      "contentType": "application/json; charset=utf-8",
+      "checkedAt": "2026-10-11T11:52:56.576Z",
+      "sha256": "4eee733f5db4e53d17cac0b136c7b40f5e5f35333ff1ebaadb07cc4ae16c0a2e"
+    },
+    {
+      "url": "https://api.github.com/repos/stellar/stellar-docs/git/trees/main?recursive=1",
+      "status": 200,
+      "bytes": 626006,
+      "contentType": "application/json; charset=utf-8",
+      "checkedAt": "2026-10-11T11:52:57.096Z",
+      "sha256": "86a13f29c7793dca98d2f8ac90849276bca8b2c859fb26925d416cea246f7ee2"
+    },
+    {
+      "url": "https://api.github.com/repos/ethereum/go-ethereum/releases?per_page=10",
+      "status": 200,
+      "bytes": 64261,
+      "contentType": "application/json; charset=utf-8",
+      "checkedAt": "2026-10-11T11:52:57.407Z",
+      "sha256": "8434f601821a5f4ef6d8f89f3b6909cf73222644726154b306c60f0ef0a2aefd"
+    },
+    {
+      "url": "https://api.github.com/repos/ethereum/EIPs/contents/LICENSE.md",
+      "status": 200,
+      "bytes": 10464,
+      "contentType": "application/json; charset=utf-8",
+      "checkedAt": "2026-10-11T11:52:57.646Z",
+      "sha256": "6412c9050ab6979c70169dbb6df607ac7f45279291b50557a7f84d7cd8407f18"
+    },
+    {
+      "url": "https://horizon.stellar.org/",
+      "status": 200,
+      "bytes": 4332,
+      "contentType": "application/hal+json; charset=utf-8",
+      "checkedAt": "2026-10-11T11:53:02.182Z",
+      "sha256": "3e829224e244f45596dca1be84b19d695594b02760270aef7b50c73c7b96b794"
+    },
+    {
+      "url": "https://rpc.polkadot.io",
+      "status": 200,
+      "bytes": 792,
+      "contentType": "application/json; charset=utf-8",
+      "checkedAt": "2026-10-11T11:53:02.712Z",
+      "sha256": "48f298c7b9162165a4453f3dc2147455f4a4c8ac19fef70de093dadda6078f66"
+    }
+  ],
+  "policyNotes": [
+    {
+      "url": "https://forum.polkadot.network/latest.rss",
+      "status": "disabled-after-review",
+      "reason": "HTTP 200 alone insufficient; acceptable use prohibits automated monitoring",
+      "terms": "https://forum.polkadot.network/tos"
+    },
+    {
+      "url": "https://blog.ethereum.org/feed.xml",
+      "status": "disabled-after-review",
+      "reason": "Web reader reports unsupported XML; website terms prohibit automatic access. No subsequent collector request.",
+      "terms": "https://ethereum.org/terms-of-use/"
+    },
+    {
+      "url": "https://stellar.org/events",
+      "status": "excluded-from-public-output",
+      "reason": "Website public reuse restrictions; licensed stellar-docs repository is a separate explicitly licensed channel.",
+      "terms": "https://stellar.org/terms-of-service"
+    }
+  ],
+  "localEnvironmentNote": "Initial sandbox Node fetch failed (EACCES). Approved network execution then returned the recorded HTTP results; this was an environment limit, not a source-side access block."
+}
