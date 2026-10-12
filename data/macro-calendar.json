@@ -1,25 +1,25 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-11T21:57:46.173Z",
+  "generatedAt": "2026-10-12T01:19:51.698Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
-    "from": "2026-10-11",
-    "to": "2026-10-25"
+    "from": "2026-10-12",
+    "to": "2026-10-26"
   },
   "sources": {
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-10-11T21:57:46.173Z",
-      "lastSuccessAt": "2026-10-11T21:57:46.173Z"
+      "checkedAt": "2026-10-12T01:19:51.698Z",
+      "lastSuccessAt": "2026-10-12T01:19:51.698Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "fresh",
-      "checkedAt": "2026-10-11T21:57:46.173Z",
-      "lastSuccessAt": "2026-10-11T21:57:46.173Z"
+      "checkedAt": "2026-10-12T01:19:51.698Z",
+      "lastSuccessAt": "2026-10-12T01:19:51.698Z"
     }
   },
   "events": [
@@ -192,6 +192,15 @@
       "kind": "timed",
       "sortAt": 1792764000000,
       "expiresAt": 1792764000000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Germany Ifo Business Climate",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793007000000,
+      "expiresAt": 1793007000000,
       "source": "FinanceCalendar"
     }
   ]
