@@ -9,7 +9,7 @@ const OUTPUT=path.resolve(__dirname,'../data/crypto-calendar.json');
 function authorize(env,adapters=registry){
   const ids=(env.CRYPTO_CALENDAR_APPROVED_SOURCES||'').split(',').map(s=>s.trim()).filter(Boolean);
   if(env.GITHUB_REF!=='refs/heads/main'||env.CRYPTO_CALENDAR_ENABLED!=='true'||
-    !adapters.length||adapters.some(a=>!ids.includes(a.id)))throw new Error('Production disabled: main, enablement and explicit project authorization of every source required');
+    !adapters.length||adapters.some(a=>a.localOnly||a.publication?.approved===false||!ids.includes(a.id)))throw new Error('Production disabled: main, enablement and explicit project authorization of every source required; local-only sources cannot be published');
   return ids;
 }
 async function validateFile(file=OUTPUT,now=Date.now()){
@@ -17,6 +17,7 @@ async function validateFile(file=OUTPUT,now=Date.now()){
 }
 async function updateScheduled({outputPath=OUTPUT,now=Date.now(),adapters=registry,fetchImpl=fetch,approvedSourceIds=[]}={}){
   if(!adapters.length||adapters.some(a=>!approvedSourceIds.includes(a.id)))throw new Error('Every source requires explicit project publication authorization');
+  if(adapters.some(a=>a.localOnly||a.publication?.approved===false))throw new Error('Local-only source cannot enter scheduled/public collection');
   const cacheDir=await fs.mkdtemp(path.join(os.tmpdir(),'crypto-calendar-scheduled-'));
   try{
     let previous=null;

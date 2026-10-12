@@ -86,3 +86,16 @@ test('production calendar keeps the existing layout and identifies automatic fac
  assert.match(h.note.textContent,/kalendarz aktualizowany automatycznie/);
  assert.doesNotMatch(h.note.textContent,/wersja lokalna/);
 });
+
+test('multi-day XLM range is rendered with both original dates and no guessed hour',async()=>{
+ const event={...fixture('XLM'),date:'2026-10-28',startsAt:null,endDate:'2026-10-29',endDateExclusive:'2026-10-30',title:'Meridian 2026'};
+ const h=harness(snapshot([event]));await h.flush();const date=h.container.children[0].children[0];
+ assert.match(date.children[0].textContent,/28.*29/);assert.equal(date.children[1].textContent,'—');assert.match(h.container.textContent,/XLM — Meridian/);assert.equal(h.warnings.length,0);
+});
+
+test('XLM outage marks only retained XLM rows stale while healthy ETH remains readable',async()=>{
+ const data=snapshot([fixture('ETH'),{...fixture('XLM','2026-10-16T14:00:00.000Z','xlm-test'),id:'xlm'}]);
+ data.sources['xlm-test']={...data.sources['test-source'],status:'stale',name:'XLM test source'};
+ const h=harness(data);await h.flush();assert.equal(h.container.children.length,2);
+ assert.equal(h.container.children[0].getAttribute('data-stale'),'false');assert.equal(h.container.children[1].getAttribute('data-stale'),'true');assert.match(h.container.textContent,/nieświeże dane/);
+});

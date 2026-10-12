@@ -1,0 +1,11 @@
+.cache/
+# Source-backed audit records and local preview stay off the public repository.
+/stage2/
+/README.md
+/audit.json
+/events.*.json
+/editorial-review.json
+/protocol-review.json
+/sources.*.json
+/repeat-check.json
+/answer-sources.html

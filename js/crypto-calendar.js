@@ -19,7 +19,11 @@
       const stale=failed||M.sourceIsStale(result.sources[event.sourceId],now);
       const at=event.startsAt?Date.parse(event.startsAt):Date.parse(event.date+'T12:00:00Z');
       const row=el('div','calendar-event');row.setAttribute('data-source',event.sourceId);row.setAttribute('data-stale',String(stale));
-      const date=el('div','calendar-date');date.append(el('span','',dateFormat.format(at).toUpperCase()),el('strong','',event.startsAt?timeFormat.format(at):'—'));
+      const end=event.endDate|| (event.endsAt?M.day(Date.parse(event.endsAt)):event.endDateExclusive?new Date(Date.parse(event.endDateExclusive+'T12:00:00Z')-86400000).toISOString().slice(0,10):null);
+      const dateLabel=dateFormat.format(at).toUpperCase()+(end&&end!==event.date?' – '+dateFormat.format(Date.parse(end+'T12:00:00Z')).toUpperCase():'');
+      const date=el('div','calendar-date'),clock=el('strong','',event.startsAt?timeFormat.format(at):'—');
+      if(!event.startsAt){clock.title=event.timingNote||'Godzina wydarzenia nie została podana.';clock.setAttribute('aria-label','godzina niepotwierdzona');}
+      date.append(el('span','',dateLabel),clock);
       const info=el('div','calendar-info'),title=el('strong','');
       const link=el('a','crypto-event-link',event.token+' — '+event.title);link.href=event.sourceUrl;link.target='_blank';link.rel='noopener noreferrer';title.append(link);
       info.append(title,el('span','',event.description));
