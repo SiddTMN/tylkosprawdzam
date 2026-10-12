@@ -1,6 +1,6 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs/promises'),os=require('node:os'),path=require('node:path');
-const {policy,emptyState,validateState,observe,summary,nextAllowed,runPilot,HOURS_6,DAYS_14}=require('../scripts/crypto-calendar/xlm-pilot.cjs');
+const {policy,emptyState,validateState,observe,summary,nextAllowed,runPilot,HOURS_6,PILOT_END_AT,PILOT_END_MS}=require('../scripts/crypto-calendar/xlm-pilot.cjs');
 const {combine}=require('../scripts/summarize-xlm-pilot.cjs');
 const at='2026-10-12T12:00:00.000Z',now=Date.parse(at);
 const event=(id='one',date='2026-10-28')=>({id,sourceId:'xlm-stellar-events',priority:'high',category:'conference',date,startsAt:null,endDate:'2026-10-29',endsAt:null,publisherStatus:null});
@@ -8,9 +8,21 @@ const html=(extra='')=>'<script id="__NEXT_DATA__">'+JSON.stringify({props:{page
 const ics='BEGIN:VCALENDAR\r\nVERSION:2.0\r\nBEGIN:VEVENT\r\nUID:eth-fixture\r\nSUMMARY:AllCoreDevs Consensus\r\nDTSTART:20261015T140000Z\r\nDTEND:20261015T150000Z\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n';
 async function opts(t){const base=await fs.mkdtemp(path.join(os.tmpdir(),'xlm-pilot-'));t.after(()=>fs.rm(base,{recursive:true,force:true}));return {now,mode:'probe',artifactDir:path.join(base,'artifacts'),stateDir:path.join(base,'state'),scratchDir:path.join(base,'private'),env:{}};}
 const fetchOk=async url=>new Response(url.includes('stellar.org')?html():ics,{headers:{'content-type':url.includes('stellar.org')?'text/html':'text/calendar'}});
-test('sample enablement and exactly fourteen days fail closed; probe is one explicit cold test',()=>{
+test('samples continue beyond fourteen days and through 12 November Warsaw; probe is explicit',()=>{
  assert.equal(policy({mode:'sample',enabled:false,now}).allowed,false);assert.throws(()=>policy({mode:'sample',enabled:true,startAt:'bad',now}));
- assert.equal(policy({mode:'sample',enabled:true,startAt:at,now:now-1}).allowed,false);assert.equal(policy({mode:'sample',enabled:true,startAt:at,now:now+DAYS_14-1}).allowed,true);assert.equal(policy({mode:'sample',enabled:true,startAt:at,now:now+DAYS_14}).allowed,false);assert.equal(policy({mode:'probe',now}).scope,'one-time-cold-probe');
+ assert.equal(policy({mode:'sample',enabled:true,startAt:at,now:now-1}).allowed,false);
+ assert.equal(policy({mode:'sample',enabled:true,startAt:at,now:now+14*86400000}).allowed,true);
+ assert.equal(policy({mode:'sample',enabled:true,startAt:at,now:PILOT_END_MS-1}).allowed,true);
+ assert.equal(modelDay(PILOT_END_MS-1),'2026-11-12');assert.equal(modelDay(PILOT_END_MS),'2026-11-13');
+ const end=policy({mode:'sample',enabled:true,startAt:at,now:PILOT_END_MS});assert.equal(end.allowed,false);assert.equal(end.reason,'expired');assert.equal(end.endAt,PILOT_END_AT);
+ assert.equal(policy({mode:'probe',now}).scope,'one-time-cold-probe');
+});
+const modelDay=require('../js/crypto-calendar-model.js').day;
+test('a later start never extends the fixed deadline and cannot start after it',()=>{
+ const later='2026-11-05T10:00:00.000Z';assert.equal(policy({mode:'sample',enabled:true,startAt:later,now:PILOT_END_MS-1}).endAt,PILOT_END_AT);
+ assert.throws(()=>policy({mode:'sample',enabled:true,startAt:PILOT_END_AT,now}),/precede/);
+ assert.throws(()=>policy({mode:'sample',enabled:true,startAt:'2026-11-13T00:00:00.000Z',now}),/precede/);
+ assert.equal(summary(emptyState(at)).endAt,PILOT_END_AT);
 });
 test('baseline, repeated observations, new identities and revisions have different meanings',()=>{
  const s=emptyState(at),one={checkedAt:at},two={checkedAt:new Date(now+HOURS_6).toISOString()};observe(s,[event()],one);assert.equal(one.newIdentitiesAfterBaseline,0);
@@ -47,7 +59,14 @@ test('XLM 429 retains its last real verification and records outage independentl
  const state=JSON.parse(await fs.readFile(path.join(o.stateDir,'history.json'),'utf8'));assert.equal(state.notBeforeAt,new Date(now+HOURS_6+86400000).toISOString());assert.equal(summary(state).failedFetches,1);
 });
 test('disabled or expired pilot makes no external requests',async t=>{
- const o=await opts(t);for(const p of [{enabled:false,startAt:at,now},{enabled:true,startAt:at,now:now+DAYS_14}]){const r=await runPilot({...o,...p,mode:'sample',fetchImpl:async()=>assert.fail('Stopped pilot request')});assert.equal(r.requests,0);assert.equal(r.status,'not-running');}
+ const o=await opts(t);for(const p of [{enabled:false,startAt:at,now},{enabled:true,startAt:at,now:PILOT_END_MS}]){const r=await runPilot({...o,...p,mode:'sample',fetchImpl:async()=>assert.fail('Stopped pilot request')});assert.equal(r.requests,0);assert.equal(r.status,'not-running');}
+});
+test('an enabled sample still fetches after day fourteen and reports the fixed deadline',async t=>{
+ const o={...await opts(t),mode:'sample',enabled:true,startAt:at,now:now+15*86400000};
+ const r=await runPilot({...o,fetchImpl:fetchOk});
+ assert.equal(r.status,'success');assert.equal(r.requests,2);assert.equal(r.sample.eligibleXlm,1);
+ const report=JSON.parse(await fs.readFile(path.join(o.artifactDir,'summary.json'),'utf8'));
+ assert.equal(report.endAt,PILOT_END_AT);assert.equal(report.publicationApproved,false);
 });
 test('multiple artifact histories reconcile cumulative samples without double counting',async t=>{
  const o={...await opts(t),mode:'sample',enabled:true,startAt:at};await runPilot({...o,fetchImpl:fetchOk});const first=JSON.parse(await fs.readFile(path.join(o.stateDir,'history.json'),'utf8'));await runPilot({...o,now:now+HOURS_6,fetchImpl:fetchOk});const second=JSON.parse(await fs.readFile(path.join(o.stateDir,'history.json'),'utf8'));const merged=combine([first,second]);assert.equal(merged.samples,2);assert.equal(merged.uniqueValuableIdentities,1);assert.equal(merged.newIdentitiesAfterBaseline,0);assert.equal(merged.repeatedObservations,1);

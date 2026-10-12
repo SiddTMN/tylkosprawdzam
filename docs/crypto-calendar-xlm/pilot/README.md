@@ -1,4 +1,8 @@
-# XLM — dwutygodniowy pilotaż techniczny
+# XLM — pilotaż do 12 listopada 2026
+
+**Cel po korekcie:** ocena wydarzeń podczas codziennego korzystania z [produkcyjnego dashboardu](https://siddtmn.github.io/tylkosprawdzam/). Same statystyki Actions ani lokalny podgląd nie realizują tego celu. Ten PR nadal dostarcza kolektor techniczny; start rzeczywistego testu użyteczności wymaga zgodnego kanału publikacji i osobno zatwierdzonego wdrożenia. Nie przedstawiamy prób runnera jako rozpoczętego pilotażu na stronie.
+
+Weryfikacja warunków i warianty udostępnienia: [production-plan.md](production-plan.md). Nie ma obecnie podstawy do wyłączenia blokady Stellar Events. Zmiana terminu nie jest zgodą na publikację ani na szerszy zakres pobierania.
 
 Pilotaż jest **artifact-only**. Rejestr produkcyjny nadal zawiera wyłącznie ETH, a `publication.approved=false` i `localOnly=true` Stellar pozostają wymuszane przez adapter, model i generator. Nie ma publikacji rekordów XLM, zapisu do produkcyjnych JSON, automatycznych commitów ani wdrażania Pages. Źródło: oficjalny [Stellar Events Hub](https://stellar.org/events); nie dodano Lumen Loop.
 
@@ -12,7 +16,7 @@ Pierwszy push na gałąź uruchamia `XLM artifact-only pilot` w trybie **probe**
 2. tworzy nowy, pusty katalog źródeł, bez restore cache treści;
 3. pobiera prawdziwe HTTP 200 Stellar i ETH, waliduje wspólny kalendarz;
 4. zapisuje dowód statusu HTTP, wielkości odpowiedzi i SHA-256;
-5. przesyła wyłącznie statystyki i historię ze skrótami identyfikatorów jako `xlm-pilot-RUN_ID-ATTEMPT`, z retencją 30 dni.
+5. przesyła wyłącznie statystyki i historię ze skrótami identyfikatorów jako `xlm-pilot-RUN_ID-ATTEMPT`, z retencją 45 dni dla nowych runów.
 
 HTTP 304, stary cache i same wcześniejsze rekordy nie mogą spełnić `coldHttp200Passed`. Dowód zawiera rzeczywisty `checkedAt`, `verifiedAt`, identyfikator runa, commit i deklarację `RUNNER_ENVIRONMENT=github-hosted`. Czas odczytu cache nigdy nie zastępuje rzeczywistej weryfikacji.
 
@@ -20,7 +24,7 @@ Repozytorium jest publiczne: **artefakty i cache mogą być dostępne dla innych
 
 ## Uruchomienie cyklu
 
-[GitHub cron i workflow_dispatch wymagają workflow na domyślnej gałęzi](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow). Pierwsza próba przez push działa na gałęzi testowej; **nie uruchamia jeszcze dwutygodniowego harmonogramu**.
+[GitHub cron i workflow_dispatch wymagają workflow na domyślnej gałęzi](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow). Próba przez push działa na gałęzi testowej; **nie uruchamia jeszcze harmonogramu ani testu użyteczności na stronie**.
 
 Aktywacja cyklu wymaga najpierw zatwierdzonego scalenia PR. Nie wykonujemy tego automatycznie: aktualna konfiguracja repozytorium uruchamia Pages po zmianach `main`. PR nie zawiera pełnych danych XLM ani ich wpisu w produkcyjnym rejestrze, ale samo scalenie zmienia kod strony i może wywołać jej istniejący deployment.
 
@@ -31,7 +35,7 @@ Po zatwierdzonym scaleniu, w **Settings → Secrets and variables → Actions �
 
 Nie są to sekrety ani zgoda na publikację Stellar. Wartości nie zmieniają `CRYPTO_CALENDAR_APPROVED_SOURCES`. Opcjonalne ręczne uruchomienie workflow w trybie `sample` stosuje te same ograniczenia. Tryb `probe` służy wyłącznie świadomemu jednorazowemu testowi na zimnym cache.
 
-Cron: **`43 */6 * * *`**, czyli 00:43, 06:43, 12:43, 18:43 UTC. Okno kończy się po dokładnie **14 × 24 godzinach** od ustawionego startu. Przed startem, po końcu lub przy wyłączeniu kolektor nie odpytuje źródeł. GitHub może opóźniać harmonogram.
+Cron: **`43 */6 * * *`**, czyli 00:43, 06:43, 12:43, 18:43 UTC. Okno trwa **do końca 12 listopada 2026 w Europe/Warsaw włącznie**: granica wyłączna `2026-11-12T23:00:00.000Z` = 13 listopada 00:00 CET. Jest stała, niezależna od dnia startu; nie ma automatycznego zakończenia po 14 dniach. Start równy tej granicy lub późniejszy jest odrzucany. Przed startem, po końcu lub przy wyłączeniu kolektor nie odpytuje źródeł. GitHub może opóźniać harmonogram.
 
 Kolektor wymusza co najmniej 6 godzin między próbami XLM i respektuje dłuższy `Retry-After`/reset limitu. Wcześniejsze uruchomienie lub opóźnienia powodujące krótszy odstęp mogą pominąć próbę XLM — taki przypadek jest jawnie zapisany jako `backoff-skip`, a nie udana weryfikacja. ETH nadal jest odczytywane w aktywnej próbce; produkcyjny workflow ETH pozostaje całkowicie niezależny.
 
@@ -41,12 +45,14 @@ Cache Actions przechowuje tylko historię liczników, skróty tożsamości i cza
 
 - Ustawić `XLM_PILOT_ENABLED=false` — kolejne próbki będą no-op bez odczytu zewnętrznych źródeł.
 - W razie potrzeby anulować aktualnie trwający run w Actions; zmiana zmiennej nie cofa żądania już wykonanego.
-- Po 14 dniach kolektor sam przestaje pobierać dane, nawet jeżeli zmienna nadal ma `true`.
+- Po końcu 12 listopada w Warszawie kolektor przestaje pobierać dane, nawet jeżeli zmienna nadal ma `true`. Nie zatrzymuje się wcześniej po 14 dniach.
 - ETH i makro nadal działają przez swoje dotychczasowe workflow.
 
 Nowy pilotaż powinien mieć nowy `XLM_PILOT_START_AT`; odrębny prefiks cache uniemożliwia mieszanie okresów. Nie usuwać artefaktów przed oceną.
 
-## Ocena po dwóch tygodniach
+## Ocena po zakończeniu 12 listopada
+
+Do oceny użyteczności potrzebne są obserwacje **z produkcyjnej strony**. W czasie rzeczywistego testu zapisywać w prostym dzienniku: dzień, liczbę widocznych ETH/XLM, czy XLM pomogło podjąć działanie, co nowego wnosiło, podejrzane daty/duplikaty oraz ocenę `przydatne / rutynowe / nieprzydatne`. Nie zbieramy automatycznie danych użytkowników. Po 12 listopada zestawić ten dziennik z licznikami technicznymi poniżej. Brak dni z XLM w produkcji oznacza **brak testu użyteczności**, nawet przy poprawnych odczytach Actions. Dostępność źródła i liczba rekordów nie dowodzą ich przydatności.
 
 Pobrać artefakty **sample** dla danego startu z zakładki Actions i rozpakować do jednej lokalnej struktury katalogów. Artefaktu jednorazowej próby `probe` nie mieszać z innym okresem. Uruchomić:
 
@@ -54,7 +60,7 @@ Pobrać artefakty **sample** dla danego startu z zakładki Actions i rozpakować
 node scripts/summarize-xlm-pilot.cjs PATH_DO_ROZPAKOWANYCH_ARTEFAKTOW
 ```
 
-Skrypt łączy kumulatywne historie, deduplikuje próbki i wykrywa sprzeczności; nie sumuje wielokrotnie tego samego stanu cache. Można również podać pojedynczy `history.redacted.json`, ale brak części artefaktów lub utrata cache oznacza niepełną historię. `baselineSegments` wskazuje ponowne utworzenie baz po utracie historii; nie należy przedstawiać takiej próby jako kompletnego pomiaru 14 dni.
+Skrypt łączy kumulatywne historie, deduplikuje próbki i wykrywa sprzeczności; nie sumuje wielokrotnie tego samego stanu cache. Można również podać pojedynczy `history.redacted.json`, ale brak części artefaktów lub utrata cache oznacza niepełną historię. `baselineSegments` wskazuje ponowne utworzenie baz po utracie historii; nie należy przedstawiać takiej próby jako kompletnego pomiaru całego okresu. Nowe artefakty mają retencję 45 dni, obejmującą okres 12 października–12 listopada i późniejszą ocenę. Starsze artefakty zachowują pierwotną retencję 30 dni, więc pobrać je przed wygaśnięciem.
 
 | Pytanie | Pole wyniku | Interpretacja |
 | --- | --- | --- |

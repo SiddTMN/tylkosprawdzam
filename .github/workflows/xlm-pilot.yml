@@ -14,7 +14,7 @@ on:
         type: choice
         options: [probe, sample]
         default: probe
-        description: 'Probe requires a fresh HTTP 200; sample obeys enablement and the 14-day window.'
+        description: 'Probe requires fresh HTTP 200; samples run through 12 November 2026 (Europe/Warsaw).'
   schedule:
     - cron: '43 */6 * * *'
 
@@ -72,5 +72,5 @@ jobs:
           name: xlm-pilot-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/xlm-pilot/artifacts/
           if-no-files-found: error
-          retention-days: 30
+          retention-days: 45
           # Private HTML and full normalized calendars remain in disposable runner temp only.

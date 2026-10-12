@@ -5,15 +5,17 @@ const {generate}=require('../generate-crypto-calendar.cjs');
 const {atomicJson,readCache}=require('./shared.cjs');
 const model=require('../../js/crypto-calendar-model.js');
 const adapters=require('./local-sources.cjs'),xlm=adapters.find(a=>a.token==='XLM');
-const HOURS_6=6*3600000,DAYS_14=14*86400000;
+const HOURS_6=6*3600000;
+// Inclusive 12 November in Europe/Warsaw (CET): stop at local midnight on the 13th.
+const PILOT_END_AT='2026-11-12T23:00:00.000Z',PILOT_END_MS=Date.parse(PILOT_END_AT);
 const hash=value=>crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');
 function policy({mode='sample',enabled=false,startAt,now=Date.now()}={}){
  if(!['probe','sample'].includes(mode))throw Error('Invalid pilot mode');
  if(mode==='probe')return {allowed:true,mode,scope:'one-time-cold-probe'};
  if(!enabled)return {allowed:false,mode,reason:'disabled'};
  const start=model.timestamp(startAt);if(start===null)throw Error('Pilot start must be an explicit UTC timestamp');
- const endAt=new Date(start+DAYS_14).toISOString();
- return {allowed:now>=start&&now<start+DAYS_14,mode,startAt,endAt,reason:now<start?'not-started':now>=start+DAYS_14?'expired':null};
+ if(start>=PILOT_END_MS)throw Error('Pilot start must precede the 12 November Warsaw deadline');
+ return {allowed:now>=start&&now<PILOT_END_MS,mode,startAt,endAt:PILOT_END_AT,reason:now<start?'not-started':now>=PILOT_END_MS?'expired':null};
 }
 function emptyState(startAt){return {schemaVersion:1,startAt,baselineAt:null,entities:{},samples:[],lastAttemptAt:null,lastVerifiedAt:null,notBeforeAt:null};}
 function onlyKeys(value,keys){if(Object.keys(value).some(k=>!keys.includes(k)))throw Error('Unexpected unredacted pilot field');}
@@ -46,7 +48,7 @@ function observe(state,events,sample){
 }
 function summary(state){
  const samples=state.samples,entities=Object.values(state.entities),attempts=samples.filter(s=>s.xlmOutcome==='success'||s.xlmOutcome==='failure'),successes=attempts.filter(s=>s.xlmOutcome==='success'),routine=entities.filter(e=>e.routine).length;
- return {schemaVersion:1,startAt:state.startAt,endAt:state.startAt?new Date(Date.parse(state.startAt)+DAYS_14).toISOString():null,baselineAt:state.baselineAt,
+ return {schemaVersion:1,startAt:state.startAt,endAt:PILOT_END_AT,baselineAt:state.baselineAt,
   samples:samples.length,fetchAttempts:attempts.length,successfulFetches:successes.length,failedFetches:attempts.length-successes.length,availability:attempts.length?successes.length/attempts.length:null,
   uniqueValuableIdentities:entities.length,baselineIdentities:entities.filter(e=>e.baseline).length,newIdentitiesAfterBaseline:entities.filter(e=>!e.baseline).length,
   repeatedObservations:successes.reduce((sum,s)=>sum+s.eligibleXlm,0)-entities.length,
@@ -54,7 +56,7 @@ function summary(state){
   invalidOrConflictingResponses:attempts.filter(s=>s.errorKind==='invalid-data').length,
   routineIdentities:routine,routineShare:entities.length?routine/entities.length:null,
   unresolvedClockObservations:successes.reduce((sum,s)=>sum+s.unresolvedClocks,0),publicationApproved:false,
-  limitations:['Initial baseline is not newly discovered supply.','Date/status revisions can mean a reschedule or a refreshed recurring meeting; they are not automatically errors or new events.','Protocol meetings are a proxy for routine events, not proof of low usefulness.','Unavailable cache/history must not be silently treated as a complete two-week history.']};
+  limitations:['Initial baseline is not newly discovered supply.','Date/status revisions can mean a reschedule or a refreshed recurring meeting; they are not automatically errors or new events.','Protocol meetings are a proxy for routine events, not proof of low usefulness.','Unavailable cache/history must not be silently treated as a complete pilot history.','Technical observations do not measure usefulness on the production page.']};
 }
 function nextAllowed(now,request){
  let deadline=now+HOURS_6;
@@ -117,4 +119,4 @@ async function runPilot({mode='probe',enabled=false,startAt,now=Date.now(),artif
  if(mode==='sample')await atomicJson(stateFile,state);
  return receipt;
 }
-module.exports={policy,emptyState,validateState,observe,summary,nextAllowed,runPilot,HOURS_6,DAYS_14};
+module.exports={policy,emptyState,validateState,observe,summary,nextAllowed,runPilot,HOURS_6,PILOT_END_AT,PILOT_END_MS};
