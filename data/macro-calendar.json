@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-13T09:25:16.561Z",
+  "generatedAt": "2026-10-13T17:36:19.546Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,26 +12,17 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-10-13T09:25:16.561Z",
-      "lastSuccessAt": "2026-10-13T09:25:16.561Z"
+      "checkedAt": "2026-10-13T17:36:19.546Z",
+      "lastSuccessAt": "2026-10-13T17:36:19.546Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "fresh",
-      "checkedAt": "2026-10-13T09:25:16.561Z",
-      "lastSuccessAt": "2026-10-13T09:25:16.561Z"
+      "checkedAt": "2026-10-13T17:36:19.546Z",
+      "lastSuccessAt": "2026-10-13T17:36:19.546Z"
     }
   },
   "events": [
-    {
-      "name": "Existing Home Sales",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1791900000000,
-      "expiresAt": 1791900000000,
-      "source": "FinanceCalendar"
-    },
     {
       "name": "China CPI",
       "category": "economic-indicators",
