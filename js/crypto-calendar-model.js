@@ -58,5 +58,88 @@
     if(data.mode==='automated-calendar'&&events.some(e=>e.publicationApproved===false))throw new Error('Wydarzenie niedopuszczone do publikacji');
     return {...data,events};
   }
-  return {TIME_ZONE,MAX_AGE_MS,validDay,timestamp,day,windowAt,safeUrl,normalizeEvent,mergeEvents,selectUpcoming,sourceIsStale,parseSnapshot};
+  // Version 2: independent manual/automatic datasets. Legacy methods above remain
+  // available to historical audit tools; the public renderer only accepts v2.
+  const ASSETS={BTC:'Bitcoin',ETH:'Ethereum',DOT:'Polkadot',XLM:'Stellar',ATH:'Aethir',BONK:'Bonk'};
+  const AUTO_MAX_AGE_MS=36*3600000;
+  const CONFIDENCE={confirmed:'potwierdzone',expected:'oczekiwane',speculative:'spekulacyjne'};
+  const STATUS={planned:'planowane',postponed:'przesunięte',cancelled:'odwołane',completed:'zakończone'};
+  function periodBounds(p){
+    if(!p||typeof p!=='object'||Array.isArray(p))throw new Error('Brak terminu wydarzenia');
+    const allowed={day:['precision','date'],month:['precision','month'],week:['precision','from','to'],range:['precision','from','to']}[p.precision];
+    if(!allowed||Object.keys(p).some(k=>!allowed.includes(k)))throw new Error('Nieprawidłowa precyzja terminu');
+    if(p.precision==='day'&&validDay(p.date))return {from:p.date,to:p.date};
+    if(p.precision==='month'&&typeof p.month==='string'&&/^\d{4}-\d{2}$/.test(p.month)&&validDay(p.month+'-01')){
+      const first=p.month+'-01',d=new Date(first+'T12:00:00Z');d.setUTCMonth(d.getUTCMonth()+1,0);
+      return {from:first,to:d.toISOString().slice(0,10)};
+    }
+    if(['week','range'].includes(p.precision)&&validDay(p.from)&&validDay(p.to)&&p.to>=p.from){
+      if(p.precision==='week'&&(new Date(p.from+'T12:00:00Z').getUTCDay()!==1||p.to!==addDays(p.from,6)))throw new Error('Tydzień musi obejmować poniedziałek–niedzielę');
+      return {from:p.from,to:p.to};
+    }
+    throw new Error('Nieprawidłowy termin wydarzenia');
+  }
+  function validId(s){return typeof s==='string'&&/^[A-Za-z0-9][A-Za-z0-9:._-]{0,199}$/.test(s);}
+  function hybridEvent(e,origin,now=Date.now()){
+    if(!e||e.example!==undefined||e.draft!==undefined||!validId(e.id)||e.origin!==origin||!['auto','manual'].includes(origin)||
+      !Array.isArray(e.assets)||!e.assets.length||e.assets.length>6||new Set(e.assets).size!==e.assets.length||e.assets.some(a=>!Object.hasOwn(ASSETS,a))||
+      typeof e.title!=='string'||!e.title.trim()||e.title.length>160||typeof e.description!=='string'||!e.description.trim()||e.description.length>360||
+      !Object.hasOwn(CONFIDENCE,e.confidence)||!Object.hasOwn(STATUS,e.status)||!safeUrl(e.sourceUrl)||
+      timestamp(e.verifiedAt)===null||timestamp(e.verifiedAt)>now+300000||
+      e.overridesId!==undefined&&(origin!=='manual'||!validId(e.overridesId)))throw new Error('Nieprawidłowe wydarzenie hybrydowe');
+    periodBounds(e.period);
+    if(e.startsAt!=null&&(e.period.precision!=='day'||timestamp(e.startsAt)===null||day(timestamp(e.startsAt))!==e.period.date))throw new Error('Godzina sprzeczna z terminem');
+    if(origin==='auto'&&(!validId(e.sourceId)||e.confidence!=='confirmed'||e.status!=='planned'))throw new Error('Niezweryfikowany rekord automatyczny');
+    return {...e,assets:[...e.assets].sort(),period:{...e.period},startsAt:e.startsAt??null};
+  }
+  function parseDataset(data,origin,now=Date.now()){
+    if(data?.schemaVersion!==2||data.origin!==origin||!Array.isArray(data.events)||data.events.length>2000)throw new Error('Nieprawidłowy zbiór '+origin);
+    if(origin==='auto'){
+      if(timestamp(data.generatedAt)===null||timestamp(data.generatedAt)>now+300000||!data.sources||typeof data.sources!=='object'||Array.isArray(data.sources))throw new Error('Nieprawidłowe źródła automatu');
+      for(const [id,s] of Object.entries(data.sources)){
+        if(!validId(id)||!s||!safeUrl(s.url)||typeof s.name!=='string'||!s.name||!['fresh','stale','unavailable'].includes(s.status)||
+          timestamp(s.checkedAt)===null||s.checkedAt!==data.generatedAt||
+          s.verifiedAt!==null&&(timestamp(s.verifiedAt)===null||timestamp(s.verifiedAt)>timestamp(data.generatedAt))||
+          s.status==='fresh'&&s.verifiedAt!==s.checkedAt||s.status==='unavailable'&&s.verifiedAt!==null||
+          !s.rights||s.rights.automatedAccess!==true||s.rights.publicReuse!==true||typeof s.rights.license!=='string'||!s.rights.license||!safeUrl(s.rights.licenseUrl)||!validDay(s.rights.reviewedAt))throw new Error('Brak potwierdzonej podstawy źródła '+id);
+      }
+    }
+    const ids=new Set(),corrections=new Set(),events=data.events.map(raw=>{
+      const e=hybridEvent(raw,origin,now);if(ids.has(e.id))throw new Error('Powtórzony identyfikator '+e.id);ids.add(e.id);
+      if(e.overridesId){if(corrections.has(e.overridesId))throw new Error('Sprzeczne korekty '+e.overridesId);corrections.add(e.overridesId);}
+      if(origin==='auto'){
+        const s=data.sources[e.sourceId];
+        if(!s||s.status!=='fresh'||e.verifiedAt!==s.verifiedAt||e.license!==s.rights.license||e.licenseUrl!==s.rights.licenseUrl)throw new Error('Wydarzenie bez świeżej weryfikacji źródła '+e.id);
+      }
+      return e;
+    });
+    return {...data,events};
+  }
+  function factKey(e){const b=periodBounds(e.period);return JSON.stringify([e.assets,e.title.normalize('NFKC').trim().replace(/\s+/g,' ').toLowerCase(),e.period.precision,b.from,b.to,e.startsAt]);}
+  function mergeDatasets(auto,manual,now=Date.now()){
+    const a=parseDataset(auto,'auto',now),m=parseDataset(manual,'manual',now),ids=new Map(),facts=new Map();
+    // An explicit manual correction suppresses the old automatic fact even if its
+    // date/title/status changed. Neither input is mutated or written here.
+    const suppressed=new Set(m.events.flatMap(e=>[e.id,...(e.overridesId?[e.overridesId]:[])]));
+    for(const e of a.events)if(!suppressed.has(e.id))ids.set(e.id,e);
+    for(const e of m.events)ids.set(e.id,e);
+    for(const e of ids.values()){
+      const key=factKey(e),previous=facts.get(key);
+      if(!previous||e.origin==='manual'&&previous.origin==='auto'||e.origin===previous.origin&&e.verifiedAt>previous.verifiedAt)facts.set(key,e);
+    }
+    return [...facts.values()].sort((x,y)=>periodBounds(x.period).from.localeCompare(periodBounds(y.period).from)||x.id.localeCompare(y.id));
+  }
+  function upcomingHybrid(events,now,limit=5){
+    const w=windowAt(now),future=events.filter(e=>{const b=periodBounds(e.period);return e.status!=='completed'&&b.to>=w.from&&b.from<w.toExclusive&&(e.startsAt===null||timestamp(e.startsAt)>=now);});
+    return limit===Infinity?future:future.slice(0,limit);
+  }
+  function autoSourceIsStale(s,now){return !s||s.status!=='fresh'||timestamp(s.verifiedAt)===null||now-timestamp(s.verifiedAt)>AUTO_MAX_AGE_MS;}
+  function periodLabel(p){
+    const f=new Intl.DateTimeFormat('pl-PL',{timeZone:TIME_ZONE,day:'2-digit',month:'short'}),date=s=>f.format(Date.parse(s+'T12:00:00Z')).toUpperCase();
+    if(p.precision==='month')return new Intl.DateTimeFormat('pl-PL',{timeZone:TIME_ZONE,month:'long',year:'numeric'}).format(Date.parse(p.month+'-01T12:00:00Z'));
+    if(p.precision==='day')return date(p.date);
+    return (p.precision==='week'?'tydz. ':'')+date(p.from)+' – '+date(p.to);
+  }
+  return {TIME_ZONE,MAX_AGE_MS,validDay,timestamp,day,windowAt,safeUrl,normalizeEvent,mergeEvents,selectUpcoming,sourceIsStale,parseSnapshot,
+    ASSETS,AUTO_MAX_AGE_MS,CONFIDENCE,STATUS,periodBounds,hybridEvent,parseDataset,mergeDatasets,upcomingHybrid,autoSourceIsStale,periodLabel};
 });

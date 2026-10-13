@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Hybrid crypto calendar dataset v2",
+  "type": "object",
+  "required": ["schemaVersion", "origin", "events"],
+  "properties": {
+    "schemaVersion": {"const": 2},
+    "origin": {"enum": ["auto", "manual"]},
+    "events": {"type": "array", "maxItems": 2000, "items": {"$ref": "#/$defs/event"}},
+    "generatedAt": {"type": "string", "format": "date-time"},
+    "sources": {"type": "object"}
+  },
+  "allOf": [
+    {"if": {"properties": {"origin": {"const": "auto"}}}, "then": {"required": ["generatedAt", "sources"], "properties": {"events": {"items": {"properties": {"origin": {"const": "auto"}, "confidence": {"const": "confirmed"}, "status": {"const": "planned"}}, "required": ["sourceId", "license", "licenseUrl"], "not": {"required": ["overridesId"]}}}}}},
+    {"if": {"properties": {"origin": {"const": "manual"}}}, "then": {"properties": {"events": {"items": {"properties": {"origin": {"const": "manual"}}}}}}}
+  ],
+  "$defs": {
+    "event": {
+      "type": "object",
+      "required": ["id", "assets", "title", "description", "period", "confidence", "status", "sourceUrl", "verifiedAt", "origin"],
+      "not": {"anyOf": [{"required": ["example"]}, {"required": ["draft"]}]},
+      "properties": {
+        "id": {"type": "string", "maxLength": 200, "pattern": "^[A-Za-z0-9][A-Za-z0-9:._-]*$"},
+        "overridesId": {"type": "string", "maxLength": 200, "pattern": "^[A-Za-z0-9][A-Za-z0-9:._-]*$"},
+        "assets": {"type": "array", "minItems": 1, "maxItems": 6, "uniqueItems": true, "items": {"enum": ["BTC", "ETH", "DOT", "XLM", "ATH", "BONK"]}},
+        "title": {"type": "string", "minLength": 1, "maxLength": 160},
+        "description": {"type": "string", "minLength": 1, "maxLength": 360},
+        "origin": {"enum": ["auto", "manual"]},
+        "confidence": {"enum": ["confirmed", "expected", "speculative"]},
+        "status": {"enum": ["planned", "postponed", "cancelled", "completed"]},
+        "startsAt": {"type": ["string", "null"], "format": "date-time"},
+        "verifiedAt": {"type": "string", "format": "date-time", "pattern": "Z$"},
+        "sourceUrl": {"type": "string", "format": "uri", "pattern": "^https://"},
+        "sourceId": {"type": "string"},
+        "license": {"type": "string"},
+        "licenseUrl": {"type": "string", "format": "uri", "pattern": "^https://"},
+        "period": {"oneOf": [
+          {"type": "object", "additionalProperties": false, "required": ["precision", "date"], "properties": {"precision": {"const": "day"}, "date": {"type": "string", "format": "date"}}},
+          {"type": "object", "additionalProperties": false, "required": ["precision", "month"], "properties": {"precision": {"const": "month"}, "month": {"type": "string", "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$"}}},
+          {"type": "object", "additionalProperties": false, "required": ["precision", "from", "to"], "properties": {"precision": {"enum": ["week", "range"]}, "from": {"type": "string", "format": "date"}, "to": {"type": "string", "format": "date"}}}
+        ]}
+      },
+      "allOf": [{"if": {"properties": {"period": {"properties": {"precision": {"enum": ["month", "week", "range"]}}}}}, "then": {"properties": {"startsAt": {"type": "null"}}}}]
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 2,
+  "origin": "manual",
+  "events": [
+    {
+      "example": true,
+      "id": "UZUPELNIJ-unikalny-id",
+      "assets": ["ATH"],
+      "title": "UZUPELNIJ własny krótki tytuł",
+      "description": "UZUPELNIJ własny opis zapowiedzi i jej ograniczeń.",
+      "period": {"precision": "month", "month": "YYYY-MM"},
+      "startsAt": null,
+      "confidence": "expected",
+      "status": "planned",
+      "sourceUrl": "https://example.org/UZUPELNIJ-zrodlo",
+      "verifiedAt": "YYYY-MM-DDTHH:mm:ssZ",
+      "origin": "manual"
+    }
+  ]
+}

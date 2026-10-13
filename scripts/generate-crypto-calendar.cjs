@@ -2,12 +2,12 @@
 const fs=require('node:fs/promises'),path=require('node:path');
 const {atomicJson,readCache}=require('./crypto-calendar/shared.cjs');
 const model=require('../js/crypto-calendar-model.js');
-const defaultAdapters=require('./crypto-calendar/sources.cjs');
+const defaultAdapters=[require('./crypto-calendar/adapters/ethereum-protocol-calls.cjs')];
 const ROOT=path.resolve(__dirname,'..');
-async function generate({now=Date.now(),adapters=defaultAdapters,cacheDir=path.join(ROOT,'docs/crypto-calendar-stage1/.cache'),outputPath=path.join(ROOT,'data/crypto-calendar.json'),fetchImpl=fetch,offline=false,force=false,timeoutMs=15000,localTest=false}={}){
+async function generate({now=Date.now(),adapters=defaultAdapters,cacheDir=path.join(ROOT,'docs/crypto-calendar-stage1/.cache'),outputPath=path.join(ROOT,'docs/crypto-calendar-stage1/crypto-calendar.preview.json'),fetchImpl=fetch,offline=false,force=false,timeoutMs=15000,localTest=false}={}){
   if(!adapters.length||new Set(adapters.map(a=>a.id)).size!==adapters.length||adapters.some(a=>! /^[a-z0-9-]+$/.test(a.id)||!model.safeUrl(a.url)))throw new Error('Invalid adapter registry');
   const resolvedOutput=path.resolve(outputPath).toLowerCase(),publicData=path.join(ROOT,'data').toLowerCase();
-  if(adapters.some(a=>a.localOnly)&&(resolvedOutput===publicData||resolvedOutput.startsWith(publicData+path.sep)))throw new Error('Local-only sources cannot write production data; use a separate preview output');
+  if(resolvedOutput===publicData||resolvedOutput.startsWith(publicData+path.sep))throw new Error('Local-only legacy collector cannot write production data; use a separate audit output');
   const sources={},events=[];let requests=0;
   const checkedAt=new Date(now).toISOString();
   for(const adapter of adapters){

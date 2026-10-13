@@ -74,9 +74,9 @@ test('local-only data cannot enter public output or scheduled requests even if p
  await assert.rejects(xlm.load({...opts,localTest:false,fetchImpl}),/explicit local test/);
  await assert.rejects(generate({...opts,outputPath:path.resolve(__dirname,'../data/crypto-calendar.json'),adapters:[xlm],fetchImpl}),/production data/);
  await assert.rejects(generate({...opts,outputPath:path.resolve(__dirname,'../DATA/crypto-calendar.json'),adapters:[xlm],fetchImpl}),/production data/);
- const env={GITHUB_REF:'refs/heads/main',CRYPTO_CALENDAR_ENABLED:'true',CRYPTO_CALENDAR_APPROVED_SOURCES:eth.id+','+xlm.id};assert.throws(()=>authorize(env,[eth,xlm]),/local-only/);
+ const env={GITHUB_REF:'refs/heads/main',CRYPTO_HYBRID_ENABLED:'true',CRYPTO_CALENDAR_APPROVED_SOURCES:eth.id+','+xlm.id};assert.throws(()=>authorize(env,[xlm]),/Local-only/);
  await assert.rejects(updateScheduled({...opts,adapters:[eth,xlm],approvedSourceIds:[eth.id,xlm.id],fetchImpl}),/Local-only/);
- assert.deepEqual(require('../scripts/crypto-calendar/sources.cjs').map(a=>a.id),[eth.id]);
+ assert.deepEqual(require('../scripts/crypto-calendar/sources.cjs').map(a=>a.id),['eth-pm','eth-glamsterdam','xlm-protocols']);
  const s=await generate({...opts,adapters:[xlm],fetchImpl:async()=>response(html())});assert.throws(()=>M.parseSnapshot({...s,mode:'automated-calendar',publication:{approved:true}},now),/lokalnego/);
 });
 test('HTML cache supports explicit ETag revalidation and never advances verification on offline reads',async t=>{

@@ -3,6 +3,15 @@ name: Crypto calendar technical test
 on:
   workflow_dispatch:
   workflow_call:
+  pull_request:
+    paths:
+      - 'data/crypto-auto.json'
+      - 'data/crypto-manual.json'
+      - 'data/crypto-licenses/**'
+      - 'js/crypto-calendar*.js'
+      - 'scripts/**'
+      - 'tests/**'
+      - '.github/workflows/crypto-calendar*.yml'
 
 permissions:
   contents: read
@@ -27,8 +36,12 @@ jobs:
           mkdir -p "$RUNNER_TEMP/crypto-calendar-test"
           set -o pipefail
           node --test --test-reporter=tap tests/*.test.js | tee "$RUNNER_TEMP/crypto-calendar-test/tests.tap"
-      - name: Fetch fresh ICS and validate generated JSON
-        run: node scripts/test-crypto-calendar-live.cjs "$RUNNER_TEMP/crypto-calendar-test"
+          node scripts/update-crypto-calendar.cjs --validate
+      - name: Probe only licensed GitHub sources (local preview, no publication)
+        if: github.event_name != 'pull_request'
+        run: |
+          node scripts/update-crypto-calendar.cjs --preview
+          cp docs/crypto-calendar-hybrid/preview/crypto-auto*.json "$RUNNER_TEMP/crypto-calendar-test/"
       - name: Upload technical evidence only
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2

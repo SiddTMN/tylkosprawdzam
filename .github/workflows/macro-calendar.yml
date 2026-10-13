@@ -91,6 +91,9 @@ jobs:
           mkdir -p _site
           cp index.html _site/
           cp -R css js data _site/
+          # Keep the legacy unlicensed ICS snapshot in the repository audit only.
+          # The hybrid renderer uses crypto-auto.json and crypto-manual.json.
+          rm -f _site/data/crypto-calendar.json
       # GITHUB_TOKEN pushes do not trigger another Pages build: deploy directly.
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3

@@ -3,7 +3,7 @@ const fs=require('node:fs/promises'),os=require('node:os'),path=require('node:pa
 const {generate}=require('./generate-crypto-calendar.cjs');
 const {readCache,atomicJson}=require('./crypto-calendar/shared.cjs');
 const model=require('../js/crypto-calendar-model.js');
-const registry=require('./crypto-calendar/sources.cjs');
+const registry=[require('./crypto-calendar/adapters/ethereum-protocol-calls.cjs')];
 
 // A unique empty directory prevents a restored cache or HTTP 304 from passing.
 async function testLive({artifactDir,now=Date.now(),adapters=registry,fetchImpl=fetch}={}){
