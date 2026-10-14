@@ -1,37 +1,28 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-13T22:44:27.836Z",
+  "generatedAt": "2026-10-14T01:54:39.144Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
-    "from": "2026-10-13",
-    "to": "2026-10-27"
+    "from": "2026-10-14",
+    "to": "2026-10-28"
   },
   "sources": {
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-10-13T22:44:27.836Z",
-      "lastSuccessAt": "2026-10-13T22:44:27.836Z"
+      "checkedAt": "2026-10-14T01:54:39.144Z",
+      "lastSuccessAt": "2026-10-14T01:54:39.144Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "fresh",
-      "checkedAt": "2026-10-13T22:44:27.836Z",
-      "lastSuccessAt": "2026-10-13T22:44:27.836Z"
+      "checkedAt": "2026-10-14T01:54:39.144Z",
+      "lastSuccessAt": "2026-10-14T01:54:39.144Z"
     }
   },
   "events": [
-    {
-      "name": "China CPI",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1791941400000,
-      "expiresAt": 1791941400000,
-      "source": "FinanceCalendar"
-    },
     {
       "name": "US CPI",
       "category": "economic-indicators",
@@ -60,18 +51,18 @@
       "source": "FinanceCalendar"
     },
     {
-      "name": "Jobless claims",
+      "name": "Retail Sales",
       "category": "economic-indicators",
-      "impact": "medium",
+      "impact": "high",
       "kind": "timed",
       "sortAt": 1792067400000,
       "expiresAt": 1792067400000,
       "source": "FinanceCalendar"
     },
     {
-      "name": "Retail Sales",
+      "name": "Jobless claims",
       "category": "economic-indicators",
-      "impact": "high",
+      "impact": "medium",
       "kind": "timed",
       "sortAt": 1792067400000,
       "expiresAt": 1792067400000,
@@ -210,6 +201,42 @@
       "kind": "timed",
       "sortAt": 1793109600000,
       "expiresAt": 1793109600000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Australia CPI",
+      "category": "economic-indicators",
+      "impact": "high",
+      "kind": "timed",
+      "sortAt": 1793147400000,
+      "expiresAt": 1793147400000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "RBNZ Rate Decision",
+      "category": "central-banks-monetary-policy",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793149200000,
+      "expiresAt": 1793149200000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Bank of Canada Rate Decision",
+      "category": "central-banks-monetary-policy",
+      "impact": "high",
+      "kind": "timed",
+      "sortAt": 1793195100000,
+      "expiresAt": 1793195100000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "FOMC decision",
+      "category": "central-banks-monetary-policy",
+      "impact": "high",
+      "kind": "timed",
+      "sortAt": 1793210400000,
+      "expiresAt": 1793210400000,
       "source": "FinanceCalendar"
     }
   ]
