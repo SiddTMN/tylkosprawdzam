@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-14T07:38:03.992Z",
+  "generatedAt": "2026-10-14T13:43:32.087Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,26 +12,17 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-10-14T07:38:03.992Z",
-      "lastSuccessAt": "2026-10-14T07:38:03.992Z"
+      "checkedAt": "2026-10-14T13:43:32.087Z",
+      "lastSuccessAt": "2026-10-14T13:43:32.087Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "fresh",
-      "checkedAt": "2026-10-14T07:38:03.992Z",
-      "lastSuccessAt": "2026-10-14T07:38:03.992Z"
+      "checkedAt": "2026-10-14T13:43:32.087Z",
+      "lastSuccessAt": "2026-10-14T13:43:32.087Z"
     }
   },
   "events": [
-    {
-      "name": "US CPI",
-      "category": "economic-indicators",
-      "impact": "high",
-      "kind": "timed",
-      "sortAt": 1791981000000,
-      "expiresAt": 1791981000000,
-      "source": "FinanceCalendar"
-    },
     {
       "name": "Australia Labour Force",
       "category": "economic-indicators",
