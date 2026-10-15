@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-15T18:17:48.479Z",
+  "generatedAt": "2026-10-15T22:17:09.061Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,14 +12,14 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-10-15T18:17:48.479Z",
-      "lastSuccessAt": "2026-10-15T18:17:48.479Z"
+      "checkedAt": "2026-10-15T22:17:09.061Z",
+      "lastSuccessAt": "2026-10-15T22:17:09.061Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "fresh",
-      "checkedAt": "2026-10-15T18:17:48.479Z",
-      "lastSuccessAt": "2026-10-15T18:17:48.479Z"
+      "checkedAt": "2026-10-15T22:17:09.061Z",
+      "lastSuccessAt": "2026-10-15T22:17:09.061Z"
     }
   },
   "events": [
@@ -186,6 +186,15 @@
       "source": "FinanceCalendar"
     },
     {
+      "name": "Jobless claims",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793277000000,
+      "expiresAt": 1793277000000,
+      "source": "FinanceCalendar"
+    },
+    {
       "name": "PCE inflation",
       "category": "economic-indicators",
       "impact": "high",
@@ -198,15 +207,6 @@
       "name": "US GDP",
       "category": "economic-indicators",
       "impact": "high",
-      "kind": "timed",
-      "sortAt": 1793277000000,
-      "expiresAt": 1793277000000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Jobless claims",
-      "category": "economic-indicators",
-      "impact": "medium",
       "kind": "timed",
       "sortAt": 1793277000000,
       "expiresAt": 1793277000000,
