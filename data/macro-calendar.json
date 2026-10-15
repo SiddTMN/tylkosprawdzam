@@ -1,37 +1,28 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-14T22:18:19.980Z",
+  "generatedAt": "2026-10-15T01:28:28.039Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
-    "from": "2026-10-14",
-    "to": "2026-10-28"
+    "from": "2026-10-15",
+    "to": "2026-10-29"
   },
   "sources": {
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-10-14T22:18:19.980Z",
-      "lastSuccessAt": "2026-10-14T22:18:19.980Z"
+      "checkedAt": "2026-10-15T01:28:28.039Z",
+      "lastSuccessAt": "2026-10-15T01:28:28.039Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "fresh",
-      "checkedAt": "2026-10-14T22:18:19.980Z",
-      "lastSuccessAt": "2026-10-14T22:18:19.980Z"
+      "checkedAt": "2026-10-15T01:28:28.039Z",
+      "lastSuccessAt": "2026-10-15T01:28:28.039Z"
     }
   },
   "events": [
-    {
-      "name": "Australia Labour Force",
-      "category": "economic-indicators",
-      "impact": "high",
-      "kind": "timed",
-      "sortAt": 1792024200000,
-      "expiresAt": 1792024200000,
-      "source": "FinanceCalendar"
-    },
     {
       "name": "UK GDP",
       "category": "economic-indicators",
@@ -42,9 +33,9 @@
       "source": "FinanceCalendar"
     },
     {
-      "name": "Retail Sales",
+      "name": "PPI",
       "category": "economic-indicators",
-      "impact": "high",
+      "impact": "medium",
       "kind": "timed",
       "sortAt": 1792067400000,
       "expiresAt": 1792067400000,
@@ -60,9 +51,9 @@
       "source": "FinanceCalendar"
     },
     {
-      "name": "PPI",
+      "name": "Retail Sales",
       "category": "economic-indicators",
-      "impact": "medium",
+      "impact": "high",
       "kind": "timed",
       "sortAt": 1792067400000,
       "expiresAt": 1792067400000,
@@ -228,6 +219,51 @@
       "kind": "timed",
       "sortAt": 1793210400000,
       "expiresAt": 1793210400000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Jobless claims",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793277000000,
+      "expiresAt": 1793277000000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "PCE inflation",
+      "category": "economic-indicators",
+      "impact": "high",
+      "kind": "timed",
+      "sortAt": 1793277000000,
+      "expiresAt": 1793277000000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "US GDP",
+      "category": "economic-indicators",
+      "impact": "high",
+      "kind": "timed",
+      "sortAt": 1793277000000,
+      "expiresAt": 1793277000000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "ECB decision",
+      "category": "central-banks-monetary-policy",
+      "impact": "high",
+      "kind": "timed",
+      "sortAt": 1793277900000,
+      "expiresAt": 1793277900000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Germany CPI Flash",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793278800000,
+      "expiresAt": 1793278800000,
       "source": "FinanceCalendar"
     }
   ]
