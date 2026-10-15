@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-15T01:28:28.039Z",
+  "generatedAt": "2026-10-15T07:26:02.953Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,24 +12,24 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-10-15T01:28:28.039Z",
-      "lastSuccessAt": "2026-10-15T01:28:28.039Z"
+      "checkedAt": "2026-10-15T07:26:02.953Z",
+      "lastSuccessAt": "2026-10-15T07:26:02.953Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "fresh",
-      "checkedAt": "2026-10-15T01:28:28.039Z",
-      "lastSuccessAt": "2026-10-15T01:28:28.039Z"
+      "checkedAt": "2026-10-15T07:26:02.953Z",
+      "lastSuccessAt": "2026-10-15T07:26:02.953Z"
     }
   },
   "events": [
     {
-      "name": "UK GDP",
+      "name": "Retail Sales",
       "category": "economic-indicators",
       "impact": "high",
       "kind": "timed",
-      "sortAt": 1792044000000,
-      "expiresAt": 1792044000000,
+      "sortAt": 1792067400000,
+      "expiresAt": 1792067400000,
       "source": "FinanceCalendar"
     },
     {
@@ -45,15 +45,6 @@
       "name": "Jobless claims",
       "category": "economic-indicators",
       "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1792067400000,
-      "expiresAt": 1792067400000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Retail Sales",
-      "category": "economic-indicators",
-      "impact": "high",
       "kind": "timed",
       "sortAt": 1792067400000,
       "expiresAt": 1792067400000,
@@ -222,15 +213,6 @@
       "source": "FinanceCalendar"
     },
     {
-      "name": "Jobless claims",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793277000000,
-      "expiresAt": 1793277000000,
-      "source": "FinanceCalendar"
-    },
-    {
       "name": "PCE inflation",
       "category": "economic-indicators",
       "impact": "high",
@@ -243,6 +225,15 @@
       "name": "US GDP",
       "category": "economic-indicators",
       "impact": "high",
+      "kind": "timed",
+      "sortAt": 1793277000000,
+      "expiresAt": 1793277000000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Jobless claims",
+      "category": "economic-indicators",
+      "impact": "medium",
       "kind": "timed",
       "sortAt": 1793277000000,
       "expiresAt": 1793277000000,
