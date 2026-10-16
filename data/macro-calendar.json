@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-16T00:27:38.679Z",
+  "generatedAt": "2026-10-16T05:51:58.409Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,14 +12,14 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-10-16T00:27:38.679Z",
-      "lastSuccessAt": "2026-10-16T00:27:38.679Z"
+      "checkedAt": "2026-10-16T05:51:58.409Z",
+      "lastSuccessAt": "2026-10-16T05:51:58.409Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "fresh",
-      "checkedAt": "2026-10-16T00:27:38.679Z",
-      "lastSuccessAt": "2026-10-16T00:27:38.679Z"
+      "checkedAt": "2026-10-16T05:51:58.409Z",
+      "lastSuccessAt": "2026-10-16T05:51:58.409Z"
     }
   },
   "events": [
@@ -132,7 +132,7 @@
       "source": "FinanceCalendar"
     },
     {
-      "name": "New Home Sales",
+      "name": "Consumer Confidence",
       "category": "economic-indicators",
       "impact": "medium",
       "kind": "timed",
@@ -141,7 +141,7 @@
       "source": "FinanceCalendar"
     },
     {
-      "name": "Consumer Confidence",
+      "name": "New Home Sales",
       "category": "economic-indicators",
       "impact": "medium",
       "kind": "timed",
@@ -186,15 +186,6 @@
       "source": "FinanceCalendar"
     },
     {
-      "name": "Jobless claims",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793277000000,
-      "expiresAt": 1793277000000,
-      "source": "FinanceCalendar"
-    },
-    {
       "name": "PCE inflation",
       "category": "economic-indicators",
       "impact": "high",
@@ -207,6 +198,15 @@
       "name": "US GDP",
       "category": "economic-indicators",
       "impact": "high",
+      "kind": "timed",
+      "sortAt": 1793277000000,
+      "expiresAt": 1793277000000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Jobless claims",
+      "category": "economic-indicators",
+      "impact": "medium",
       "kind": "timed",
       "sortAt": 1793277000000,
       "expiresAt": 1793277000000,
