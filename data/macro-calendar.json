@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-16T11:23:31.028Z",
+  "generatedAt": "2026-10-16T16:38:58.417Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,26 +12,17 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-10-16T11:23:31.028Z",
-      "lastSuccessAt": "2026-10-16T11:23:31.028Z"
+      "checkedAt": "2026-10-16T16:38:58.417Z",
+      "lastSuccessAt": "2026-10-16T16:38:58.417Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "fresh",
-      "checkedAt": "2026-10-16T11:23:31.028Z",
-      "lastSuccessAt": "2026-10-16T11:23:31.028Z"
+      "checkedAt": "2026-10-16T16:38:58.417Z",
+      "lastSuccessAt": "2026-10-16T16:38:58.417Z"
     }
   },
   "events": [
-    {
-      "name": "Industrial Production",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1792156500000,
-      "expiresAt": 1792156500000,
-      "source": "FinanceCalendar"
-    },
     {
       "name": "China GDP",
       "category": "economic-indicators",
@@ -123,6 +114,32 @@
       "source": "FinanceCalendar"
     },
     {
+      "source": "TreasuryDirect",
+      "id": "TreasuryDirect:91282CRU7:2026-10-26",
+      "name": "US Treasury 2Y Auction",
+      "category": "TreasuryDirect · wstępny termin",
+      "impact": "medium",
+      "kind": "unknown-time",
+      "sortAt": 1792969200000,
+      "expiresAt": 1793055600000,
+      "cusip": "91282CRU7",
+      "securityType": "Note",
+      "originalTerm": "2-Year",
+      "remainingTerm": "2-Year",
+      "reopening": false,
+      "auctionDate": "2026-10-26",
+      "settlementDate": "2026-11-02",
+      "announcementDate": "2026-10-22",
+      "maturityDate": null,
+      "confirmation": "tentative",
+      "timeZone": "America/New_York",
+      "timeBasis": "unconfirmed",
+      "competitiveClose": null,
+      "noncompetitiveClose": null,
+      "offeringAmount": null,
+      "announcementUrl": null
+    },
+    {
       "name": "Germany Ifo Business Climate",
       "category": "economic-indicators",
       "impact": "medium",
@@ -132,7 +149,33 @@
       "source": "FinanceCalendar"
     },
     {
-      "name": "Consumer Confidence",
+      "source": "TreasuryDirect",
+      "id": "TreasuryDirect:91282CRT0:2026-10-27",
+      "name": "US Treasury 5Y Auction",
+      "category": "TreasuryDirect · wstępny termin",
+      "impact": "medium",
+      "kind": "unknown-time",
+      "sortAt": 1793055600000,
+      "expiresAt": 1793142000000,
+      "cusip": "91282CRT0",
+      "securityType": "Note",
+      "originalTerm": "5-Year",
+      "remainingTerm": "5-Year",
+      "reopening": false,
+      "auctionDate": "2026-10-27",
+      "settlementDate": "2026-11-02",
+      "announcementDate": "2026-10-22",
+      "maturityDate": null,
+      "confirmation": "tentative",
+      "timeZone": "America/New_York",
+      "timeBasis": "unconfirmed",
+      "competitiveClose": null,
+      "noncompetitiveClose": null,
+      "offeringAmount": null,
+      "announcementUrl": null
+    },
+    {
+      "name": "New Home Sales",
       "category": "economic-indicators",
       "impact": "medium",
       "kind": "timed",
@@ -141,7 +184,7 @@
       "source": "FinanceCalendar"
     },
     {
-      "name": "New Home Sales",
+      "name": "Consumer Confidence",
       "category": "economic-indicators",
       "impact": "medium",
       "kind": "timed",
@@ -186,6 +229,15 @@
       "source": "FinanceCalendar"
     },
     {
+      "name": "Jobless claims",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793277000000,
+      "expiresAt": 1793277000000,
+      "source": "FinanceCalendar"
+    },
+    {
       "name": "PCE inflation",
       "category": "economic-indicators",
       "impact": "high",
@@ -198,15 +250,6 @@
       "name": "US GDP",
       "category": "economic-indicators",
       "impact": "high",
-      "kind": "timed",
-      "sortAt": 1793277000000,
-      "expiresAt": 1793277000000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Jobless claims",
-      "category": "economic-indicators",
-      "impact": "medium",
       "kind": "timed",
       "sortAt": 1793277000000,
       "expiresAt": 1793277000000,
