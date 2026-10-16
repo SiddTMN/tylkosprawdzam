@@ -1,25 +1,25 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-15T22:17:09.061Z",
+  "generatedAt": "2026-10-16T00:27:38.679Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
-    "from": "2026-10-15",
-    "to": "2026-10-29"
+    "from": "2026-10-16",
+    "to": "2026-10-30"
   },
   "sources": {
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-10-15T22:17:09.061Z",
-      "lastSuccessAt": "2026-10-15T22:17:09.061Z"
+      "checkedAt": "2026-10-16T00:27:38.679Z",
+      "lastSuccessAt": "2026-10-16T00:27:38.679Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "fresh",
-      "checkedAt": "2026-10-15T22:17:09.061Z",
-      "lastSuccessAt": "2026-10-15T22:17:09.061Z"
+      "checkedAt": "2026-10-16T00:27:38.679Z",
+      "lastSuccessAt": "2026-10-16T00:27:38.679Z"
     }
   },
   "events": [
@@ -132,7 +132,7 @@
       "source": "FinanceCalendar"
     },
     {
-      "name": "Consumer Confidence",
+      "name": "New Home Sales",
       "category": "economic-indicators",
       "impact": "medium",
       "kind": "timed",
@@ -141,7 +141,7 @@
       "source": "FinanceCalendar"
     },
     {
-      "name": "New Home Sales",
+      "name": "Consumer Confidence",
       "category": "economic-indicators",
       "impact": "medium",
       "kind": "timed",
@@ -228,6 +228,24 @@
       "kind": "timed",
       "sortAt": 1793278800000,
       "expiresAt": 1793278800000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Bank of Japan decision",
+      "category": "central-banks-monetary-policy",
+      "impact": "high",
+      "kind": "all-day",
+      "sortAt": 1793314800000,
+      "expiresAt": 1793401200000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Eurozone GDP Flash",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793354400000,
+      "expiresAt": 1793354400000,
       "source": "FinanceCalendar"
     }
   ]
