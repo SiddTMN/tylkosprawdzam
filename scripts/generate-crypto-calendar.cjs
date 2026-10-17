@@ -2,10 +2,12 @@
 const fs=require('node:fs/promises'),path=require('node:path');
 const {atomicJson,readCache}=require('./crypto-calendar/shared.cjs');
 const model=require('../js/crypto-calendar-model.js');
-const defaultAdapters=require('./crypto-calendar/sources.cjs');
+const defaultAdapters=[require('./crypto-calendar/adapters/ethereum-protocol-calls.cjs')];
 const ROOT=path.resolve(__dirname,'..');
-async function generate({now=Date.now(),adapters=defaultAdapters,cacheDir=path.join(ROOT,'docs/crypto-calendar-stage1/.cache'),outputPath=path.join(ROOT,'data/crypto-calendar.json'),fetchImpl=fetch,offline=false,force=false,timeoutMs=15000}={}){
+async function generate({now=Date.now(),adapters=defaultAdapters,cacheDir=path.join(ROOT,'docs/crypto-calendar-stage1/.cache'),outputPath=path.join(ROOT,'docs/crypto-calendar-stage1/crypto-calendar.preview.json'),fetchImpl=fetch,offline=false,force=false,timeoutMs=15000,localTest=false}={}){
   if(!adapters.length||new Set(adapters.map(a=>a.id)).size!==adapters.length||adapters.some(a=>! /^[a-z0-9-]+$/.test(a.id)||!model.safeUrl(a.url)))throw new Error('Invalid adapter registry');
+  const resolvedOutput=path.resolve(outputPath).toLowerCase(),publicData=path.join(ROOT,'data').toLowerCase();
+  if(resolvedOutput===publicData||resolvedOutput.startsWith(publicData+path.sep))throw new Error('Local-only legacy collector cannot write production data; use a separate audit output');
   const sources={},events=[];let requests=0;
   const checkedAt=new Date(now).toISOString();
   for(const adapter of adapters){
@@ -17,7 +19,7 @@ async function generate({now=Date.now(),adapters=defaultAdapters,cacheDir=path.j
       const list=model.mergeEvents(p.events);if(list.every(e=>e.sourceId===adapter.id&&e.verifiedAt===p.verifiedAt))previous={...p,events:list};
     }}catch{/* Invalid persisted data are never a trusted fallback. */}
     try{
-      const result=await adapter.load({now,cacheDir,fetchImpl,offline,force,timeoutMs,onRequest:()=>requests++});
+      const result=await adapter.load({now,cacheDir,fetchImpl,offline,force,timeoutMs,localTest,onRequest:()=>requests++});
       const verified=model.timestamp(result.verifiedAt);
       if(verified===null||verified>now||!Array.isArray(result.events))throw new Error('Invalid adapter result');
       const list=model.mergeEvents(result.events);
@@ -25,7 +27,7 @@ async function generate({now=Date.now(),adapters=defaultAdapters,cacheDir=path.j
       const future=model.selectUpcoming(list,now,Infinity);
       sources[adapter.id]={name:adapter.name,url:adapter.url,checkedAt,verifiedAt:result.verifiedAt,
         status:now-verified>model.MAX_AGE_MS?'stale':result.transport==='cache-not-reverified'?'cached':'fresh',
-        transport:result.transport,reuse:'review-required'};
+        transport:result.transport,reuse:'review-required',eligibleEvents:future.length};
       if(result.transport==='cache-not-reverified'&&lastFailure&&model.timestamp(lastFailure.failedAt)>=verified){sources[adapter.id].status='stale';sources[adapter.id].error=lastFailure.error;}
       else if(result.transport!=='cache-not-reverified')await atomicJson(stateFile,{url:adapter.url,failedAt:null});
       // Store all normalized upcoming records before the display's five-row limit.
@@ -36,9 +38,10 @@ async function generate({now=Date.now(),adapters=defaultAdapters,cacheDir=path.j
       await atomicJson(stateFile,{url:adapter.url,failedAt:checkedAt,error:errorText});
       const retained=previous?model.selectUpcoming(previous.events,now,Infinity):[];
       sources[adapter.id]={name:adapter.name,url:adapter.url,checkedAt,verifiedAt:previous?.verifiedAt||null,
-        status:previous?'stale':'unavailable',error:errorText,reuse:'review-required'};
+        status:previous?'stale':'unavailable',error:errorText,reuse:'review-required',eligibleEvents:retained.length};
       events.push(...retained);
     }
+    if(adapter.publication)sources[adapter.id].publication=adapter.publication;
   }
   const snapshot={schemaVersion:1,mode:'local-prototype',publication:{approved:false,reason:'Systematic collection and public ICS reuse require clarification.'},generatedAt:checkedAt,displayTimezone:model.TIME_ZONE,window:model.windowAt(now),sources,requests,events:model.selectUpcoming(events,now,5)};
   model.parseSnapshot(snapshot,now);

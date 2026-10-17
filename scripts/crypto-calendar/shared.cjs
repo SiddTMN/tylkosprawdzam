@@ -148,7 +148,7 @@ async function getSource(source, options) {
     if (!cache) throw new Error('Offline cache unavailable');
     return { ...cache, transport: 'cache-not-reverified', requests: 0 };
   }
-  const headers = { 'User-Agent': 'tylkosprawdzam-crypto-calendar-prototype/0.2', Accept: source.kind==='ics'?'text/calendar':source.kind==='opengov'?'application/json':'application/vnd.github+json' };
+  const headers = { 'User-Agent': 'tylkosprawdzam-crypto-calendar-prototype/0.2', Accept: source.kind==='ics'?'text/calendar':source.kind==='html'?'text/html':source.kind==='opengov'?'application/json':'application/vnd.github+json' };
   if (source.url.startsWith('https://api.github.com/')) headers['X-GitHub-Api-Version']='2022-11-28';
   if (cache?.etag) headers['If-None-Match'] = cache.etag;
   // No retries, no auth fallback, no alternate endpoints after 403/429.
@@ -164,11 +164,11 @@ async function getSource(source, options) {
     return { ...updated, transport: 'http-304-revalidated', requests: 1 };
   }
   if (!response.ok) { const error = new Error('HTTP ' + response.status + '; source unavailable, no retry'); error.receipt = receipt; throw error; }
-  if (!(source.kind==='ics'?/text\/calendar/i:/json/i).test(response.headers.get('content-type') || '')) throw new Error('Unexpected content type');
+  if (!(source.kind==='ics'?/text\/calendar/i:source.kind==='html'?/^text\/html(?:;|$)/i:/json/i).test(response.headers.get('content-type') || '')) throw new Error('Unexpected content type');
   const chunks = []; let bytes = 0;
   for await (const chunk of response.body) { bytes += chunk.length; if (bytes > 2 * 1024 * 1024) throw new Error('Response exceeds 2 MiB limit'); chunks.push(chunk); }
   const body = Buffer.concat(chunks).toString('utf8');
-  const data = source.kind==='ics'?body:JSON.parse(body);
+  const data = ['ics','html'].includes(source.kind)?body:JSON.parse(body);
   source.validateData?.(data, checkedAt);
   const fetched = { url: source.url, data, verifiedAt: checkedAt, etag: response.headers.get('etag'),
     receipt: { ...receipt, bytes, sha256: crypto.createHash('sha256').update(body).digest('hex'), hasMorePages: Boolean(response.headers.get('link')?.includes('rel="next"')) } };

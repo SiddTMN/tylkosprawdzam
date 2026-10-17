@@ -1,0 +1,25 @@
+Hybrydowy kalendarz kryptowalutowy — źródła i licencje
+
+ethereum/pm: https://github.com/ethereum/pm
+Agendy GitHub AllCoreDevs: autor wskazany w polu attribution i na stronie źródła.
+Licencja CC BY-SA 3.0, pełny tekst: eth-pm-license.txt
+https://github.com/ethereum/pm/blob/master/LICENSE
+Zmiany: wyodrębniono termin i serię; opracowano krótkie polskie tytuły i opisy.
+Opracowane rekordy tego źródła można dalej wykorzystywać na CC BY-SA 3.0.
+Licencja repozytorium NIE obejmuje zewnętrznego Google ICS.
+
+ethereum/EIPs: https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7773.md
+ethereum/EIPs contributors. CC0 1.0: eth-eips-license.txt
+https://github.com/ethereum/EIPs/blob/master/LICENSE.md
+Zmiany: wyodrębniono sieć i termin aktywacji; opracowano polskie tytuły i opisy.
+
+Stellar Docs: https://github.com/stellar/stellar-docs/blob/main/docs/networks/software-versions.mdx
+Copyright 2014 - 2024 Stellar Development Foundation
+Copyright 2014 - 2024 Stellar Open Source Developers
+Apache 2.0: xlm-docs-license.txt
+https://github.com/stellar/stellar-docs/blob/main/LICENSE
+Zmiany: wyodrębniono token, sieć i datę; opracowano krótkie polskie tytuły i opisy.
+
+Pozostałe wpisy ręczne mają indywidualne linki do źródeł i autorskie opisy.
+Nie są kopiami artykułów, opisów organizatorów ani automatycznym scrapingiem stron.
+Wpisy ręczne nie otrzymują automatycznie licencji dostawcy danych.

@@ -147,6 +147,26 @@
             ],
             "format": "date-time"
           },
+          "endDate": {
+            "type": ["string", "null"],
+            "format": "date",
+            "description": "Inclusive publisher end day, when explicitly provided."
+          },
+          "endDateExclusive": {
+            "type": ["string", "null"],
+            "format": "date",
+            "description": "Exclusive boundary derived from the explicit inclusive end day."
+          },
+          "endsAt": {
+            "type": ["string", "null"],
+            "format": "date-time"
+          },
+          "sourceStartDate": { "type": "string", "format": "date" },
+          "sourceEndDate": { "type": ["string", "null"], "format": "date" },
+          "sourceStartTime": { "type": ["string", "null"] },
+          "sourceEndTime": { "type": ["string", "null"] },
+          "timingPrecision": { "enum": ["day", "instant"] },
+          "publicationApproved": { "type": "boolean" },
           "title": {
             "type": "string",
             "minLength": 1

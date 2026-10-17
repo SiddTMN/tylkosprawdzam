@@ -1,0 +1,79 @@
+name: XLM artifact-only pilot
+
+on:
+  push:
+    branches: ['pilot/xlm-20261012']
+    paths:
+      - '.github/workflows/xlm-pilot.yml'
+      - 'scripts/**'
+      - 'js/crypto-calendar*.js'
+      - 'tests/**'
+  workflow_dispatch:
+    inputs:
+      mode:
+        type: choice
+        options: [probe, sample]
+        default: probe
+        description: 'Probe requires fresh HTTP 200; samples run through 12 November 2026 (Europe/Warsaw).'
+  schedule:
+    - cron: '43 */6 * * *'
+
+permissions:
+  contents: read
+
+# Same lock as existing calendar jobs. This workflow never writes or pushes commits.
+concurrency:
+  group: calendar-data-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  observe:
+    # Probe remains an explicit branch/manual action. Never start scheduled
+    # sampling merely because this workflow is merged to the default branch.
+    if: github.event_name != 'schedule' || vars.XLM_PILOT_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      XLM_PILOT_MODE: ${{ github.event_name == 'push' && 'probe' || github.event_name == 'schedule' && 'sample' || inputs.mode }}
+      XLM_PILOT_ENABLED: ${{ vars.XLM_PILOT_ENABLED }}
+      XLM_PILOT_START_AT: ${{ vars.XLM_PILOT_START_AT }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: '24'
+      - name: Install pinned parser
+        run: npm ci --prefix docs/crypto-calendar-stage1 --ignore-scripts --no-audit --no-fund
+      - name: Run full checked-out test suite
+        run: node --test tests/*.test.js
+      - name: Restore only redacted observation history
+        if: env.XLM_PILOT_MODE == 'sample' && env.XLM_PILOT_ENABLED == 'true'
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ${{ runner.temp }}/xlm-pilot/state/
+          key: xlm-pilot-v1-${{ github.ref_name }}-${{ vars.XLM_PILOT_START_AT }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: xlm-pilot-v1-${{ github.ref_name }}-${{ vars.XLM_PILOT_START_AT }}-
+      - name: Probe or bounded pilot sample
+        id: sample
+        run: >-
+          node scripts/run-xlm-pilot.cjs
+          --artifacts "$RUNNER_TEMP/xlm-pilot/artifacts"
+          --state "$RUNNER_TEMP/xlm-pilot/state"
+          --scratch "$RUNNER_TEMP/xlm-pilot/private"
+      - name: Preserve redacted history even after an XLM outage
+        if: always() && steps.sample.outcome != 'skipped' && env.XLM_PILOT_MODE == 'sample' && env.XLM_PILOT_ENABLED == 'true'
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ${{ runner.temp }}/xlm-pilot/state/
+          key: xlm-pilot-v1-${{ github.ref_name }}-${{ vars.XLM_PILOT_START_AT }}-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Upload counters and redacted evidence only
+        if: always() && steps.sample.outcome != 'skipped'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: xlm-pilot-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/xlm-pilot/artifacts/
+          if-no-files-found: error
+          retention-days: 45
+          # Private HTML and full normalized calendars remain in disposable runner temp only.

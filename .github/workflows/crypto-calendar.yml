@@ -2,7 +2,7 @@ name: Crypto calendar data
 
 on:
   schedule:
-    - cron: '43 */6 * * *' # UTC: 00:43, 06:43, 12:43, 18:43; execution can be delayed by GitHub.
+    - cron: '43 5 * * *' # Daily UTC; execution can be delayed by GitHub.
   workflow_dispatch:
 
 permissions:
@@ -15,13 +15,13 @@ concurrency:
 
 jobs:
   update:
-    if: github.ref == 'refs/heads/main' && vars.CRYPTO_CALENDAR_ENABLED == 'true' && vars.CRYPTO_CALENDAR_APPROVED_SOURCES != ''
+    if: github.ref == 'refs/heads/main' && vars.CRYPTO_HYBRID_ENABLED == 'true' && vars.CRYPTO_CALENDAR_APPROVED_SOURCES != ''
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
       contents: write
     env:
-      CRYPTO_CALENDAR_ENABLED: ${{ vars.CRYPTO_CALENDAR_ENABLED }}
+      CRYPTO_HYBRID_ENABLED: ${{ vars.CRYPTO_HYBRID_ENABLED }}
       CRYPTO_CALENDAR_APPROVED_SOURCES: ${{ vars.CRYPTO_CALENDAR_APPROVED_SOURCES }}
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
@@ -38,7 +38,15 @@ jobs:
         run: node scripts/update-crypto-calendar.cjs
       - name: Validate final JSON before commit
         run: node scripts/update-crypto-calendar.cjs --validate
-      - name: Commit only crypto JSON without overwriting concurrent changes
+      - name: Upload collection evidence (no raw source content)
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: crypto-hybrid-${{ github.run_id }}
+          path: docs/crypto-calendar-hybrid/preview/crypto-auto-verification.json
+          if-no-files-found: ignore
+          retention-days: 7
+      - name: Commit only automatic JSON without overwriting concurrent changes
         shell: bash
         run: |
           git fetch origin main
@@ -46,11 +54,11 @@ jobs:
             echo "Main advanced during generation; discard this candidate and retry next run."
             exit 1
           fi
-          git add -- data/crypto-calendar.json
+          git add -- data/crypto-auto.json
           if ! git diff --cached --quiet; then
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git commit -m 'Update crypto calendar data'
+            git commit -m 'Update licensed automatic crypto events'
             git push origin HEAD:main
           fi
           # No force push, Pages permissions, deployment or changes to macro JSON.

@@ -1,0 +1,2 @@
+# Keep reviewed license bytes identical to the pinned upstream Git blobs.
+data/crypto-licenses/*-license.txt text eol=lf
