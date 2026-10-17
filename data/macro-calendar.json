@@ -1,25 +1,25 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-16T22:51:17.914Z",
+  "generatedAt": "2026-10-17T01:19:12.696Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
-    "from": "2026-10-16",
-    "to": "2026-10-30"
+    "from": "2026-10-17",
+    "to": "2026-10-31"
   },
   "sources": {
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-10-16T22:51:17.914Z",
-      "lastSuccessAt": "2026-10-16T22:51:17.914Z"
+      "checkedAt": "2026-10-17T01:19:12.696Z",
+      "lastSuccessAt": "2026-10-17T01:19:12.696Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "fresh",
-      "checkedAt": "2026-10-16T22:51:17.914Z",
-      "lastSuccessAt": "2026-10-16T22:51:17.914Z"
+      "checkedAt": "2026-10-17T01:19:12.696Z",
+      "lastSuccessAt": "2026-10-17T01:19:12.696Z"
     }
   },
   "events": [
@@ -289,6 +289,15 @@
       "kind": "timed",
       "sortAt": 1793354400000,
       "expiresAt": 1793354400000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "China Official PMI",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793410200000,
+      "expiresAt": 1793410200000,
       "source": "FinanceCalendar"
     }
   ]
