@@ -1,15 +1,15 @@
 {
   "schemaVersion": 2,
   "origin": "auto",
-  "generatedAt": "2026-10-13T21:02:00.653Z",
+  "generatedAt": "2026-10-17T12:11:19.111Z",
   "displayTimezone": "Europe/Warsaw",
   "complete": false,
   "sources": {
     "eth-pm": {
       "name": "Ethereum AllCoreDevs — agendy GitHub",
       "url": "https://api.github.com/repos/ethereum/pm/issues?state=open&per_page=100&sort=created&direction=desc&page=1",
-      "checkedAt": "2026-10-13T21:02:00.653Z",
-      "verifiedAt": "2026-10-13T21:02:00.653Z",
+      "checkedAt": "2026-10-17T12:11:19.111Z",
+      "verifiedAt": "2026-10-17T12:11:19.111Z",
       "status": "fresh",
       "rights": {
         "automatedAccess": true,
@@ -24,26 +24,26 @@
       "fetch": {
         "url": "https://api.github.com/repos/ethereum/pm/issues?state=open&per_page=100&sort=created&direction=desc&page=1",
         "httpStatus": 200,
-        "checkedAt": "2026-10-13T21:02:00.653Z",
-        "rateRemaining": "54",
-        "rateReset": "1791928742",
+        "checkedAt": "2026-10-17T12:11:19.111Z",
+        "rateRemaining": "52",
+        "rateReset": "1792240428",
         "retryAfter": null,
-        "bytes": 50118,
-        "sha256": "c95cad477a5d657ce9700ccb6a25413834ce70f358e23247b3797db7d581d454",
+        "bytes": 35230,
+        "sha256": "cd9397d775ce07860b9ad1adac23151b3ee788112fdc8db0d7729d2925c34491",
         "hasMorePages": false
       },
       "licenseVerification": {
         "blobSha": "604209a804632b6e5274005a22293976d07c3099",
-        "checkedAt": "2026-10-13T21:02:00.653Z"
+        "checkedAt": "2026-10-17T12:11:19.111Z"
       },
       "hasMorePages": false,
-      "rejected": 9
+      "rejected": 6
     },
     "eth-glamsterdam": {
       "name": "Ethereum EIP-7773 — aktywacje",
       "url": "https://api.github.com/repos/ethereum/EIPs/contents/EIPS/eip-7773.md",
-      "checkedAt": "2026-10-13T21:02:00.653Z",
-      "verifiedAt": "2026-10-13T21:02:00.653Z",
+      "checkedAt": "2026-10-17T12:11:19.111Z",
+      "verifiedAt": "2026-10-17T12:11:19.111Z",
       "status": "fresh",
       "rights": {
         "automatedAccess": true,
@@ -58,9 +58,9 @@
       "fetch": {
         "url": "https://api.github.com/repos/ethereum/EIPs/contents/EIPS/eip-7773.md",
         "httpStatus": 200,
-        "checkedAt": "2026-10-13T21:02:00.653Z",
-        "rateRemaining": "52",
-        "rateReset": "1791928742",
+        "checkedAt": "2026-10-17T12:11:19.111Z",
+        "rateRemaining": "50",
+        "rateReset": "1792240428",
         "retryAfter": null,
         "bytes": 5231,
         "sha256": "9ee0b763bce228623d5d26b61282bc52a67a5ed8866f35f4b80f8b45e4ef3297",
@@ -68,7 +68,7 @@
       },
       "licenseVerification": {
         "blobSha": "0e259d42c996742e9e3cba14c677129b2c1b6311",
-        "checkedAt": "2026-10-13T21:02:00.653Z"
+        "checkedAt": "2026-10-17T12:11:19.111Z"
       },
       "hasMorePages": false,
       "rejected": 3
@@ -76,8 +76,8 @@
     "xlm-protocols": {
       "name": "Stellar Docs — datowane protokoły",
       "url": "https://api.github.com/repos/stellar/stellar-docs/contents/docs/networks/software-versions.mdx",
-      "checkedAt": "2026-10-13T21:02:00.653Z",
-      "verifiedAt": "2026-10-13T21:02:00.653Z",
+      "checkedAt": "2026-10-17T12:11:19.111Z",
+      "verifiedAt": "2026-10-17T12:11:19.111Z",
       "status": "fresh",
       "rights": {
         "automatedAccess": true,
@@ -92,9 +92,9 @@
       "fetch": {
         "url": "https://api.github.com/repos/stellar/stellar-docs/contents/docs/networks/software-versions.mdx",
         "httpStatus": 200,
-        "checkedAt": "2026-10-13T21:02:00.653Z",
-        "rateRemaining": "50",
-        "rateReset": "1791928742",
+        "checkedAt": "2026-10-17T12:11:19.111Z",
+        "rateRemaining": "48",
+        "rateReset": "1792240428",
         "retryAfter": null,
         "bytes": 129173,
         "sha256": "d6de9fab300b2205f2537494cca1a5241380065f5a26dd76707a7066e2678633",
@@ -102,35 +102,13 @@
       },
       "licenseVerification": {
         "blobSha": "2bf97548c26eb21e21d7c5c8f7a9bc021a549c83",
-        "checkedAt": "2026-10-13T21:02:00.653Z"
+        "checkedAt": "2026-10-17T12:11:19.111Z"
       },
       "hasMorePages": false,
       "rejected": 22
     }
   },
   "events": [
-    {
-      "id": "eth-pm:2247",
-      "assets": [
-        "ETH"
-      ],
-      "title": "AllCoreDevs Consensus #189",
-      "description": "Spotkanie zespołów Ethereum dotyczące warstwy konsensusu. Termin podano w agendzie; spotkanie nie oznacza wdrożenia zmian.",
-      "period": {
-        "precision": "day",
-        "date": "2026-10-15"
-      },
-      "startsAt": "2026-10-15T14:00:00Z",
-      "confidence": "confirmed",
-      "status": "planned",
-      "origin": "auto",
-      "sourceId": "eth-pm",
-      "sourceUrl": "https://github.com/ethereum/pm/issues/2247",
-      "verifiedAt": "2026-10-13T21:02:00.653Z",
-      "attribution": "ethereum/pm; autor agendy: github-actions[bot]",
-      "license": "CC-BY-SA-3.0",
-      "licenseUrl": "https://github.com/ethereum/pm/blob/master/LICENSE"
-    },
     {
       "id": "eth-pm:2271",
       "assets": [
@@ -148,7 +126,7 @@
       "origin": "auto",
       "sourceId": "eth-pm",
       "sourceUrl": "https://github.com/ethereum/pm/issues/2271",
-      "verifiedAt": "2026-10-13T21:02:00.653Z",
+      "verifiedAt": "2026-10-17T12:11:19.111Z",
       "attribution": "ethereum/pm; autor agendy: marioevz",
       "license": "CC-BY-SA-3.0",
       "licenseUrl": "https://github.com/ethereum/pm/blob/master/LICENSE"
@@ -170,7 +148,29 @@
       "origin": "auto",
       "sourceId": "eth-pm",
       "sourceUrl": "https://github.com/ethereum/pm/issues/2267",
-      "verifiedAt": "2026-10-13T21:02:00.653Z",
+      "verifiedAt": "2026-10-17T12:11:19.111Z",
+      "attribution": "ethereum/pm; autor agendy: github-actions[bot]",
+      "license": "CC-BY-SA-3.0",
+      "licenseUrl": "https://github.com/ethereum/pm/blob/master/LICENSE"
+    },
+    {
+      "id": "eth-pm:2276",
+      "assets": [
+        "ETH"
+      ],
+      "title": "AllCoreDevs Consensus #190",
+      "description": "Spotkanie zespołów Ethereum dotyczące warstwy konsensusu. Termin podano w agendzie; spotkanie nie oznacza wdrożenia zmian.",
+      "period": {
+        "precision": "day",
+        "date": "2026-10-29"
+      },
+      "startsAt": "2026-10-29T14:00:00Z",
+      "confidence": "confirmed",
+      "status": "planned",
+      "origin": "auto",
+      "sourceId": "eth-pm",
+      "sourceUrl": "https://github.com/ethereum/pm/issues/2276",
+      "verifiedAt": "2026-10-17T12:11:19.111Z",
       "attribution": "ethereum/pm; autor agendy: github-actions[bot]",
       "license": "CC-BY-SA-3.0",
       "licenseUrl": "https://github.com/ethereum/pm/blob/master/LICENSE"

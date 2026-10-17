@@ -1,5 +1,11 @@
 # Weryfikacja implementacji
 
+## Aktualny wynik po akceptacji danych
+
+[Raport końcowy 17.10.2026](FINAL-2026-10-17.md): HEAD `db1df48`, pobrany `origin/main` `310297b`, bezkonfliktowa symulacja, lokalne testy 189/189, testy odpowiadające przyszłemu PR 170/170, dodatkowy audyt XLM 7/7. Dwa rzeczywiste TAR-y po dokładnie 18 plików. Zaakceptowany snapshot z 17.10.2026 14:11:19 Europe/Warsaw podmieniony lokalnie; ręczne dane puste. Pages i ochrona środowiska potwierdzone odczytem API. Dalsze sekcje są historyczne i zachowują poprzednie wyniki, ustawienia oraz ograniczenia.
+
+Kontrola przed autoryzowanym commitem/push PR #2 o 14:24: fetch potwierdził te same gałęzie; pełny lokalny zestaw 189/189 i symulacja z main 170/170 ponownie przeszły. Wszystkie JSON-y w `data/` poprawne, licencje zgodne, dokładnie trzy zaakceptowane wydarzenia ETH, brak fikcyjnych/ręcznych wpisów. Oba pakiety TAR ponownie mają po 18 plików. Dowody: lokalne `preview/pr2-20261017-1223/`. Zdalne CI sprawdzane jest po push na nowym SHA.
+
 ## Ponowna weryfikacja 17.10.2026
 
 - Pełny zestaw lokalny: **189/189**, bez błędów i pominięć; dodatkowy lokalny audyt XLM: **7/7**.
