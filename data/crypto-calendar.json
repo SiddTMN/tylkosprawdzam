@@ -10,7 +10,7 @@
       "eth-protocol-calls"
     ]
   },
-  "generatedAt": "2026-10-17T04:58:48.537Z",
+  "generatedAt": "2026-10-17T11:10:15.898Z",
   "displayTimezone": "Europe/Warsaw",
   "window": {
     "from": "2026-10-17",
@@ -21,16 +21,16 @@
     "eth-protocol-calls": {
       "name": "Ethereum Protocol Calls",
       "url": "https://calendar.google.com/calendar/ical/c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com/public/basic.ics",
-      "checkedAt": "2026-10-17T04:58:48.537Z",
-      "verifiedAt": "2026-10-17T04:58:48.537Z",
+      "checkedAt": "2026-10-17T11:10:15.898Z",
+      "verifiedAt": "2026-10-17T11:10:15.898Z",
       "status": "fresh",
       "transport": "http-200",
       "reuse": "review-required",
       "fetch": {
         "httpStatus": 200,
-        "bytes": 347813,
-        "sha256": "6aa0a3fd65a47b84a5c60cb176f9ab2a3dcbb6f44b043e9aad81a65b18307ed9",
-        "checkedAt": "2026-10-17T04:58:48.537Z"
+        "bytes": 348295,
+        "sha256": "c033bbd2c1576ba6a2d477ad18d3b83b8d238afbbad0015db0ccd466e17de651",
+        "checkedAt": "2026-10-17T11:10:15.898Z"
       }
     }
   },
@@ -47,7 +47,7 @@
       "description": "Spotkanie deweloperów warstwy wykonawczej Ethereum.",
       "sourceId": "eth-protocol-calls",
       "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
-      "verifiedAt": "2026-10-17T04:58:48.537Z"
+      "verifiedAt": "2026-10-17T11:10:15.898Z"
     },
     {
       "id": "ETH:ics:osmr6ifiekj8mhrtfbbhk280p1@google.com:2026-10-29T14:00:00Z",
@@ -60,7 +60,7 @@
       "description": "Spotkanie deweloperów warstwy konsensusu Ethereum.",
       "sourceId": "eth-protocol-calls",
       "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
-      "verifiedAt": "2026-10-17T04:58:48.537Z"
+      "verifiedAt": "2026-10-17T11:10:15.898Z"
     },
     {
       "id": "ETH:ics:02cu1b1g1mscunv7d3p0ilg3gg@google.com:2026-11-05T14:00:00Z",
@@ -73,7 +73,7 @@
       "description": "Spotkanie deweloperów warstwy wykonawczej Ethereum.",
       "sourceId": "eth-protocol-calls",
       "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
-      "verifiedAt": "2026-10-17T04:58:48.537Z"
+      "verifiedAt": "2026-10-17T11:10:15.898Z"
     },
     {
       "id": "ETH:ics:osmr6ifiekj8mhrtfbbhk280p1@google.com:2026-11-12T14:00:00Z",
@@ -86,7 +86,7 @@
       "description": "Spotkanie deweloperów warstwy konsensusu Ethereum.",
       "sourceId": "eth-protocol-calls",
       "sourceUrl": "https://calendar.google.com/calendar/embed?src=c_upaofong8mgrmrkegn7ic7hk5s%40group.calendar.google.com",
-      "verifiedAt": "2026-10-17T04:58:48.537Z"
+      "verifiedAt": "2026-10-17T11:10:15.898Z"
     }
   ]
 }
