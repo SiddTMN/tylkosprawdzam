@@ -16,6 +16,25 @@ test('equivalent factual events deduplicate across IDs, source URLs and JSON key
  const result=M.mergeDatasets(auto([event(),event({id:'copy',title:'  FIXTURE  only ',period:{date:'2026-10-15',precision:'day'},sourceUrl:'https://example.org/other'})]),manual([man({id:'human-copy'})]),now);
  assert.equal(result.length,1);assert.equal(result[0].id,'human-copy');
 });
+
+test('audit regression: same-id and overridesId manual corrections of one automatic event fail in either order',()=>{
+ const sameId=man({status:'cancelled'}),alias=man({id:'human-correction',overridesId:sameId.id,status:'postponed',period:{precision:'day',date:'2026-10-16'}});
+ for(const events of [[sameId,alias],[alias,sameId]]){
+  const m=manual(events),before=JSON.stringify(m);
+  assert.throws(()=>M.parseDataset(m,'manual',now),/Sprzeczne korekty eth-pm:9001/);
+  for(const a of [auto([event()]),auto()])assert.throws(()=>M.mergeDatasets(a,m,now),/Sprzeczne korekty eth-pm:9001/);
+  assert.equal(JSON.stringify(m),before);
+ }
+});
+
+test('manual correction targets cannot collide with another manual ID, including alias chains',()=>{
+ const a=man({id:'a',overridesId:'eth-pm:9001'}),b=man({id:'b',overridesId:'a'});
+ for(const events of [[a,b],[b,a]])assert.throws(()=>M.parseDataset(manual(events),'manual',now),/Sprzeczne korekty a/);
+ const independent=manual([a,man({id:'separate',overridesId:'eth-pm:9002',title:'Other correction'})]);
+ assert.equal(M.mergeDatasets(auto([event(),event({id:'eth-pm:9002',title:'Other fixture'})]),independent,now).length,2);
+ // A redundant self-target remains a valid single correction.
+ assert.equal(M.mergeDatasets(auto([event()]),manual([man({overridesId:'eth-pm:9001'})]),now).length,1);
+});
 test('distinct assets and distinct networks/titles stay distinct',()=>{
  assert.equal(M.mergeDatasets(auto(),manual([man({id:'eth',title:'Fork — Mainnet'}),man({id:'testnet',title:'Fork — Testnet'}),man({id:'btc',assets:['BTC'],title:'Fork — Mainnet'})]),now).length,3);
 });

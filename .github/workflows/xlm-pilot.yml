@@ -28,6 +28,9 @@ concurrency:
 
 jobs:
   observe:
+    # Probe remains an explicit branch/manual action. Never start scheduled
+    # sampling merely because this workflow is merged to the default branch.
+    if: github.event_name != 'schedule' || vars.XLM_PILOT_ENABLED == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:

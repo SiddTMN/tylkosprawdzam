@@ -106,7 +106,12 @@
     }
     const ids=new Set(),corrections=new Set(),events=data.events.map(raw=>{
       const e=hybridEvent(raw,origin,now);if(ids.has(e.id))throw new Error('Powtórzony identyfikator '+e.id);ids.add(e.id);
-      if(e.overridesId){if(corrections.has(e.overridesId))throw new Error('Sprzeczne korekty '+e.overridesId);corrections.add(e.overridesId);}
+      // Both identifiers suppress automatic facts in mergeDatasets. Reserve both
+      // here as well, so an id correction cannot coexist with an overridesId
+      // correction of the same fact, regardless of input order or auto presence.
+      if(origin==='manual')for(const target of new Set([e.id,...(e.overridesId?[e.overridesId]:[])])){
+        if(corrections.has(target))throw new Error('Sprzeczne korekty '+target);corrections.add(target);
+      }
       if(origin==='auto'){
         const s=data.sources[e.sourceId];
         if(!s||s.status!=='fresh'||e.verifiedAt!==s.verifiedAt||e.license!==s.rights.license||e.licenseUrl!==s.rights.licenseUrl)throw new Error('Wydarzenie bez świeżej weryfikacji źródła '+e.id);
