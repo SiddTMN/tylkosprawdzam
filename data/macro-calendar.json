@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-18T14:01:31.005Z",
+  "generatedAt": "2026-10-18T17:22:57.403Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,13 +12,13 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-10-18T14:01:31.005Z",
-      "lastSuccessAt": "2026-10-18T14:01:31.005Z"
+      "checkedAt": "2026-10-18T17:22:57.403Z",
+      "lastSuccessAt": "2026-10-18T17:22:57.403Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-10-18T14:01:31.005Z",
+      "checkedAt": "2026-10-18T17:22:57.403Z",
       "lastSuccessAt": "2026-10-17T12:28:18.687Z"
     }
   },
@@ -175,7 +175,7 @@
       "announcementUrl": null
     },
     {
-      "name": "Consumer Confidence",
+      "name": "New Home Sales",
       "category": "economic-indicators",
       "impact": "medium",
       "kind": "timed",
@@ -184,7 +184,7 @@
       "source": "FinanceCalendar"
     },
     {
-      "name": "New Home Sales",
+      "name": "Consumer Confidence",
       "category": "economic-indicators",
       "impact": "medium",
       "kind": "timed",
