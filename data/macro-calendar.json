@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-19T13:28:35.264Z",
+  "generatedAt": "2026-10-19T19:55:51.465Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,13 +12,13 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-10-19T13:28:35.264Z",
-      "lastSuccessAt": "2026-10-19T13:28:35.264Z"
+      "checkedAt": "2026-10-19T19:55:51.465Z",
+      "lastSuccessAt": "2026-10-19T19:55:51.465Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-10-19T13:28:35.264Z",
+      "checkedAt": "2026-10-19T19:55:51.465Z",
       "lastSuccessAt": "2026-10-17T12:28:18.687Z"
     }
   },
@@ -211,6 +211,15 @@
       "source": "FinanceCalendar"
     },
     {
+      "name": "US GDP",
+      "category": "economic-indicators",
+      "impact": "high",
+      "kind": "timed",
+      "sortAt": 1793277000000,
+      "expiresAt": 1793277000000,
+      "source": "FinanceCalendar"
+    },
+    {
       "name": "Jobless claims",
       "category": "economic-indicators",
       "impact": "medium",
@@ -221,15 +230,6 @@
     },
     {
       "name": "PCE inflation",
-      "category": "economic-indicators",
-      "impact": "high",
-      "kind": "timed",
-      "sortAt": 1793277000000,
-      "expiresAt": 1793277000000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "US GDP",
       "category": "economic-indicators",
       "impact": "high",
       "kind": "timed",
@@ -259,9 +259,9 @@
       "name": "Bank of Japan decision",
       "category": "central-banks-monetary-policy",
       "impact": "high",
-      "kind": "all-day",
-      "sortAt": 1793314800000,
-      "expiresAt": 1793401200000,
+      "kind": "timed",
+      "sortAt": 1793329200000,
+      "expiresAt": 1793329200000,
       "source": "FinanceCalendar"
     },
     {
