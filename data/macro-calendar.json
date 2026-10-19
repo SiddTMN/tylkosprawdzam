@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-19T06:16:41.098Z",
+  "generatedAt": "2026-10-19T13:28:35.264Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,26 +12,17 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-10-19T06:16:41.098Z",
-      "lastSuccessAt": "2026-10-19T06:16:41.098Z"
+      "checkedAt": "2026-10-19T13:28:35.264Z",
+      "lastSuccessAt": "2026-10-19T13:28:35.264Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-10-19T06:16:41.098Z",
+      "checkedAt": "2026-10-19T13:28:35.264Z",
       "lastSuccessAt": "2026-10-17T12:28:18.687Z"
     }
   },
   "events": [
-    {
-      "name": "Canada CPI",
-      "category": "economic-indicators",
-      "impact": "high",
-      "kind": "timed",
-      "sortAt": 1792413000000,
-      "expiresAt": 1792413000000,
-      "source": "FinanceCalendar"
-    },
     {
       "name": "PBoC Loan Prime Rate",
       "category": "central-banks-monetary-policy",
@@ -220,6 +211,15 @@
       "source": "FinanceCalendar"
     },
     {
+      "name": "Jobless claims",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793277000000,
+      "expiresAt": 1793277000000,
+      "source": "FinanceCalendar"
+    },
+    {
       "name": "PCE inflation",
       "category": "economic-indicators",
       "impact": "high",
@@ -232,15 +232,6 @@
       "name": "US GDP",
       "category": "economic-indicators",
       "impact": "high",
-      "kind": "timed",
-      "sortAt": 1793277000000,
-      "expiresAt": 1793277000000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Jobless claims",
-      "category": "economic-indicators",
-      "impact": "medium",
       "kind": "timed",
       "sortAt": 1793277000000,
       "expiresAt": 1793277000000,
