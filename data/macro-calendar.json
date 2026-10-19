@@ -1,37 +1,28 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-18T23:11:32.080Z",
+  "generatedAt": "2026-10-19T01:16:15.760Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
-    "from": "2026-10-18",
-    "to": "2026-11-01"
+    "from": "2026-10-19",
+    "to": "2026-11-02"
   },
   "sources": {
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-10-18T23:11:32.080Z",
-      "lastSuccessAt": "2026-10-18T23:11:32.080Z"
+      "checkedAt": "2026-10-19T01:16:15.760Z",
+      "lastSuccessAt": "2026-10-19T01:16:15.760Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-10-18T23:11:32.080Z",
+      "checkedAt": "2026-10-19T01:16:15.760Z",
       "lastSuccessAt": "2026-10-17T12:28:18.687Z"
     }
   },
   "events": [
-    {
-      "name": "China GDP",
-      "category": "economic-indicators",
-      "impact": "high",
-      "kind": "timed",
-      "sortAt": 1792375200000,
-      "expiresAt": 1792375200000,
-      "source": "FinanceCalendar"
-    },
     {
       "name": "Canada CPI",
       "category": "economic-indicators",
@@ -175,7 +166,7 @@
       "announcementUrl": null
     },
     {
-      "name": "New Home Sales",
+      "name": "Consumer Confidence",
       "category": "economic-indicators",
       "impact": "medium",
       "kind": "timed",
@@ -184,7 +175,7 @@
       "source": "FinanceCalendar"
     },
     {
-      "name": "Consumer Confidence",
+      "name": "New Home Sales",
       "category": "economic-indicators",
       "impact": "medium",
       "kind": "timed",
@@ -298,6 +289,24 @@
       "kind": "timed",
       "sortAt": 1793410200000,
       "expiresAt": 1793410200000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "China Caixin Manufacturing PMI",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793583900000,
+      "expiresAt": 1793583900000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "ISM Manufacturing PMI",
+      "category": "economic-indicators",
+      "impact": "high",
+      "kind": "timed",
+      "sortAt": 1793631600000,
+      "expiresAt": 1793631600000,
       "source": "FinanceCalendar"
     }
   ]
