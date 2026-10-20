@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-20T10:04:24.273Z",
+  "generatedAt": "2026-10-20T15:05:33.933Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,26 +12,17 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-10-20T10:04:24.273Z",
-      "lastSuccessAt": "2026-10-20T10:04:24.273Z"
+      "checkedAt": "2026-10-20T15:05:33.933Z",
+      "lastSuccessAt": "2026-10-20T15:05:33.933Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-10-20T10:04:24.273Z",
+      "checkedAt": "2026-10-20T15:05:33.933Z",
       "lastSuccessAt": "2026-10-17T12:28:18.687Z"
     }
   },
   "events": [
-    {
-      "name": "Housing starts",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1792499400000,
-      "expiresAt": 1792499400000,
-      "source": "FinanceCalendar"
-    },
     {
       "name": "UK CPI Inflation",
       "category": "economic-indicators",
