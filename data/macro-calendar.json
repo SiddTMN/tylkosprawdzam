@@ -1,37 +1,28 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-19T23:40:56.795Z",
+  "generatedAt": "2026-10-20T04:49:39.899Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
-    "from": "2026-10-19",
-    "to": "2026-11-02"
+    "from": "2026-10-20",
+    "to": "2026-11-03"
   },
   "sources": {
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-10-19T23:40:56.795Z",
-      "lastSuccessAt": "2026-10-19T23:40:56.795Z"
+      "checkedAt": "2026-10-20T04:49:39.899Z",
+      "lastSuccessAt": "2026-10-20T04:49:39.899Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-10-19T23:40:56.795Z",
+      "checkedAt": "2026-10-20T04:49:39.899Z",
       "lastSuccessAt": "2026-10-17T12:28:18.687Z"
     }
   },
   "events": [
-    {
-      "name": "PBoC Loan Prime Rate",
-      "category": "central-banks-monetary-policy",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1792458000000,
-      "expiresAt": 1792458000000,
-      "source": "FinanceCalendar"
-    },
     {
       "name": "UK Labour Market Report",
       "category": "economic-indicators",
@@ -298,6 +289,24 @@
       "kind": "timed",
       "sortAt": 1793631600000,
       "expiresAt": 1793631600000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "RBA Rate Decision",
+      "category": "central-banks-monetary-policy",
+      "impact": "high",
+      "kind": "timed",
+      "sortAt": 1793676600000,
+      "expiresAt": 1793676600000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "JOLTS Job Openings",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793718000000,
+      "expiresAt": 1793718000000,
       "source": "FinanceCalendar"
     }
   ]
