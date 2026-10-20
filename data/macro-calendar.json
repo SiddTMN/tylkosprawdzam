@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-20T04:49:39.899Z",
+  "generatedAt": "2026-10-20T10:04:24.273Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,26 +12,17 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-10-20T04:49:39.899Z",
-      "lastSuccessAt": "2026-10-20T04:49:39.899Z"
+      "checkedAt": "2026-10-20T10:04:24.273Z",
+      "lastSuccessAt": "2026-10-20T10:04:24.273Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-10-20T04:49:39.899Z",
+      "checkedAt": "2026-10-20T10:04:24.273Z",
       "lastSuccessAt": "2026-10-17T12:28:18.687Z"
     }
   },
   "events": [
-    {
-      "name": "UK Labour Market Report",
-      "category": "economic-indicators",
-      "impact": "high",
-      "kind": "timed",
-      "sortAt": 1792476000000,
-      "expiresAt": 1792476000000,
-      "source": "FinanceCalendar"
-    },
     {
       "name": "Housing starts",
       "category": "economic-indicators",
