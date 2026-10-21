@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-21T01:35:24.813Z",
+  "generatedAt": "2026-10-21T07:38:45.482Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,26 +12,17 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-10-21T01:35:24.813Z",
-      "lastSuccessAt": "2026-10-21T01:35:24.813Z"
+      "checkedAt": "2026-10-21T07:38:45.482Z",
+      "lastSuccessAt": "2026-10-21T07:38:45.482Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-10-21T01:35:24.813Z",
+      "checkedAt": "2026-10-21T07:38:45.482Z",
       "lastSuccessAt": "2026-10-17T12:28:18.687Z"
     }
   },
   "events": [
-    {
-      "name": "UK CPI Inflation",
-      "category": "economic-indicators",
-      "impact": "high",
-      "kind": "timed",
-      "sortAt": 1792562400000,
-      "expiresAt": 1792562400000,
-      "source": "FinanceCalendar"
-    },
     {
       "name": "Jobless claims",
       "category": "economic-indicators",
