@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-21T18:38:31.217Z",
+  "generatedAt": "2026-10-21T22:20:33.798Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,13 +12,13 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-10-21T18:38:31.217Z",
-      "lastSuccessAt": "2026-10-21T18:38:31.217Z"
+      "checkedAt": "2026-10-21T22:20:33.798Z",
+      "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-10-21T18:38:31.217Z",
+      "checkedAt": "2026-10-21T22:20:33.798Z",
       "lastSuccessAt": "2026-10-17T12:28:18.687Z"
     }
   },
@@ -33,7 +33,61 @@
       "source": "FinanceCalendar"
     },
     {
-      "name": "Japan CPI",
+      "name": "EIA Weekly Natural Gas Storage Report",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1792679400000,
+      "expiresAt": 1792679400000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Treasury 4-Week Bill Auction 2026-10-22 (912797VY0)",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1792683000000,
+      "expiresAt": 1792683000000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Treasury 8-Week Bill Auction 2026-10-22 (912797WG8)",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1792683000000,
+      "expiresAt": 1792683000000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Treasury 10-Day CMB Auction 2026-10-22 (912797UM7)",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1792688400000,
+      "expiresAt": 1792688400000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Treasury 5-Year TIPS Auction 2026-10-22 (91282CRR4)",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1792688400000,
+      "expiresAt": 1792688400000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Japan Monthly Labour Survey 2026-08 (final)",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1792711800000,
+      "expiresAt": 1792711800000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Japan CPI 2026-09",
       "category": "economic-indicators",
       "impact": "medium",
       "kind": "timed",
@@ -57,6 +111,33 @@
       "kind": "timed",
       "sortAt": 1792764000000,
       "expiresAt": 1792764000000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Treasury 13-Week Bill Auction 2026-10-26 (912797VU8)",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "all-day",
+      "sortAt": 1792969200000,
+      "expiresAt": 1793055600000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Treasury 26-Week Bill Auction 2026-10-26 (912797WW3)",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "all-day",
+      "sortAt": 1792969200000,
+      "expiresAt": 1793055600000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Treasury 2-Year Note Auction 2026-10-26 (91282CRU7)",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "all-day",
+      "sortAt": 1792969200000,
+      "expiresAt": 1793055600000,
       "source": "FinanceCalendar"
     },
     {
@@ -95,6 +176,33 @@
       "source": "FinanceCalendar"
     },
     {
+      "name": "Treasury 6-Week Bill Auction 2026-10-27 (912797VG9)",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "all-day",
+      "sortAt": 1793055600000,
+      "expiresAt": 1793142000000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Treasury 52-Week Bill Auction 2026-10-27 (912797WT0)",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "all-day",
+      "sortAt": 1793055600000,
+      "expiresAt": 1793142000000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Treasury 5-Year Note Auction 2026-10-27 (91282CRT0)",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "all-day",
+      "sortAt": 1793055600000,
+      "expiresAt": 1793142000000,
+      "source": "FinanceCalendar"
+    },
+    {
       "source": "TreasuryDirect",
       "id": "TreasuryDirect:91282CRT0:2026-10-27",
       "name": "US Treasury 5Y Auction",
@@ -121,6 +229,24 @@
       "announcementUrl": null
     },
     {
+      "name": "China Industrial Profits 2026-09",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793064600000,
+      "expiresAt": 1793064600000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Durable Goods Orders",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793104200000,
+      "expiresAt": 1793104200000,
+      "source": "FinanceCalendar"
+    },
+    {
       "name": "Consumer Confidence",
       "category": "economic-indicators",
       "impact": "medium",
@@ -136,6 +262,15 @@
       "kind": "timed",
       "sortAt": 1793109600000,
       "expiresAt": 1793109600000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Treasury 2-Year FRN Auction 2026-10-28 (91282CRS2)",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "all-day",
+      "sortAt": 1793142000000,
+      "expiresAt": 1793228400000,
       "source": "FinanceCalendar"
     },
     {
@@ -157,6 +292,15 @@
       "source": "FinanceCalendar"
     },
     {
+      "name": "Advance Economic Indicators",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793190600000,
+      "expiresAt": 1793190600000,
+      "source": "FinanceCalendar"
+    },
+    {
       "name": "Bank of Canada Rate Decision",
       "category": "central-banks-monetary-policy",
       "impact": "high",
@@ -166,12 +310,57 @@
       "source": "FinanceCalendar"
     },
     {
+      "name": "EIA Weekly Petroleum Status Report",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793197800000,
+      "expiresAt": 1793197800000,
+      "source": "FinanceCalendar"
+    },
+    {
       "name": "FOMC decision",
       "category": "central-banks-monetary-policy",
       "impact": "high",
       "kind": "timed",
       "sortAt": 1793210400000,
       "expiresAt": 1793210400000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Treasury 7-Year Note Auction 2026-10-29 (91282CRV5)",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "all-day",
+      "sortAt": 1793228400000,
+      "expiresAt": 1793314800000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Japan Trade Statistics 2026-08 (import-final)",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793233800000,
+      "expiresAt": 1793233800000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Japan Trade Statistics 2026-09 (export-final-import-preliminary)",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793233800000,
+      "expiresAt": 1793233800000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Japan Consumer Confidence 2026-10",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793250000000,
+      "expiresAt": 1793250000000,
       "source": "FinanceCalendar"
     },
     {
@@ -220,6 +409,69 @@
       "source": "FinanceCalendar"
     },
     {
+      "name": "EIA Weekly Natural Gas Storage Report",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793284200000,
+      "expiresAt": 1793284200000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Eurozone GDP Flash",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "all-day",
+      "sortAt": 1793314800000,
+      "expiresAt": 1793401200000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Japan Tokyo CPI 2026-10 (preliminary)",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793316600000,
+      "expiresAt": 1793316600000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Japan Jobs-to-Applicants Ratio 2026-09",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793316600000,
+      "expiresAt": 1793316600000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Japan Labour Force Survey 2026-09",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793316600000,
+      "expiresAt": 1793316600000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Japan Industrial Production 2026-09 (preliminary)",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793317800000,
+      "expiresAt": 1793317800000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Japan Retail Sales 2026-09 (preliminary)",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793317800000,
+      "expiresAt": 1793317800000,
+      "source": "FinanceCalendar"
+    },
+    {
       "name": "Bank of Japan decision",
       "category": "central-banks-monetary-policy",
       "impact": "high",
@@ -229,16 +481,16 @@
       "source": "FinanceCalendar"
     },
     {
-      "name": "Eurozone GDP Flash",
+      "name": "Employment Cost Index",
       "category": "economic-indicators",
       "impact": "medium",
       "kind": "timed",
-      "sortAt": 1793354400000,
-      "expiresAt": 1793354400000,
+      "sortAt": 1793363400000,
+      "expiresAt": 1793363400000,
       "source": "FinanceCalendar"
     },
     {
-      "name": "China Official PMI",
+      "name": "China Official PMI 2026-10",
       "category": "economic-indicators",
       "impact": "medium",
       "kind": "timed",
@@ -274,6 +526,15 @@
       "source": "FinanceCalendar"
     },
     {
+      "name": "Factory Orders",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793718000000,
+      "expiresAt": 1793718000000,
+      "source": "FinanceCalendar"
+    },
+    {
       "name": "JOLTS Job Openings",
       "category": "economic-indicators",
       "impact": "medium",
@@ -283,21 +544,21 @@
       "source": "FinanceCalendar"
     },
     {
+      "name": "Eurozone Flash CPI",
+      "category": "economic-indicators",
+      "impact": "high",
+      "kind": "all-day",
+      "sortAt": 1793746800000,
+      "expiresAt": 1793833200000,
+      "source": "FinanceCalendar"
+    },
+    {
       "name": "Riksbank Rate Decision",
       "category": "central-banks-monetary-policy",
       "impact": "medium",
       "kind": "timed",
       "sortAt": 1793781000000,
       "expiresAt": 1793781000000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Eurozone Flash CPI",
-      "category": "economic-indicators",
-      "impact": "high",
-      "kind": "timed",
-      "sortAt": 1793786400000,
-      "expiresAt": 1793786400000,
       "source": "FinanceCalendar"
     },
     {
@@ -325,6 +586,15 @@
       "kind": "timed",
       "sortAt": 1793804400000,
       "expiresAt": 1793804400000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "EIA Weekly Petroleum Status Report",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1793806200000,
+      "expiresAt": 1793806200000,
       "source": "FinanceCalendar"
     }
   ]
