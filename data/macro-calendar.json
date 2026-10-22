@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-22T13:47:35.732Z",
+  "generatedAt": "2026-10-22T18:32:34.879Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,62 +12,17 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-10-22T13:47:35.732Z",
+      "checkedAt": "2026-10-22T18:32:34.879Z",
       "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-10-22T13:47:35.732Z",
+      "checkedAt": "2026-10-22T18:32:34.879Z",
       "lastSuccessAt": "2026-10-17T12:28:18.687Z"
     }
   },
   "events": [
-    {
-      "name": "EIA Weekly Natural Gas Storage Report",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1792679400000,
-      "expiresAt": 1792679400000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Treasury 4-Week Bill Auction 2026-10-22 (912797VY0)",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1792683000000,
-      "expiresAt": 1792683000000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Treasury 8-Week Bill Auction 2026-10-22 (912797WG8)",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1792683000000,
-      "expiresAt": 1792683000000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Treasury 10-Day CMB Auction 2026-10-22 (912797UM7)",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1792688400000,
-      "expiresAt": 1792688400000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Treasury 5-Year TIPS Auction 2026-10-22 (91282CRR4)",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1792688400000,
-      "expiresAt": 1792688400000,
-      "source": "FinanceCalendar"
-    },
     {
       "name": "Japan Monthly Labour Survey 2026-08 (final)",
       "category": "economic-indicators",
