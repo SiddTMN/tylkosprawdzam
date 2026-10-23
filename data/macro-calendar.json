@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-23T13:26:07.272Z",
+  "generatedAt": "2026-10-23T18:20:45.965Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,26 +12,17 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-10-23T13:26:07.272Z",
+      "checkedAt": "2026-10-23T18:20:45.965Z",
       "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-10-23T13:26:07.272Z",
+      "checkedAt": "2026-10-23T18:20:45.965Z",
       "lastSuccessAt": "2026-10-17T12:28:18.687Z"
     }
   },
   "events": [
-    {
-      "name": "Michigan sentiment",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1792764000000,
-      "expiresAt": 1792764000000,
-      "source": "FinanceCalendar"
-    },
     {
       "name": "Treasury 13-Week Bill Auction 2026-10-26 (912797VU8)",
       "category": "economic-indicators",
