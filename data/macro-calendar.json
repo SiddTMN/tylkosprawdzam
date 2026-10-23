@@ -1,46 +1,28 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-22T22:20:29.049Z",
+  "generatedAt": "2026-10-23T01:30:41.213Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
-    "from": "2026-10-22",
-    "to": "2026-11-05"
+    "from": "2026-10-23",
+    "to": "2026-11-06"
   },
   "sources": {
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-10-22T22:20:29.049Z",
+      "checkedAt": "2026-10-23T01:30:41.213Z",
       "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-10-22T22:20:29.049Z",
+      "checkedAt": "2026-10-23T01:30:41.213Z",
       "lastSuccessAt": "2026-10-17T12:28:18.687Z"
     }
   },
   "events": [
-    {
-      "name": "Japan Monthly Labour Survey 2026-08 (final)",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1792711800000,
-      "expiresAt": 1792711800000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Japan CPI 2026-09",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1792711800000,
-      "expiresAt": 1792711800000,
-      "source": "FinanceCalendar"
-    },
     {
       "name": "UK Retail Sales",
       "category": "economic-indicators",
