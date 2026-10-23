@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-23T01:30:41.213Z",
+  "generatedAt": "2026-10-23T07:31:26.122Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,26 +12,17 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-10-23T01:30:41.213Z",
+      "checkedAt": "2026-10-23T07:31:26.122Z",
       "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-10-23T01:30:41.213Z",
+      "checkedAt": "2026-10-23T07:31:26.122Z",
       "lastSuccessAt": "2026-10-17T12:28:18.687Z"
     }
   },
   "events": [
-    {
-      "name": "UK Retail Sales",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1792735200000,
-      "expiresAt": 1792735200000,
-      "source": "FinanceCalendar"
-    },
     {
       "name": "Michigan sentiment",
       "category": "economic-indicators",
