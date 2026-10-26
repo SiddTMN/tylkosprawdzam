@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-26T19:18:36.021Z",
+  "generatedAt": "2026-10-26T23:52:39.180Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,70 +12,17 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-10-26T19:18:36.021Z",
+      "checkedAt": "2026-10-26T23:52:39.180Z",
       "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-10-26T19:18:36.021Z",
+      "checkedAt": "2026-10-26T23:52:39.180Z",
       "lastSuccessAt": "2026-10-17T12:28:18.687Z"
     }
   },
   "events": [
-    {
-      "name": "Treasury 13-Week Bill Auction 2026-10-26 (912797VU8)",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "all-day",
-      "sortAt": 1792969200000,
-      "expiresAt": 1793055600000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Treasury 26-Week Bill Auction 2026-10-26 (912797WW3)",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "all-day",
-      "sortAt": 1792969200000,
-      "expiresAt": 1793055600000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Treasury 2-Year Note Auction 2026-10-26 (91282CRU7)",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "all-day",
-      "sortAt": 1792969200000,
-      "expiresAt": 1793055600000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "source": "TreasuryDirect",
-      "id": "TreasuryDirect:91282CRU7:2026-10-26",
-      "name": "US Treasury 2Y Auction",
-      "category": "TreasuryDirect · wstępny termin",
-      "impact": "medium",
-      "kind": "unknown-time",
-      "sortAt": 1792969200000,
-      "expiresAt": 1793055600000,
-      "cusip": "91282CRU7",
-      "securityType": "Note",
-      "originalTerm": "2-Year",
-      "remainingTerm": "2-Year",
-      "reopening": false,
-      "auctionDate": "2026-10-26",
-      "settlementDate": "2026-11-02",
-      "announcementDate": "2026-10-22",
-      "maturityDate": null,
-      "confirmation": "tentative",
-      "timeZone": "America/New_York",
-      "timeBasis": "unconfirmed",
-      "competitiveClose": null,
-      "noncompetitiveClose": null,
-      "offeringAmount": null,
-      "announcementUrl": null
-    },
     {
       "name": "Treasury 6-Week Bill Auction 2026-10-27 (912797VG9)",
       "category": "economic-indicators",
