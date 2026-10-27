@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-27T10:33:20.708Z",
+  "generatedAt": "2026-10-27T16:37:54.696Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,13 +12,13 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-10-27T10:33:20.708Z",
+      "checkedAt": "2026-10-27T16:37:54.696Z",
       "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-10-27T10:33:20.708Z",
+      "checkedAt": "2026-10-27T16:37:54.696Z",
       "lastSuccessAt": "2026-10-17T12:28:18.687Z"
     }
   },
@@ -75,33 +75,6 @@
       "noncompetitiveClose": null,
       "offeringAmount": null,
       "announcementUrl": null
-    },
-    {
-      "name": "Durable Goods Orders",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793104200000,
-      "expiresAt": 1793104200000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Consumer Confidence",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793109600000,
-      "expiresAt": 1793109600000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "New Home Sales",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793109600000,
-      "expiresAt": 1793109600000,
-      "source": "FinanceCalendar"
     },
     {
       "name": "Treasury 2-Year FRN Auction 2026-10-28 (91282CRS2)",
