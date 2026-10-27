@@ -1,24 +1,24 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-26T23:52:39.180Z",
+  "generatedAt": "2026-10-27T05:03:08.287Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
-    "from": "2026-10-26",
-    "to": "2026-11-09"
+    "from": "2026-10-27",
+    "to": "2026-11-10"
   },
   "sources": {
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-10-26T23:52:39.180Z",
+      "checkedAt": "2026-10-27T05:03:08.287Z",
       "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-10-26T23:52:39.180Z",
+      "checkedAt": "2026-10-27T05:03:08.287Z",
       "lastSuccessAt": "2026-10-17T12:28:18.687Z"
     }
   },
@@ -75,15 +75,6 @@
       "noncompetitiveClose": null,
       "offeringAmount": null,
       "announcementUrl": null
-    },
-    {
-      "name": "China Industrial Profits 2026-09",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793064600000,
-      "expiresAt": 1793064600000,
-      "source": "FinanceCalendar"
     },
     {
       "name": "Durable Goods Orders",
