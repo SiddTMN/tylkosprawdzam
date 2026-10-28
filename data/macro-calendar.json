@@ -1,81 +1,28 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-27T21:18:53.022Z",
+  "generatedAt": "2026-10-28T01:20:52.048Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
-    "from": "2026-10-27",
-    "to": "2026-11-10"
+    "from": "2026-10-28",
+    "to": "2026-11-11"
   },
   "sources": {
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-10-27T21:18:53.022Z",
+      "checkedAt": "2026-10-28T01:20:52.048Z",
       "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-10-27T21:18:53.022Z",
+      "checkedAt": "2026-10-28T01:20:52.048Z",
       "lastSuccessAt": "2026-10-17T12:28:18.687Z"
     }
   },
   "events": [
-    {
-      "name": "Treasury 6-Week Bill Auction 2026-10-27 (912797VG9)",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "all-day",
-      "sortAt": 1793055600000,
-      "expiresAt": 1793142000000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Treasury 52-Week Bill Auction 2026-10-27 (912797WT0)",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "all-day",
-      "sortAt": 1793055600000,
-      "expiresAt": 1793142000000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Treasury 5-Year Note Auction 2026-10-27 (91282CRT0)",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "all-day",
-      "sortAt": 1793055600000,
-      "expiresAt": 1793142000000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "source": "TreasuryDirect",
-      "id": "TreasuryDirect:91282CRT0:2026-10-27",
-      "name": "US Treasury 5Y Auction",
-      "category": "TreasuryDirect · wstępny termin",
-      "impact": "medium",
-      "kind": "unknown-time",
-      "sortAt": 1793055600000,
-      "expiresAt": 1793142000000,
-      "cusip": "91282CRT0",
-      "securityType": "Note",
-      "originalTerm": "5-Year",
-      "remainingTerm": "5-Year",
-      "reopening": false,
-      "auctionDate": "2026-10-27",
-      "settlementDate": "2026-11-02",
-      "announcementDate": "2026-10-22",
-      "maturityDate": null,
-      "confirmation": "tentative",
-      "timeZone": "America/New_York",
-      "timeBasis": "unconfirmed",
-      "competitiveClose": null,
-      "noncompetitiveClose": null,
-      "offeringAmount": null,
-      "announcementUrl": null
-    },
     {
       "name": "Treasury 2-Year FRN Auction 2026-10-28 (91282CRS2)",
       "category": "economic-indicators",
@@ -83,24 +30,6 @@
       "kind": "all-day",
       "sortAt": 1793142000000,
       "expiresAt": 1793228400000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Australia CPI",
-      "category": "economic-indicators",
-      "impact": "high",
-      "kind": "timed",
-      "sortAt": 1793147400000,
-      "expiresAt": 1793147400000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "RBNZ Rate Decision",
-      "category": "central-banks-monetary-policy",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793149200000,
-      "expiresAt": 1793149200000,
       "source": "FinanceCalendar"
     },
     {
