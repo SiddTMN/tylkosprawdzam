@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-28T08:29:55.277Z",
+  "generatedAt": "2026-10-28T16:01:30.781Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,13 +12,13 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-10-28T08:29:55.277Z",
+      "checkedAt": "2026-10-28T16:01:30.781Z",
       "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-10-28T08:29:55.277Z",
+      "checkedAt": "2026-10-28T16:01:30.781Z",
       "lastSuccessAt": "2026-10-17T12:28:18.687Z"
     }
   },
@@ -30,33 +30,6 @@
       "kind": "all-day",
       "sortAt": 1793142000000,
       "expiresAt": 1793228400000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Advance Economic Indicators",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793190600000,
-      "expiresAt": 1793190600000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Bank of Canada Rate Decision",
-      "category": "central-banks-monetary-policy",
-      "impact": "high",
-      "kind": "timed",
-      "sortAt": 1793195100000,
-      "expiresAt": 1793195100000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "EIA Weekly Petroleum Status Report",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793197800000,
-      "expiresAt": 1793197800000,
       "source": "FinanceCalendar"
     },
     {
