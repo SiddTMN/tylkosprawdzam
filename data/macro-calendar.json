@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-29T14:17:51.059Z",
+  "generatedAt": "2026-10-29T20:16:49.108Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,14 +12,14 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-10-29T14:17:51.059Z",
+      "checkedAt": "2026-10-29T20:16:49.108Z",
       "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
-      "status": "stale",
-      "checkedAt": "2026-10-29T14:17:51.059Z",
-      "lastSuccessAt": "2026-10-17T12:28:18.687Z"
+      "status": "fresh",
+      "checkedAt": "2026-10-29T20:16:49.108Z",
+      "lastSuccessAt": "2026-10-29T20:16:49.108Z"
     }
   },
   "events": [
@@ -30,15 +30,6 @@
       "kind": "all-day",
       "sortAt": 1793228400000,
       "expiresAt": 1793314800000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "EIA Weekly Natural Gas Storage Report",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793284200000,
-      "expiresAt": 1793284200000,
       "source": "FinanceCalendar"
     },
     {
