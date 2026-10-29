@@ -1,37 +1,28 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-28T21:03:39.664Z",
+  "generatedAt": "2026-10-29T00:55:52.858Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
-    "from": "2026-10-28",
-    "to": "2026-11-11"
+    "from": "2026-10-29",
+    "to": "2026-11-12"
   },
   "sources": {
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-10-28T21:03:39.664Z",
+      "checkedAt": "2026-10-29T00:55:52.858Z",
       "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-10-28T21:03:39.664Z",
+      "checkedAt": "2026-10-29T00:55:52.858Z",
       "lastSuccessAt": "2026-10-17T12:28:18.687Z"
     }
   },
   "events": [
-    {
-      "name": "Treasury 2-Year FRN Auction 2026-10-28 (91282CRS2)",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "all-day",
-      "sortAt": 1793142000000,
-      "expiresAt": 1793228400000,
-      "source": "FinanceCalendar"
-    },
     {
       "name": "Treasury 7-Year Note Auction 2026-10-29 (91282CRV5)",
       "category": "economic-indicators",
@@ -39,24 +30,6 @@
       "kind": "all-day",
       "sortAt": 1793228400000,
       "expiresAt": 1793314800000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Japan Trade Statistics 2026-08 (import-final)",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793233800000,
-      "expiresAt": 1793233800000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Japan Trade Statistics 2026-09 (export-final-import-preliminary)",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793233800000,
-      "expiresAt": 1793233800000,
       "source": "FinanceCalendar"
     },
     {
