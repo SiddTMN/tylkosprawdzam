@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-29T00:55:52.858Z",
+  "generatedAt": "2026-10-29T07:04:02.982Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,13 +12,13 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-10-29T00:55:52.858Z",
+      "checkedAt": "2026-10-29T07:04:02.982Z",
       "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-10-29T00:55:52.858Z",
+      "checkedAt": "2026-10-29T07:04:02.982Z",
       "lastSuccessAt": "2026-10-17T12:28:18.687Z"
     }
   },
@@ -30,15 +30,6 @@
       "kind": "all-day",
       "sortAt": 1793228400000,
       "expiresAt": 1793314800000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Japan Consumer Confidence 2026-10",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793250000000,
-      "expiresAt": 1793250000000,
       "source": "FinanceCalendar"
     },
     {
