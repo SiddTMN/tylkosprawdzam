@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-29T20:16:49.108Z",
+  "generatedAt": "2026-10-29T23:58:33.173Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,26 +12,17 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-10-29T20:16:49.108Z",
+      "checkedAt": "2026-10-29T23:58:33.173Z",
       "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "fresh",
-      "checkedAt": "2026-10-29T20:16:49.108Z",
-      "lastSuccessAt": "2026-10-29T20:16:49.108Z"
+      "checkedAt": "2026-10-29T23:58:33.173Z",
+      "lastSuccessAt": "2026-10-29T23:58:33.173Z"
     }
   },
   "events": [
-    {
-      "name": "Treasury 7-Year Note Auction 2026-10-29 (91282CRV5)",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "all-day",
-      "sortAt": 1793228400000,
-      "expiresAt": 1793314800000,
-      "source": "FinanceCalendar"
-    },
     {
       "name": "Eurozone GDP Flash",
       "category": "economic-indicators",
@@ -39,51 +30,6 @@
       "kind": "all-day",
       "sortAt": 1793314800000,
       "expiresAt": 1793401200000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Japan Tokyo CPI 2026-10 (preliminary)",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793316600000,
-      "expiresAt": 1793316600000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Japan Jobs-to-Applicants Ratio 2026-09",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793316600000,
-      "expiresAt": 1793316600000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Japan Labour Force Survey 2026-09",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793316600000,
-      "expiresAt": 1793316600000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Japan Industrial Production 2026-09 (preliminary)",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793317800000,
-      "expiresAt": 1793317800000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Japan Retail Sales 2026-09 (preliminary)",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793317800000,
-      "expiresAt": 1793317800000,
       "source": "FinanceCalendar"
     },
     {
