@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-30T05:47:16.820Z",
+  "generatedAt": "2026-10-30T12:54:40.066Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,14 +12,14 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-10-30T05:47:16.820Z",
+      "checkedAt": "2026-10-30T12:54:40.066Z",
       "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "fresh",
-      "checkedAt": "2026-10-30T05:47:16.820Z",
-      "lastSuccessAt": "2026-10-30T05:47:16.820Z"
+      "checkedAt": "2026-10-30T12:54:40.066Z",
+      "lastSuccessAt": "2026-10-30T12:54:40.066Z"
     }
   },
   "events": [
@@ -30,15 +30,6 @@
       "kind": "all-day",
       "sortAt": 1793314800000,
       "expiresAt": 1793401200000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Employment Cost Index",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793363400000,
-      "expiresAt": 1793363400000,
       "source": "FinanceCalendar"
     },
     {
