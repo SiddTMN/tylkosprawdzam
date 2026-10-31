@@ -1,46 +1,28 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-10-30T22:58:21.653Z",
+  "generatedAt": "2026-10-31T02:22:18.021Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
-    "from": "2026-10-30",
-    "to": "2026-11-13"
+    "from": "2026-10-31",
+    "to": "2026-11-14"
   },
   "sources": {
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-10-30T22:58:21.653Z",
+      "checkedAt": "2026-10-31T02:22:18.021Z",
       "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-10-30T22:58:21.653Z",
+      "checkedAt": "2026-10-31T02:22:18.021Z",
       "lastSuccessAt": "2026-10-30T12:54:40.066Z"
     }
   },
   "events": [
-    {
-      "name": "Eurozone GDP Flash",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "all-day",
-      "sortAt": 1793314800000,
-      "expiresAt": 1793401200000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "China Official PMI 2026-10",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793410200000,
-      "expiresAt": 1793410200000,
-      "source": "FinanceCalendar"
-    },
     {
       "name": "China Caixin Manufacturing PMI",
       "category": "economic-indicators",
