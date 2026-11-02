@@ -1,37 +1,28 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-11-01T22:49:34.745Z",
+  "generatedAt": "2026-11-02T02:30:24.666Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
-    "from": "2026-11-01",
-    "to": "2026-11-15"
+    "from": "2026-11-02",
+    "to": "2026-11-16"
   },
   "sources": {
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-11-01T22:49:34.745Z",
+      "checkedAt": "2026-11-02T02:30:24.666Z",
       "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-11-01T22:49:34.745Z",
+      "checkedAt": "2026-11-02T02:30:24.666Z",
       "lastSuccessAt": "2026-10-30T12:54:40.066Z"
     }
   },
   "events": [
-    {
-      "name": "China Caixin Manufacturing PMI",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793583900000,
-      "expiresAt": 1793583900000,
-      "source": "FinanceCalendar"
-    },
     {
       "name": "ISM Manufacturing PMI",
       "category": "economic-indicators",
