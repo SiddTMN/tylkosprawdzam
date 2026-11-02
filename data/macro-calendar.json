@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-11-02T11:04:00.731Z",
+  "generatedAt": "2026-11-02T20:46:39.242Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,26 +12,17 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-11-02T11:04:00.731Z",
+      "checkedAt": "2026-11-02T20:46:39.242Z",
       "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-11-02T11:04:00.731Z",
+      "checkedAt": "2026-11-02T20:46:39.242Z",
       "lastSuccessAt": "2026-10-30T12:54:40.066Z"
     }
   },
   "events": [
-    {
-      "name": "ISM Manufacturing PMI",
-      "category": "economic-indicators",
-      "impact": "high",
-      "kind": "timed",
-      "sortAt": 1793631600000,
-      "expiresAt": 1793631600000,
-      "source": "FinanceCalendar"
-    },
     {
       "name": "RBA Rate Decision",
       "category": "central-banks-monetary-policy",
