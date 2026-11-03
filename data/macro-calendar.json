@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-11-03T02:55:06.226Z",
+  "generatedAt": "2026-11-03T10:51:13.507Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,26 +12,17 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-11-03T02:55:06.226Z",
+      "checkedAt": "2026-11-03T10:51:13.507Z",
       "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-11-03T02:55:06.226Z",
+      "checkedAt": "2026-11-03T10:51:13.507Z",
       "lastSuccessAt": "2026-10-30T12:54:40.066Z"
     }
   },
   "events": [
-    {
-      "name": "RBA Rate Decision",
-      "category": "central-banks-monetary-policy",
-      "impact": "high",
-      "kind": "timed",
-      "sortAt": 1793676600000,
-      "expiresAt": 1793676600000,
-      "source": "FinanceCalendar"
-    },
     {
       "name": "Factory Orders",
       "category": "economic-indicators",
