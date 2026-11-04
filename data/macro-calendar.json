@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-11-04T06:19:51.176Z",
+  "generatedAt": "2026-11-04T15:26:06.196Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,13 +12,13 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-11-04T06:19:51.176Z",
+      "checkedAt": "2026-11-04T15:26:06.196Z",
       "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-11-04T06:19:51.176Z",
+      "checkedAt": "2026-11-04T15:26:06.196Z",
       "lastSuccessAt": "2026-10-30T12:54:40.066Z"
     }
   },
@@ -30,42 +30,6 @@
       "kind": "all-day",
       "sortAt": 1793746800000,
       "expiresAt": 1793833200000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Riksbank Rate Decision",
-      "category": "central-banks-monetary-policy",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793781000000,
-      "expiresAt": 1793781000000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "ADP Employment Report",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793798100000,
-      "expiresAt": 1793798100000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Trade balance",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793799000000,
-      "expiresAt": 1793799000000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "ISM Services PMI",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793804400000,
-      "expiresAt": 1793804400000,
       "source": "FinanceCalendar"
     },
     {
