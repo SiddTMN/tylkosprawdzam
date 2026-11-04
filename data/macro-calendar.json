@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-11-04T15:26:06.196Z",
+  "generatedAt": "2026-11-04T21:52:24.031Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,13 +12,13 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-11-04T15:26:06.196Z",
+      "checkedAt": "2026-11-04T21:52:24.031Z",
       "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-11-04T15:26:06.196Z",
+      "checkedAt": "2026-11-04T21:52:24.031Z",
       "lastSuccessAt": "2026-10-30T12:54:40.066Z"
     }
   },
@@ -30,15 +30,6 @@
       "kind": "all-day",
       "sortAt": 1793746800000,
       "expiresAt": 1793833200000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "EIA Weekly Petroleum Status Report",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1793806200000,
-      "expiresAt": 1793806200000,
       "source": "FinanceCalendar"
     }
   ]
