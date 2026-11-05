@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-11-05T02:27:37.916Z",
+  "generatedAt": "2026-11-05T09:52:40.902Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,15 +12,68 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-11-05T02:27:37.916Z",
+      "checkedAt": "2026-11-05T09:52:40.902Z",
       "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
-      "status": "stale",
-      "checkedAt": "2026-11-05T02:27:37.916Z",
-      "lastSuccessAt": "2026-10-30T12:54:40.066Z"
+      "status": "fresh",
+      "checkedAt": "2026-11-05T09:52:40.902Z",
+      "lastSuccessAt": "2026-11-05T09:52:40.902Z"
     }
   },
-  "events": []
+  "events": [
+    {
+      "source": "TreasuryDirect",
+      "id": "TreasuryDirect:91282CRX1:2026-11-10",
+      "name": "US Treasury 10Y Auction",
+      "category": "TreasuryDirect · potwierdzona",
+      "impact": "high",
+      "kind": "timed",
+      "sortAt": 1794333600000,
+      "expiresAt": 1794333600000,
+      "cusip": "91282CRX1",
+      "securityType": "Note",
+      "originalTerm": "10-Year",
+      "remainingTerm": "10-Year",
+      "reopening": false,
+      "auctionDate": "2026-11-10",
+      "settlementDate": "2026-11-16",
+      "announcementDate": "2026-11-04",
+      "maturityDate": "2036-11-15",
+      "confirmation": "announced",
+      "timeZone": "America/New_York",
+      "timeBasis": "competitive-bid-close",
+      "competitiveClose": "13:00",
+      "noncompetitiveClose": "12:00",
+      "offeringAmount": "42000000000",
+      "announcementUrl": "https://www.treasurydirect.gov/instit/annceresult/press/preanre/2026/A_20261104_2.pdf"
+    },
+    {
+      "source": "TreasuryDirect",
+      "id": "TreasuryDirect:912810UY2:2026-11-12",
+      "name": "US Treasury 30Y Auction",
+      "category": "TreasuryDirect · potwierdzona",
+      "impact": "high",
+      "kind": "timed",
+      "sortAt": 1794506400000,
+      "expiresAt": 1794506400000,
+      "cusip": "912810UY2",
+      "securityType": "Bond",
+      "originalTerm": "30-Year",
+      "remainingTerm": "30-Year",
+      "reopening": false,
+      "auctionDate": "2026-11-12",
+      "settlementDate": "2026-11-16",
+      "announcementDate": "2026-11-04",
+      "maturityDate": "2056-11-15",
+      "confirmation": "announced",
+      "timeZone": "America/New_York",
+      "timeBasis": "competitive-bid-close",
+      "competitiveClose": "13:00",
+      "noncompetitiveClose": "12:00",
+      "offeringAmount": "25000000000",
+      "announcementUrl": "https://www.treasurydirect.gov/instit/annceresult/press/preanre/2026/A_20261104_3.pdf"
+    }
+  ]
 }
