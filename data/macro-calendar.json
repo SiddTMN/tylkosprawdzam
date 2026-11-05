@@ -1,36 +1,26 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-11-04T21:52:24.031Z",
+  "generatedAt": "2026-11-05T02:27:37.916Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
-    "from": "2026-11-04",
-    "to": "2026-11-18"
+    "from": "2026-11-05",
+    "to": "2026-11-19"
   },
   "sources": {
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-11-04T21:52:24.031Z",
+      "checkedAt": "2026-11-05T02:27:37.916Z",
       "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-11-04T21:52:24.031Z",
+      "checkedAt": "2026-11-05T02:27:37.916Z",
       "lastSuccessAt": "2026-10-30T12:54:40.066Z"
     }
   },
-  "events": [
-    {
-      "name": "Eurozone Flash CPI",
-      "category": "economic-indicators",
-      "impact": "high",
-      "kind": "all-day",
-      "sortAt": 1793746800000,
-      "expiresAt": 1793833200000,
-      "source": "FinanceCalendar"
-    }
-  ]
+  "events": []
 }
