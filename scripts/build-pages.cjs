@@ -8,7 +8,7 @@ const ROOT=path.resolve(__dirname,'..');
 const PUBLIC_FILES=Object.freeze([
  'index.html','css/style.css',
  'js/app.js','js/treasury-model.js','js/calendar-model.js','js/calendar.js',
- 'js/crypto-calendar-model.js','js/crypto-calendar.js','js/news.js','js/snapshot.js','js/dxy.js',
+ 'js/crypto-calendar-model.js','js/crypto-calendar.js','js/news.js','js/snapshot.js','js/dxy.js','js/global-markets.js',
  'data/macro-calendar.json','data/crypto-auto.json','data/crypto-manual.json',
  'data/crypto-licenses/NOTICE.txt','data/crypto-licenses/eth-pm-license.txt',
  'data/crypto-licenses/eth-eips-license.txt','data/crypto-licenses/xlm-docs-license.txt'

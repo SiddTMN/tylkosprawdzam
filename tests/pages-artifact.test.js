@@ -20,7 +20,7 @@ test('actual Pages artifact contains every local dashboard dependency, both cale
  const files=await list(outputPath),html=await fs.readFile(path.join(outputPath,'index.html'),'utf8');
  for(const match of html.matchAll(/(?:src|href)="((?:js|css)\/[^"?#]+)"/g))assert.ok(files.includes(match[1]),'Missing dashboard dependency '+match[1]);
  for(const file of ['data/macro-calendar.json','data/crypto-auto.json','data/crypto-manual.json','data/crypto-licenses/NOTICE.txt','data/crypto-licenses/eth-pm-license.txt','data/crypto-licenses/eth-eips-license.txt','data/crypto-licenses/xlm-docs-license.txt'])assert.ok(files.includes(file),file);
- assert.equal(files.length,18);
+ assert.equal(files.length,19);
  assert.ok(files.every(f=>!/^(?:docs|scripts|tests|\.github)\//.test(f)&&f!=='data/crypto-calendar.json'));
  for(const file of files)assert.deepEqual(await fs.readFile(path.join(outputPath,file)),await fs.readFile(path.join(ROOT,file)),'Changed public bytes: '+file);
 });

@@ -625,6 +625,54 @@ body {
     min-width: 0;
 }
 
+.snapshot-top-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    container-type: inline-size;
+    align-items: start;
+}
+
+.snapshot-top-row > .panel { min-width: 0; }
+.snapshot-top-row .panel-header { padding: 14px 12px; }
+.snapshot-top-row .metric { padding: 15px 12px; gap: 8px; }
+
+.global-quote { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+.global-quote h3 { margin: 0 0 6px; font-size: 12px; font-weight: 550; }
+.global-quote-widget { width: 100%; min-width: 0; }
+.global-quote-widget iframe { display: block; }
+.global-quote-widget[hidden] { display: block; visibility: hidden; height: 0; overflow: hidden; }
+.global-quote-status,
+.global-quote-details,
+.global-markets-note,
+.global-quote-source {
+    margin: 5px 0 0;
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+.global-quote-source { display: inline-block; text-decoration: none; }
+.global-quote-source:hover,
+.global-quote-source:focus-visible { color: var(--accent); text-decoration: underline; }
+.global-markets-note { margin: 10px 12px; }
+.global-markets-retry {
+    margin: 0 12px 12px;
+    padding: 6px 9px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    font-size: 10px;
+    cursor: pointer;
+}
+.global-markets-retry:hover { background: var(--panel-hover); }
+
+/* Keep each quote legible in the narrower desktop sidebar and on phones. */
+@container (max-width: 580px) {
+    .snapshot-top-row > .panel { grid-column: 1 / -1; }
+}
+
 .dxy-content {
     padding: 20px;
     min-width: 0;
