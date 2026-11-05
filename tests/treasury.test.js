@@ -219,19 +219,19 @@ test("cache never retains expired auctions or renews source freshness during out
     assert.equal(result.sources.TreasuryDirect.status, "stale");
 });
 
-test("invalid and expired cache never supplies Treasury fallback; failure without FinanceCalendar preserves bytes", async t => {
+test("invalid and expired cache never supplies fallback; failure of both sources preserves bytes", async t => {
     const outputPath = await workspace(t);
     await generate({ now, outputPath, fetchImpl: route([fc()], [bond]) });
     const saved = JSON.parse(await fs.readFile(outputPath, "utf8"));
     saved.events[0].cusip = "bad";
     const bytes = JSON.stringify(saved);
     await fs.writeFile(outputPath, bytes);
-    await assert.rejects(generate({ now: later, outputPath, fetchImpl: route(new Error("offline"), []) }));
+    await assert.rejects(generate({ now: later, outputPath, fetchImpl: route(new Error("offline"), new Error("offline")) }));
     assert.equal(await fs.readFile(outputPath, "utf8"), bytes);
     const fresh = await generate({ now: later, outputPath, fetchImpl: route([fc()], new Error("offline")) });
     assert.equal(fresh.sources.TreasuryDirect.status, "unavailable");
     await assert.rejects(generate({ now: Date.parse("2026-10-24T10:00:00Z"), outputPath,
-        fetchImpl: route(new Error("offline"), []) }));
+        fetchImpl: route(new Error("offline"), new Error("offline")) }));
 });
 
 test("snapshot validation rejects forged auction metadata, inconsistent source freshness and duplicate identities", async t => {

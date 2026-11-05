@@ -74,6 +74,8 @@ jobs:
       - name: Test current main
         run: node --test tests/*.test.js
       - name: Generate FinanceCalendar and TreasuryDirect JSON
+        env:
+          FINANCE_CALENDAR_API_KEY: ${{ secrets.FINANCE_CALENDAR_API_KEY }}
         run: node scripts/generate-macro-calendar.cjs
       - name: Commit only validated calendar data
         run: |

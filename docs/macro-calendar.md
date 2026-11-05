@@ -1,5 +1,45 @@
 # Kalendarz makro — etap 3
 
+## Naprawa po awarii 5 listopada 2026
+
+FinanceCalendar zwraca HTTP 401 `api_key_required`. Zgodnie z
+[dokumentacją dostawcy](https://www.financecalendar.com/api/economic-calendar/)
+generator obsługuje nagłówek `X-API-Key`. Klucz należy dodać jako sekret repozytorium
+`FINANCE_CALENDAR_API_KEY` (Settings → Secrets and variables → Actions).
+Workflow przekazuje go tylko do kroku generowania; nie do testów ani przeglądarki.
+Klucz nie trafia do URL, JSON-a ani żądania Treasury; przekierowania są odrzucane.
+Bez klucza FinanceCalendar pozostaje stale/unavailable; poprawne Treasury nadal działa.
+Nie zweryfikowano rzeczywistego żądania z kluczem — brak poświadczeń w tej sesji.
+
+TreasuryDirect zwraca HTTP 200, ale aktualne pola różnią się od starszych fixtures:
+
+| Starsze pole | Aktualne pole |
+| --- | --- |
+| tips | inflationProtected |
+| auctionDate | competitiveAuctionCloseDate |
+| closingTimeCompetitive | competitiveAuctionCloseTime |
+| closingTimeNoncompetitive | noncompetitiveAuctionCloseTime |
+| pdfFilenameAnnouncement | treasuryOfferingAnnouncementPressReleaseFileName |
+
+Adapter obsługuje oba warianty i odrzuca sprzeczne wartości. Zachowuje walidację
+instrumentów, CUSIP, dat, ogłoszeń i godzin. Fixture
+`tests/fixtures/treasury-upcoming-2026-11-05.json` zawiera wyłącznie potrzebne pola
+ośmiu rekordów pobranych z oficjalnego endpointu 5 listopada 2026.
+Wynik: 10Y (10.11) i 30Y (12.11), obie o 19:00 Europe/Warsaw.
+
+Przebieg [41955314393](https://github.com/SiddTMN/tylkosprawdzam/actions/runs/41955314393)
+z 05.11 pokazał `FinanceCalendar: Calendar source HTTP 401` oraz
+`TreasuryDirect: Invalid Treasury nominal flags`, lecz opublikował pusty JSON
+ze statusem success. Ostatnie sukcesy źródeł: 21.10 i 30.10.
+Nowy generator zgłasza błąd, jeśli wszystkie źródła zawodzą i nie ma już przyszłych
+wydarzeń z kopii. Zachowuje wtedy poprzednie bajty; przeglądarka nadal usuwa minione
+wiersze. Poprawna świeża pusta odpowiedź pozostaje dozwolona.
+
+Krypto jest osobnym problemem: opublikowany `crypto-auto.json` ma datę 17.10,
+trzy wydarzenia kończą się 29.10, dane ręczne są puste, a zadanie `update` w
+[przebiegu 41836378232](https://github.com/SiddTMN/tylkosprawdzam/actions/runs/41836378232)
+ma status skipped. Zmiany makro nie włączają automatyzacji krypto.
+
 FinanceCalendar pozostaje źródłem publikacji makro. Generator dołącza oficjalne
 aukcje nominalnych obligacji Treasury 2Y, 5Y, 10Y i 30Y, także reopenings.
 Nie dodaje refundingu, buybacks, osobnego kalendarza krypto, TIPS, FRN ani bonów.
@@ -107,8 +147,10 @@ generator zachowuje zwalidowane przyszłe aukcje z poprzedniego JSON-a jako stal
 jeśli ich nie ma, publikuje FinanceCalendar z Treasury=unavailable.
 Także awaria FinanceCalendar może korzystać z poprawnego wcześniejszego pliku,
 w tym schema 1, zachowując pierwotny lastSuccessAt i pozwalając odświeżyć Treasury.
-Bez wiarygodnych danych FinanceCalendar generator kończy się błędem i pozostawia
-poprzednie bajty. Uszkodzony lub wygasły plik nie jest wiarygodnym fallbackiem.
+Bez wiarygodnej kopii FinanceCalendar generator nadal publikuje poprawne Treasury,
+oznaczając FinanceCalendar jako unavailable. Całkowita awaria bez przyszłych danych
+kończy się błędem i pozostawia poprzednie bajty. Uszkodzony lub wygasły plik nie jest
+wiarygodnym fallbackiem.
 
 Zapis ma walidację przed publikacją, plik tymczasowy i atomową zmianę nazwy.
 Błąd zapisu usuwa plik tymczasowy. Minione wydarzenia są ponownie odrzucane

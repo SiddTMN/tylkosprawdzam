@@ -576,3 +576,23 @@ test("Treasury dependency is loaded once before the shared model and panel", () 
     assert.equal((html.match(/src="js\/treasury-model\.js"/g) || []).length, 1);
     assert.ok(html.indexOf('src="js/treasury-model.js"') < html.indexOf('src="js/calendar-model.js"'));
 });
+
+test("November Treasury rows render despite FinanceCalendar 401, with partial-outage metadata", async () => {
+    const { normalizeTreasury, ENDPOINT } = require("../js/treasury-model.js");
+    const { buildCombinedSnapshot } = require("../js/calendar-model.js");
+    const current = require("./fixtures/treasury-upcoming-2026-11-05.json");
+    const checkedAt = "2026-11-05T10:00:00Z", now = Date.parse(checkedAt);
+    const snapshot = buildCombinedSnapshot([], normalizeTreasury(current, now), {
+        FinanceCalendar: { endpoint: "https://www.financecalendar.com/wp-json/fc/v1/calendar",
+            status: "unavailable", checkedAt, lastSuccessAt: null },
+        TreasuryDirect: { endpoint: ENDPOINT, status: "fresh", checkedAt, lastSuccessAt: checkedAt }
+    }, now);
+    const h = harness([], { snapshot, now: checkedAt, fetch: async () => ({ ok: false, status: 401 }) });
+    await h.flush();
+    assert.deepEqual(names(h), ["US Treasury 10Y Auction", "US Treasury 30Y Auction"]);
+    assert.equal(time(h, 0).textContent, "19:00");
+    assert.equal(time(h, 1).textContent, "19:00");
+    assert.equal(h.container.getAttribute("data-stale"), "true");
+    assert.match(h.container.title, /FinanceCalendar: dane niedostępne/);
+    assert.equal(h.container.children[0].getAttribute("data-stale"), null);
+});
