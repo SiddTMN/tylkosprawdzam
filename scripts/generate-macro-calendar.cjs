@@ -5,11 +5,12 @@ const { parseSnapshot, getRange, normalizeFinanceCalendar, buildCombinedSnapshot
 const { ENDPOINT, normalizeTreasury } = require("../js/treasury-model.js");
 const FINANCE_ENDPOINT = "https://www.financecalendar.com/wp-json/fc/v1/calendar";
 
-async function fetchJson(url, fetchImpl, timeoutMs) {
+async function fetchJson(url, fetchImpl, timeoutMs, headers = {}) {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), timeoutMs);
     try {
-        const response = await fetchImpl(url, { signal: controller.signal, headers: { Accept: "application/json" } });
+        const response = await fetchImpl(url, { signal: controller.signal, redirect: "error",
+            headers: { Accept: "application/json", ...headers } });
         if (!response.ok) throw new Error("Calendar source HTTP " + response.status);
         return await response.json();
     } finally {
@@ -31,11 +32,13 @@ function financeEvents(payload) {
 
 async function generate({ now = Date.now(), fetchImpl = fetch,
     outputPath = path.join(__dirname, "../data/macro-calendar.json"), timeoutMs = 15000,
+    financeApiKey = process.env.FINANCE_CALENDAR_API_KEY,
     onWarning = () => {} } = {}) {
     const { from, to } = getRange(now);
     const previous = await readPrevious(outputPath, now);
     const results = await Promise.allSettled([
-        fetchJson(FINANCE_ENDPOINT + "?from=" + from + "&to=" + to + "&limit=100", fetchImpl, timeoutMs)
+        fetchJson(FINANCE_ENDPOINT + "?from=" + from + "&to=" + to + "&limit=100", fetchImpl, timeoutMs,
+            financeApiKey ? { "X-API-Key": financeApiKey } : {})
             .then(financeEvents),
         fetchJson(ENDPOINT, fetchImpl, timeoutMs).then(payload => normalizeTreasury(payload, now))
     ]);
@@ -56,14 +59,18 @@ async function generate({ now = Date.now(), fetchImpl = fetch,
                 lists[name] = previous.events.filter(e => (e.source || "FinanceCalendar") === name);
                 sources[name] = { endpoint, status: "stale", checkedAt, lastSuccessAt: cachedAt };
             } else {
-                if (name === "FinanceCalendar") throw result.reason;
                 lists[name] = [];
                 sources[name] = { endpoint, status: "unavailable", checkedAt, lastSuccessAt: null };
             }
             onWarning(name + ": " + result.reason.message + "; " + sources[name].status);
         }
     }
+    // Either source can recover independently, including on a clean checkout.
+    if (Object.values(sources).every(source => source.status === "unavailable"))
+        throw results[0].reason;
     const snapshot = buildCombinedSnapshot(lists.FinanceCalendar, lists.TreasuryDirect, sources, now);
+    if (!snapshot.events.length && Object.values(sources).every(source => source.status !== "fresh"))
+        throw new Error("All macro sources failed and no upcoming cached events remain");
     let temporaryPath;
     try {
         await fs.mkdir(path.dirname(outputPath), { recursive: true });

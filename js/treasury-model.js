@@ -64,14 +64,28 @@
         return (10 - sum % 10) % 10 === Number(value[8]);
     }
     function key(event) { return SOURCE + ":" + event.cusip + ":" + event.auctionDate; }
+    function sourceField(record, legacy, current) {
+        // Treasury's current API uses expanded names; keep old snapshots readable.
+        // Never silently choose between contradictory values in mixed responses.
+        if (Object.hasOwn(record, legacy) && Object.hasOwn(record, current) &&
+            record[legacy] !== record[current]) throw new Error("Conflicting Treasury field: " + current);
+        return Object.hasOwn(record, current) ? record[current] : record[legacy];
+    }
     function normalizeTreasury(data, now = Date.now()) {
         if (!Array.isArray(data) || data.length > 1000) throw new Error("Invalid Treasury envelope");
         const events = new Map();
-        for (const r of data) {
+        for (let r of data) {
             if (!r || typeof r !== "object" || Array.isArray(r) ||
                 !["Bill", "Note", "Bond", "TIPS", "FRN", "CMB"].includes(r.securityType))
                 throw new Error("Invalid Treasury security type");
             if (!["Note", "Bond"].includes(r.securityType)) continue;
+            r = { ...r,
+                tips: sourceField(r, "tips", "inflationProtected"),
+                auctionDate: sourceField(r, "auctionDate", "competitiveAuctionCloseDate"),
+                closingTimeCompetitive: sourceField(r, "closingTimeCompetitive", "competitiveAuctionCloseTime"),
+                closingTimeNoncompetitive: sourceField(r, "closingTimeNoncompetitive", "noncompetitiveAuctionCloseTime"),
+                pdfFilenameAnnouncement: sourceField(r, "pdfFilenameAnnouncement", "treasuryOfferingAnnouncementPressReleaseFileName")
+            };
             if (!["Yes", "No"].includes(r.tips) || !["Yes", "No"].includes(r.floatingRate))
                 throw new Error("Invalid Treasury nominal flags");
             if (r.tips === "Yes" || r.floatingRate === "Yes") continue;
@@ -91,6 +105,8 @@
                 (r.reopening === "No" && remainingMonths !== originalMonths))
                 throw new Error("Invalid Treasury remaining term");
             const auctionDate = civilDay(r.auctionDate);
+            if (r.noncompetitiveAuctionCloseDate && civilDay(r.noncompetitiveAuctionCloseDate) !== auctionDate)
+                throw new Error("Invalid Treasury bid deadline dates");
             const settlementDate = civilDay(r.issueDate);
             const announcementDate = civilDay(r.announcementDate);
             const maturityDate = civilDay(r.maturityDate, true);
