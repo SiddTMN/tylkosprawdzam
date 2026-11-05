@@ -5,7 +5,7 @@ const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
 const source=fs.readFileSync(path.join(__dirname,'../js/global-markets.js'),'utf8');
 
 function setup(online=true){
- const listeners={},timers=new Map();let timerId=0,retry;
+ const listeners={},timers=new Map();let timerId=0;const retries=[];
  class Element{
   constructor(){this.children=[];this.hidden=false;this.textContent='';}
   append(...children){for(const child of children){child.parentNode=this;this.children.push(child);}}
@@ -16,16 +16,18 @@ function setup(online=true){
   const host=new Element(),status=new Element();
   return {host,status,dataset:{marketSymbol:symbol},querySelector:s=>s==='.global-quote-widget'?host:status};
  });
- const panel={querySelectorAll:()=>rows,querySelector:()=>({addEventListener:(name,fn)=>{retry=fn;}})};
+ const panels=[[rows[0]],rows.slice(1)].map((panelRows,index)=>({
+  querySelectorAll:()=>panelRows,querySelector:()=>({addEventListener:(name,fn)=>{retries[index]=fn;}})
+ }));
  const navigator={onLine:online};
  vm.runInNewContext(source,{
-  document:{querySelector:()=>panel,createElement:()=>new Element()},navigator,
+  document:{querySelectorAll:()=>panels,createElement:()=>new Element()},navigator,
   window:{addEventListener:(name,fn)=>{listeners[name]=fn;}},
   setTimeout:fn=>{timers.set(++timerId,fn);return timerId;},clearTimeout:id=>timers.delete(id)
  });
  const frame=row=>{const result={contentWindow:{}};row.host.append(result);return result;};
  const message=(frame,name,origin='https://www.tradingview-widget.com')=>listeners.message({source:frame.contentWindow,origin,data:{name}});
- return {rows,listeners,timers,navigator,frame,message,retry:()=>retry(),expire:()=>{for(const [id,fn]of [...timers]){timers.delete(id);fn();}}};
+ return {rows,listeners,timers,navigator,frame,message,retry:(index)=>index===undefined?retries.forEach(fn=>fn()):retries[index](),expire:()=>{for(const [id,fn]of [...timers]){timers.delete(id);fn();}}};
 }
 
 test('official widgets use the approved symbols and stay hidden until matching-origin readiness',()=>{
@@ -73,4 +75,21 @@ test('starting offline never loads third-party scripts',()=>{
  const h=setup(false);
  h.rows.forEach(r=>{assert.equal(r.host.children.length,0);assert.equal(r.host.hidden,true);assert.match(r.status.textContent,/Brak połączenia/);});
  assert.equal(h.timers.size,0);
+});
+
+test('retrying either panel preserves the other panel widgets and ready state',()=>{
+ const h=setup(),gold=h.rows[0],index=h.rows[1];
+ const goldFrame=h.frame(gold),indexFrame=h.frame(index);
+ h.message(goldFrame,'tv-widget-ready');h.message(indexFrame,'tv-widget-ready');
+ const indexContainer=index.host.children[0];
+ h.retry(0);
+ assert.equal(index.host.children[0],indexContainer);
+ assert.equal(index.host.hidden,false);
+ assert.equal(gold.host.hidden,true);
+ const freshGold=h.frame(gold);h.message(freshGold,'tv-widget-ready');
+ const goldContainer=gold.host.children[0];
+ h.retry(1);
+ assert.equal(gold.host.children[0],goldContainer);
+ assert.equal(gold.host.hidden,false);
+ assert.equal(index.host.hidden,true);
 });
