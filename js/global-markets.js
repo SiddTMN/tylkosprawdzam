@@ -1,16 +1,17 @@
 (() => {
     'use strict';
-    const panel = document.querySelector('.global-markets-panel');
-    if (!panel) return;
+    const panels = [...document.querySelectorAll('[data-quotes-panel]')];
+    if (!panels.length) return;
     const origin = 'https://www.tradingview-widget.com';
-    const rows = [...panel.querySelectorAll('[data-market-symbol]')].map(element => ({
+    const rows = panels.flatMap(panel => [...panel.querySelectorAll('[data-market-symbol]')].map(element => ({
+        panel,
         element,
         host: element.querySelector('.global-quote-widget'),
         status: element.querySelector('.global-quote-status'),
         timer: null,
         attempt: 0,
         failed: false
-    }));
+    })));
     const unavailable = (row, message) => {
         clearTimeout(row.timer);
         row.failed = true;
@@ -64,6 +65,10 @@
     };
     window.addEventListener('offline', () => rows.forEach(row => unavailable(row, 'Brak połączenia — notowanie niedostępne.')));
     window.addEventListener('online', () => rows.forEach(load));
-    panel.querySelector('.global-markets-retry').addEventListener('click', () => rows.forEach(load));
+    panels.forEach(panel => {
+        panel.querySelector('.global-markets-retry').addEventListener('click', () => {
+            rows.filter(row => row.panel === panel).forEach(load);
+        });
+    });
     rows.forEach(load);
 })();

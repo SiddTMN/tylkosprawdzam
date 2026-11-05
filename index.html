@@ -205,6 +205,7 @@
             <!-- PULSE -->
             <div class="snapshot-panels">
                 <div class="snapshot-top-row">
+                <div class="snapshot-column">
                 <section class="panel pulse-panel">
 
                     <div class="panel-header">
@@ -240,46 +241,12 @@
 
                 </section>
 
-                <section class="panel global-markets-panel" aria-labelledby="global-markets-title">
-                    <div class="panel-header">
-                        <div>
-                            <span class="eyebrow">global markets</span>
-                            <h2 id="global-markets-title">market quotes</h2>
-                        </div>
-                    </div>
-                    <div class="global-quote" data-market-symbol="OANDA:XAUUSD">
-                        <h3>Złoto · XAU/USD</h3>
-                        <div class="global-quote-widget"></div>
-                        <p class="global-quote-status" role="status">Pobieranie notowania…</p>
-                        <p class="global-quote-details">USD / uncja trojańska · zmiana dzienna<br>OANDA · strumień dostawcy w czasie rzeczywistym</p>
-                        <a class="global-quote-source" href="https://www.tradingview.com/symbols/OANDA-XAUUSD/" target="_blank" rel="noopener noreferrer">XAU/USD by TradingView</a>
-                    </div>
-                    <div class="global-quote" data-market-symbol="FOREXCOM:SPXUSD">
-                        <h3>S&amp;P 500 · CFD</h3>
-                        <div class="global-quote-widget"></div>
-                        <p class="global-quote-status" role="status">Pobieranie notowania…</p>
-                        <p class="global-quote-details">Zamiennik indeksu · zmiana dzienna<br>FOREX.com · strumień dostawcy w czasie rzeczywistym</p>
-                        <a class="global-quote-source" href="https://www.tradingview.com/symbols/FOREXCOM-SPXUSD/" target="_blank" rel="noopener noreferrer">S&amp;P 500 CFD by TradingView</a>
-                    </div>
-                    <div class="global-quote" data-market-symbol="FOREXCOM:NSXUSD">
-                        <h3>Nasdaq 100 · CFD</h3>
-                        <div class="global-quote-widget"></div>
-                        <p class="global-quote-status" role="status">Pobieranie notowania…</p>
-                        <p class="global-quote-details">Zamiennik indeksu · zmiana dzienna<br>FOREX.com · strumień dostawcy w czasie rzeczywistym</p>
-                        <a class="global-quote-source" href="https://www.tradingview.com/symbols/FOREXCOM-NSXUSD/" target="_blank" rel="noopener noreferrer">Nasdaq 100 CFD by TradingView</a>
-                    </div>
-                    <p class="global-markets-note">Ostatnie dostępne notowania; czas aktualizacji nieudostępniony. Po zamknięciu sesji: ostatnia cena sesji. Brak gwarancji bieżącej wyceny.</p>
-                    <button class="global-markets-retry" type="button">Ponów notowania</button>
-                    <noscript><p class="global-markets-note">Notowania wymagają JavaScript i połączenia z TradingView.</p></noscript>
-                </section>
-                </div>
-
                 <script src="js/dxy.js"></script>
-                <section class="panel dxy-panel">
+                <section class="panel dxy-panel" data-quotes-panel aria-labelledby="macro-quotes-title">
                     <div class="panel-header">
                         <div>
                             <span class="eyebrow">macro</span>
-                            <h2>dollar index</h2>
+                            <h2 id="macro-quotes-title">dollar &amp; gold</h2>
                         </div>
                     </div>
                     <div class="dxy-content">
@@ -301,7 +268,45 @@
                         </div>
                         <div class="metric-details dxy-source"><a href="https://www.tradingview.com/symbols/CAPITALCOM-DXY/" target="_blank" rel="noopener noreferrer">DXY CFD · Capital.com / TradingView</a></div>
                     </div>
+                    <div class="global-quote" data-market-symbol="OANDA:XAUUSD">
+                        <h3>Złoto · XAU/USD</h3>
+                        <div class="global-quote-widget"></div>
+                        <p class="global-quote-status" role="status">Pobieranie notowania…</p>
+                        <a class="global-quote-source" href="https://www.tradingview.com/symbols/OANDA-XAUUSD/" target="_blank" rel="noopener noreferrer">OANDA · USD / uncja trojańska · TradingView</a>
+                    </div>
+                    <p class="global-markets-note">Ostatnie dostępne notowania; czas aktualizacji nieudostępniony. Po zamknięciu sesji: ostatnia cena sesji. Brak gwarancji bieżącej wyceny.</p>
+                    <button class="global-markets-retry" type="button">Ponów notowanie złota</button>
+                    <noscript><p class="global-markets-note">Notowania wymagają JavaScript i połączenia z TradingView.</p></noscript>
                 </section>
+                </div>
+
+                <section class="panel global-markets-panel" data-quotes-panel aria-labelledby="global-markets-title">
+                    <div class="panel-header">
+                        <div>
+                            <span class="eyebrow">global markets</span>
+                            <h2 id="global-markets-title">market quotes</h2>
+                        </div>
+                    </div>
+                    <div class="global-quote" data-market-symbol="FOREXCOM:SPXUSD">
+                        <h3>S&amp;P 500 · CFD</h3>
+                        <div class="global-quote-widget"></div>
+                        <p class="global-quote-status" role="status">Pobieranie notowania…</p>
+                        <p class="global-quote-details">Zamiennik indeksu · zmiana dzienna<br>FOREX.com · strumień dostawcy w czasie rzeczywistym</p>
+                        <a class="global-quote-source" href="https://www.tradingview.com/symbols/FOREXCOM-SPXUSD/" target="_blank" rel="noopener noreferrer">S&amp;P 500 CFD by TradingView</a>
+                    </div>
+                    <div class="global-quote" data-market-symbol="FOREXCOM:NSXUSD">
+                        <h3>Nasdaq 100 · CFD</h3>
+                        <div class="global-quote-widget"></div>
+                        <p class="global-quote-status" role="status">Pobieranie notowania…</p>
+                        <p class="global-quote-details">Zamiennik indeksu · zmiana dzienna<br>FOREX.com · strumień dostawcy w czasie rzeczywistym</p>
+                        <a class="global-quote-source" href="https://www.tradingview.com/symbols/FOREXCOM-NSXUSD/" target="_blank" rel="noopener noreferrer">Nasdaq 100 CFD by TradingView</a>
+                    </div>
+                    <p class="global-markets-note">Ostatnie dostępne notowania; czas aktualizacji nieudostępniony. Po zamknięciu sesji: ostatnia cena sesji. Brak gwarancji bieżącej wyceny.</p>
+                    <button class="global-markets-retry" type="button">Ponów notowania</button>
+                    <noscript><p class="global-markets-note">Notowania wymagają JavaScript i połączenia z TradingView.</p></noscript>
+                </section>
+                </div>
+
             </div>
 
         </main>

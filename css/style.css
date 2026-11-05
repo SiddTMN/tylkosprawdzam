@@ -633,9 +633,20 @@ body {
     align-items: start;
 }
 
-.snapshot-top-row > .panel { min-width: 0; }
+.snapshot-top-row > * { min-width: 0; }
+.snapshot-column { display: flex; flex-direction: column; gap: 12px; }
 .snapshot-top-row .panel-header { padding: 14px 12px; }
 .snapshot-top-row .metric { padding: 15px 12px; gap: 8px; }
+.snapshot-top-row .dxy-content { padding: 6px 12px; border-bottom: 1px solid var(--border); }
+.snapshot-top-row .dxy-source { margin-top: 5px; }
+
+/* Compact the combined quotes card without changing Snapshot or widget sizes. */
+.snapshot-top-row .dxy-panel .panel-header { padding: 8px 12px; }
+.dxy-panel .panel-header > div { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.dxy-panel .panel-header h2 { margin: 0; font-size: 14px; }
+.dxy-panel .global-quote { padding-block: 6px; }
+.dxy-panel .global-markets-note { margin-block: 6px; }
+.dxy-panel .global-markets-retry { margin-bottom: 8px; }
 
 .global-quote { padding: 10px 12px; border-bottom: 1px solid var(--border); }
 .global-quote h3 { margin: 0 0 6px; font-size: 12px; font-weight: 550; }
@@ -670,7 +681,7 @@ body {
 
 /* Keep each quote legible in the narrower desktop sidebar and on phones. */
 @container (max-width: 580px) {
-    .snapshot-top-row > .panel { grid-column: 1 / -1; }
+    .snapshot-top-row > * { grid-column: 1 / -1; }
 }
 
 .dxy-content {
