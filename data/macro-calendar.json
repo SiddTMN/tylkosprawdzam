@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-11-10T17:50:04.237Z",
+  "generatedAt": "2026-11-10T23:19:44.390Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,43 +12,17 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-11-10T17:50:04.237Z",
+      "checkedAt": "2026-11-10T23:19:44.390Z",
       "lastSuccessAt": "2026-10-21T22:20:33.798Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-11-10T17:50:04.237Z",
+      "checkedAt": "2026-11-10T23:19:44.390Z",
       "lastSuccessAt": "2026-11-06T15:02:29.541Z"
     }
   },
   "events": [
-    {
-      "source": "TreasuryDirect",
-      "id": "TreasuryDirect:91282CRX1:2026-11-10",
-      "name": "US Treasury 10Y Auction",
-      "category": "TreasuryDirect · potwierdzona",
-      "impact": "high",
-      "kind": "timed",
-      "sortAt": 1794333600000,
-      "expiresAt": 1794333600000,
-      "cusip": "91282CRX1",
-      "securityType": "Note",
-      "originalTerm": "10-Year",
-      "remainingTerm": "10-Year",
-      "reopening": false,
-      "auctionDate": "2026-11-10",
-      "settlementDate": "2026-11-16",
-      "announcementDate": "2026-11-04",
-      "maturityDate": "2036-11-15",
-      "confirmation": "announced",
-      "timeZone": "America/New_York",
-      "timeBasis": "competitive-bid-close",
-      "competitiveClose": "13:00",
-      "noncompetitiveClose": "12:00",
-      "offeringAmount": "42000000000",
-      "announcementUrl": "https://www.treasurydirect.gov/instit/annceresult/press/preanre/2026/A_20261104_2.pdf"
-    },
     {
       "source": "TreasuryDirect",
       "id": "TreasuryDirect:912810UY2:2026-11-12",
