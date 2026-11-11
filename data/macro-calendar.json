@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-11-11T06:17:00.256Z",
+  "generatedAt": "2026-11-11T14:30:22.271Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -11,18 +11,117 @@
   "sources": {
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
-      "status": "stale",
-      "checkedAt": "2026-11-11T06:17:00.256Z",
-      "lastSuccessAt": "2026-10-21T22:20:33.798Z"
+      "status": "fresh",
+      "checkedAt": "2026-11-11T14:30:22.271Z",
+      "lastSuccessAt": "2026-11-11T14:30:22.271Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-11-11T06:17:00.256Z",
+      "checkedAt": "2026-11-11T14:30:22.271Z",
       "lastSuccessAt": "2026-11-06T15:02:29.541Z"
     }
   },
   "events": [
+    {
+      "name": "Germany CPI",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "all-day",
+      "sortAt": 1794351600000,
+      "expiresAt": 1794438000000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "South Korea Employment:",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "unknown-time",
+      "sortAt": 1794351600000,
+      "expiresAt": 1794438000000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "India Consumer Price Index:",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "unknown-time",
+      "sortAt": 1794438000000,
+      "expiresAt": 1794524400000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Japan Trade Statistics 2025 (final)",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1794443400000,
+      "expiresAt": 1794443400000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "GDP first quarterly estimate, UK: July to",
+      "category": "economic-indicators",
+      "impact": "high",
+      "kind": "timed",
+      "sortAt": 1794466800000,
+      "expiresAt": 1794466800000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Index of Production, UK:",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1794466800000,
+      "expiresAt": 1794466800000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "UK Trade:",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1794466800000,
+      "expiresAt": 1794466800000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "UK GDP",
+      "category": "economic-indicators",
+      "impact": "high",
+      "kind": "timed",
+      "sortAt": 1794466800000,
+      "expiresAt": 1794466800000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Jobless claims",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1794490200000,
+      "expiresAt": 1794490200000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Existing Home Sales",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1794495600000,
+      "expiresAt": 1794495600000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "EIA Weekly Petroleum Status Report",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1794502800000,
+      "expiresAt": 1794502800000,
+      "source": "FinanceCalendar"
+    },
     {
       "source": "TreasuryDirect",
       "id": "TreasuryDirect:912810UY2:2026-11-12",
@@ -48,6 +147,78 @@
       "noncompetitiveClose": "12:00",
       "offeringAmount": "25000000000",
       "announcementUrl": "https://www.treasurydirect.gov/instit/annceresult/press/preanre/2026/A_20261104_3.pdf"
+    },
+    {
+      "name": "Eurozone GDP Flash",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "all-day",
+      "sortAt": 1794524400000,
+      "expiresAt": 1794610800000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "South Korea Trade Prices and Indices:",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "unknown-time",
+      "sortAt": 1794524400000,
+      "expiresAt": 1794610800000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "South Korea Monetary and Liquidity Aggregates:",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "unknown-time",
+      "sortAt": 1794524400000,
+      "expiresAt": 1794610800000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Malaysia Wholesale and Retail Trade: Sep 2026",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1794542400000,
+      "expiresAt": 1794542400000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Eurozone International Trade",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1794564000000,
+      "expiresAt": 1794564000000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "Core PPI",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1794576600000,
+      "expiresAt": 1794576600000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "PPI",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1794576600000,
+      "expiresAt": 1794576600000,
+      "source": "FinanceCalendar"
+    },
+    {
+      "name": "EIA Weekly Natural Gas Storage Report",
+      "category": "economic-indicators",
+      "impact": "medium",
+      "kind": "timed",
+      "sortAt": 1794583800000,
+      "expiresAt": 1794583800000,
+      "source": "FinanceCalendar"
     }
   ]
 }
