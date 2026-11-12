@@ -1,46 +1,28 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-11-11T21:56:56.573Z",
+  "generatedAt": "2026-11-12T02:58:18.577Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
-    "from": "2026-11-11",
-    "to": "2026-11-25"
+    "from": "2026-11-12",
+    "to": "2026-11-26"
   },
   "sources": {
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-11-11T21:56:56.573Z",
+      "checkedAt": "2026-11-12T02:58:18.577Z",
       "lastSuccessAt": "2026-11-11T14:30:22.271Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-11-11T21:56:56.573Z",
+      "checkedAt": "2026-11-12T02:58:18.577Z",
       "lastSuccessAt": "2026-11-06T15:02:29.541Z"
     }
   },
   "events": [
-    {
-      "name": "Germany CPI",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "all-day",
-      "sortAt": 1794351600000,
-      "expiresAt": 1794438000000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "South Korea Employment:",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "unknown-time",
-      "sortAt": 1794351600000,
-      "expiresAt": 1794438000000,
-      "source": "FinanceCalendar"
-    },
     {
       "name": "India Consumer Price Index:",
       "category": "economic-indicators",
@@ -48,15 +30,6 @@
       "kind": "unknown-time",
       "sortAt": 1794438000000,
       "expiresAt": 1794524400000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Japan Trade Statistics 2025 (final)",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1794443400000,
-      "expiresAt": 1794443400000,
       "source": "FinanceCalendar"
     },
     {
