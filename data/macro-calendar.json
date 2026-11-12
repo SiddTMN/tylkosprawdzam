@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-11-12T11:05:52.206Z",
+  "generatedAt": "2026-11-12T18:55:04.474Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,14 +12,14 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-11-12T11:05:52.206Z",
+      "checkedAt": "2026-11-12T18:55:04.474Z",
       "lastSuccessAt": "2026-11-11T14:30:22.271Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
-      "status": "stale",
-      "checkedAt": "2026-11-12T11:05:52.206Z",
-      "lastSuccessAt": "2026-11-06T15:02:29.541Z"
+      "status": "fresh",
+      "checkedAt": "2026-11-12T18:55:04.474Z",
+      "lastSuccessAt": "2026-11-12T18:55:04.474Z"
     }
   },
   "events": [
@@ -31,59 +31,6 @@
       "sortAt": 1794438000000,
       "expiresAt": 1794524400000,
       "source": "FinanceCalendar"
-    },
-    {
-      "name": "Jobless claims",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1794490200000,
-      "expiresAt": 1794490200000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Existing Home Sales",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1794495600000,
-      "expiresAt": 1794495600000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "EIA Weekly Petroleum Status Report",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1794502800000,
-      "expiresAt": 1794502800000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "source": "TreasuryDirect",
-      "id": "TreasuryDirect:912810UY2:2026-11-12",
-      "name": "US Treasury 30Y Auction",
-      "category": "TreasuryDirect · potwierdzona",
-      "impact": "high",
-      "kind": "timed",
-      "sortAt": 1794506400000,
-      "expiresAt": 1794506400000,
-      "cusip": "912810UY2",
-      "securityType": "Bond",
-      "originalTerm": "30-Year",
-      "remainingTerm": "30-Year",
-      "reopening": false,
-      "auctionDate": "2026-11-12",
-      "settlementDate": "2026-11-16",
-      "announcementDate": "2026-11-04",
-      "maturityDate": "2056-11-15",
-      "confirmation": "announced",
-      "timeZone": "America/New_York",
-      "timeBasis": "competitive-bid-close",
-      "competitiveClose": "13:00",
-      "noncompetitiveClose": "12:00",
-      "offeringAmount": "25000000000",
-      "announcementUrl": "https://www.treasurydirect.gov/instit/annceresult/press/preanre/2026/A_20261104_3.pdf"
     },
     {
       "name": "Eurozone GDP Flash",
