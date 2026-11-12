@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-11-12T02:58:18.577Z",
+  "generatedAt": "2026-11-12T11:05:52.206Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,13 +12,13 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-11-12T02:58:18.577Z",
+      "checkedAt": "2026-11-12T11:05:52.206Z",
       "lastSuccessAt": "2026-11-11T14:30:22.271Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "stale",
-      "checkedAt": "2026-11-12T02:58:18.577Z",
+      "checkedAt": "2026-11-12T11:05:52.206Z",
       "lastSuccessAt": "2026-11-06T15:02:29.541Z"
     }
   },
@@ -30,42 +30,6 @@
       "kind": "unknown-time",
       "sortAt": 1794438000000,
       "expiresAt": 1794524400000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "GDP first quarterly estimate, UK: July to",
-      "category": "economic-indicators",
-      "impact": "high",
-      "kind": "timed",
-      "sortAt": 1794466800000,
-      "expiresAt": 1794466800000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Index of Production, UK:",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1794466800000,
-      "expiresAt": 1794466800000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "UK Trade:",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1794466800000,
-      "expiresAt": 1794466800000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "UK GDP",
-      "category": "economic-indicators",
-      "impact": "high",
-      "kind": "timed",
-      "sortAt": 1794466800000,
-      "expiresAt": 1794466800000,
       "source": "FinanceCalendar"
     },
     {
