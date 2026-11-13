@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-11-13T07:56:44.385Z",
+  "generatedAt": "2026-11-13T16:21:55.592Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -11,80 +11,16 @@
   "sources": {
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
-      "status": "stale",
-      "checkedAt": "2026-11-13T07:56:44.385Z",
-      "lastSuccessAt": "2026-11-11T14:30:22.271Z"
+      "status": "fresh",
+      "checkedAt": "2026-11-13T16:21:55.592Z",
+      "lastSuccessAt": "2026-11-13T16:21:55.592Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
-      "status": "fresh",
-      "checkedAt": "2026-11-13T07:56:44.385Z",
+      "status": "stale",
+      "checkedAt": "2026-11-13T16:21:55.592Z",
       "lastSuccessAt": "2026-11-13T07:56:44.385Z"
     }
   },
-  "events": [
-    {
-      "name": "Eurozone GDP Flash",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "all-day",
-      "sortAt": 1794524400000,
-      "expiresAt": 1794610800000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "South Korea Trade Prices and Indices:",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "unknown-time",
-      "sortAt": 1794524400000,
-      "expiresAt": 1794610800000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "South Korea Monetary and Liquidity Aggregates:",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "unknown-time",
-      "sortAt": 1794524400000,
-      "expiresAt": 1794610800000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Eurozone International Trade",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1794564000000,
-      "expiresAt": 1794564000000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Core PPI",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1794576600000,
-      "expiresAt": 1794576600000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "PPI",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1794576600000,
-      "expiresAt": 1794576600000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "EIA Weekly Natural Gas Storage Report",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1794583800000,
-      "expiresAt": 1794583800000,
-      "source": "FinanceCalendar"
-    }
-  ]
+  "events": []
 }
