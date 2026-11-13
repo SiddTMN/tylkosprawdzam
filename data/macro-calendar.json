@@ -1,37 +1,28 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-11-12T18:55:04.474Z",
+  "generatedAt": "2026-11-13T00:21:59.236Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
-    "from": "2026-11-12",
-    "to": "2026-11-26"
+    "from": "2026-11-13",
+    "to": "2026-11-27"
   },
   "sources": {
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-11-12T18:55:04.474Z",
+      "checkedAt": "2026-11-13T00:21:59.236Z",
       "lastSuccessAt": "2026-11-11T14:30:22.271Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "fresh",
-      "checkedAt": "2026-11-12T18:55:04.474Z",
-      "lastSuccessAt": "2026-11-12T18:55:04.474Z"
+      "checkedAt": "2026-11-13T00:21:59.236Z",
+      "lastSuccessAt": "2026-11-13T00:21:59.236Z"
     }
   },
   "events": [
-    {
-      "name": "India Consumer Price Index:",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "unknown-time",
-      "sortAt": 1794438000000,
-      "expiresAt": 1794524400000,
-      "source": "FinanceCalendar"
-    },
     {
       "name": "Eurozone GDP Flash",
       "category": "economic-indicators",
