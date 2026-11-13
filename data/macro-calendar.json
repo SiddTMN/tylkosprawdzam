@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-11-13T00:21:59.236Z",
+  "generatedAt": "2026-11-13T07:56:44.385Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,14 +12,14 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "stale",
-      "checkedAt": "2026-11-13T00:21:59.236Z",
+      "checkedAt": "2026-11-13T07:56:44.385Z",
       "lastSuccessAt": "2026-11-11T14:30:22.271Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "fresh",
-      "checkedAt": "2026-11-13T00:21:59.236Z",
-      "lastSuccessAt": "2026-11-13T00:21:59.236Z"
+      "checkedAt": "2026-11-13T07:56:44.385Z",
+      "lastSuccessAt": "2026-11-13T07:56:44.385Z"
     }
   },
   "events": [
@@ -48,15 +48,6 @@
       "kind": "unknown-time",
       "sortAt": 1794524400000,
       "expiresAt": 1794610800000,
-      "source": "FinanceCalendar"
-    },
-    {
-      "name": "Malaysia Wholesale and Retail Trade: Sep 2026",
-      "category": "economic-indicators",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1794542400000,
-      "expiresAt": 1794542400000,
       "source": "FinanceCalendar"
     },
     {
