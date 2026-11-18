@@ -2,16 +2,14 @@
 // The production artifact is an allowlist, never a recursive repository copy.
 const fs=require('node:fs/promises'),path=require('node:path');
 const {constants}=require('node:fs');
-const {validateFile}=require('./update-crypto-calendar.cjs');
+const crypto=require('../js/crypto-calendar-model.js');
 const macro=require('../js/calendar-model.js');
 const ROOT=path.resolve(__dirname,'..');
 const PUBLIC_FILES=Object.freeze([
  'index.html','css/style.css',
  'js/app.js','js/treasury-model.js','js/calendar-model.js','js/calendar.js',
  'js/crypto-calendar-model.js','js/crypto-calendar.js','js/news.js','js/snapshot.js','js/dxy.js','js/global-markets.js',
- 'data/macro-calendar.json','data/crypto-auto.json','data/crypto-manual.json',
- 'data/crypto-licenses/NOTICE.txt','data/crypto-licenses/eth-pm-license.txt',
- 'data/crypto-licenses/eth-eips-license.txt','data/crypto-licenses/xlm-docs-license.txt'
+ 'data/macro-calendar.json','data/crypto-manual.json'
 ]);
 async function verifyPagesSource({env=process.env,fetchImpl=fetch}={}){
  if(!env.GH_TOKEN||!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(env.GITHUB_REPOSITORY||''))throw new Error('Pages source check requires GitHub token and repository');
@@ -26,8 +24,8 @@ async function verifyPagesSource({env=process.env,fetchImpl=fetch}={}){
 }
 async function buildPages({root=ROOT,outputPath=path.join(ROOT,'_site'),now=Date.now()}={}){
  root=path.resolve(root);outputPath=path.resolve(outputPath);
- // Validate the actual files that will be copied, including manual/auto conflicts.
- await validateFile(path.join(root,'data/crypto-auto.json'),now,path.join(root,'data/crypto-manual.json'));
+ // Only the manual crypto dataset is published; archived collectors are independent.
+ crypto.parseDataset(JSON.parse(await fs.readFile(path.join(root,'data/crypto-manual.json'),'utf8')),'manual',now);
  macro.parseSnapshot(JSON.parse(await fs.readFile(path.join(root,'data/macro-calendar.json'),'utf8')),now);
  for(const file of PUBLIC_FILES)if(!(await fs.lstat(path.join(root,file))).isFile())throw new Error('Public file must be a regular file: '+file);
  try{if((await fs.readdir(outputPath)).length)throw new Error('Pages output must be empty; existing artifacts are preserved');}

@@ -32,96 +32,85 @@ class Element {
 
 
 const verified='2026-10-11T12:00:00.000Z';
-function fixture(token='ETH',at='2026-10-15T14:00:00.000Z',sourceId='test-source'){
- return {id:token+':'+sourceId+':'+at,assets:[token],period:{precision:'day',date:M.day(Date.parse(at))},startsAt:at,title:'Fixture only',description:'Fixture only description',confidence:'confirmed',status:'planned',origin:'auto',sourceId,sourceUrl:'https://example.org/event',verifiedAt:verified,license:'CC0-1.0',licenseUrl:'https://example.org/license'};
+function fixture(token='ETH',at='2026-10-15T14:00:00.000Z'){
+ return {id:token+':'+at,assets:[token],period:{precision:'day',date:M.day(Date.parse(at))},startsAt:at,title:'Fixture only',description:'Fixture only description',confidence:'confirmed',status:'planned',origin:'manual',sourceUrl:'https://example.org/event',verifiedAt:verified};
 }
-function snapshot(events=[fixture()],status='fresh'){
- return {schemaVersion:2,origin:'auto',generatedAt:verified,events,sources:{'test-source':{name:'Fixture source',url:'https://example.org/feed',status,verifiedAt:status==='unavailable'?null:verified,checkedAt:verified,rights:{automatedAccess:true,publicReuse:true,license:'CC0-1.0',licenseUrl:'https://example.org/license',reviewedAt:'2026-10-11'}}}};
-}
+const snapshot=(events=[])=>({schemaVersion:2,origin:'manual',events});
 function harness(initial,options={}){
- let now=Date.parse(options.now||verified),payload=initial,manual=options.manual||{schemaVersion:2,origin:'manual',events:[]};const container=new Element('div'),note=new Element('p'),intervals=[],timers=new Map(),requests=[],warnings=[];let tid=0;
+ let now=Date.parse(options.now||verified),payload=initial;const container=new Element('div'),note=new Element('p'),intervals=[],timers=new Map(),requests=[],warnings=[];let tid=0;
  class Clock extends Date{constructor(...a){super(...(a.length?a:[now]));}static now(){return now;}}
- const context=vm.createContext({Date:Clock,Intl,URL,AbortController,document:{getElementById:id=>id==='crypto-calendar-events'?options.missing?null:container:id==='crypto-calendar-status'?note:null,createElement:tag=>new Element(tag)},fetch:async(url,request)=>{requests.push({url,...request});const selected=url.endsWith('crypto-manual.json')?manual:payload;if(selected instanceof Error)throw selected;const data=typeof selected==='function'?await selected(request):selected;return {ok:true,json:async()=>structuredClone(data)};},console:{warn:(...a)=>warnings.push(a)},setInterval:(callback,ms)=>{intervals.push({callback,ms});},setTimeout:(callback,ms)=>{timers.set(++tid,{callback,ms});return tid;},clearTimeout:id=>timers.delete(id)});
+ const context=vm.createContext({Date:Clock,Intl,URL,AbortController,document:{getElementById:id=>id==='crypto-calendar-events'?options.missing?null:container:id==='crypto-calendar-status'?note:null,createElement:tag=>new Element(tag)},fetch:async(url,request)=>{requests.push({url,...request});assert.equal(url,'./data/crypto-manual.json');if(payload instanceof Error)throw payload;const data=typeof payload==='function'?await payload(request):payload;return {ok:options.httpStatus===undefined||options.httpStatus===200,status:options.httpStatus||200,json:async()=>structuredClone(data)};},console:{warn:(...a)=>warnings.push(a)},setInterval:(callback,ms)=>{intervals.push({callback,ms});},setTimeout:(callback,ms)=>{timers.set(++tid,{callback,ms});return tid;},clearTimeout:id=>timers.delete(id)});
  vm.runInContext(modelSource,context);vm.runInContext(source,context);const flush=()=>new Promise(r=>setImmediate(r));
- return {container,note,requests,warnings,intervals,timers,flush,setPayload:p=>{payload=p;},setManual:p=>{manual=p;},setNow:n=>{now=Date.parse(n);},refresh:async()=>{await intervals[0].callback();await flush();}};
+ return {container,note,requests,warnings,intervals,timers,flush,setPayload:p=>{payload=p;},setNow:n=>{now=Date.parse(n);},refresh:async()=>{await intervals[0].callback();await flush();}};
 }
-test('frontend renders fewer than five real rows, source links, factual descriptions and Warsaw DST',async()=>{
+
+test('manual frontend preserves row layout, source links, Warsaw DST and fetches only manual JSON',async()=>{
  const h=harness(snapshot([fixture(),fixture('ETH','2026-10-29T14:00:00.000Z')]));await h.flush();assert.equal(h.container.children.length,2);
  assert.equal(h.container.children[0].className,'calendar-event');assert.equal(h.container.children[0].children[0].children[1].textContent,'16:00');assert.equal(h.container.children[1].children[0].children[1].textContent,'15:00');
- const link=h.container.children[0].children[1].children[0].children[0];assert.equal(link.href,'https://example.org/event');assert.equal(link.rel,'noopener noreferrer');assert.match(h.note.textContent,/weryfikacja/);assert.equal(h.requests[0].url,'./data/crypto-auto.json');assert.equal(h.requests[1].url,'./data/crypto-manual.json');assert.equal(h.requests[0].cache,'no-store');assert.equal(h.timers.size,0);
+ const link=h.container.children[0].children[1].children[0].children[0];assert.equal(link.href,'https://example.org/event');assert.equal(link.rel,'noopener noreferrer');
+ assert.equal(h.note.textContent,'wpisy ręczne · czas: Warszawa');assert.equal(h.requests.length,1);assert.equal(h.requests[0].cache,'no-store');assert.equal(h.timers.size,0);
 });
-test('healthy empty response is distinct from unavailable/stale empty response',async()=>{
- const empty=harness(snapshot([]));await empty.flush();assert.match(empty.container.textContent,/brak nadchodzących/);
- for(const status of ['stale','unavailable']){const h=harness(snapshot([],status));await h.flush();assert.match(h.container.textContent,/niedostępny/);assert.doesNotMatch(h.container.textContent,/brak nadchodzących/);}
+
+test('empty manual file is healthy and distinct from an unreadable file',async()=>{
+ const h=harness(snapshot());await h.flush();assert.equal(h.container.textContent,'brak zaplanowanych wydarzeń krypto');assert.equal(h.container.getAttribute('data-stale'),'false');
+ assert.doesNotMatch(h.note.textContent,/automat|błąd|licencje|nieświeże/);
+ h.setPayload(new Error('offline'));await h.refresh();assert.match(h.container.textContent,/niedostępny/);assert.match(h.note.textContent,/błąd odczytu/);
+ h.setPayload(snapshot());await h.refresh();assert.equal(h.container.textContent,'brak zaplanowanych wydarzeń krypto');assert.equal(h.container.getAttribute('data-stale'),'false');
 });
-test('JSON network failure retains only future rows with visible original verification, and recovery clears stale marks',async()=>{
- const h=harness(snapshot([fixture()]));await h.flush();h.setPayload(new Error('offline'));await h.refresh();assert.equal(h.container.children.length,1);assert.equal(h.container.getAttribute('data-stale'),'true');assert.match(h.container.textContent,/nieświeże dane.*11.10.2026/);
- h.setPayload(snapshot([fixture()]));await h.refresh();assert.equal(h.container.getAttribute('data-stale'),'false');assert.doesNotMatch(h.container.textContent,/nieświeże/);
+
+test('failed refresh retains future manual rows, expires past rows, and recovery clears errors',async()=>{
+ const h=harness(snapshot([fixture()]));await h.flush();h.setPayload(new Error('offline'));await h.refresh();assert.equal(h.container.children.length,1);assert.equal(h.container.getAttribute('data-stale'),'true');assert.match(h.container.textContent,/nie udało się odświeżyć/);
+ h.setPayload(snapshot([fixture()]));await h.refresh();assert.equal(h.container.getAttribute('data-stale'),'false');assert.doesNotMatch(h.container.textContent,/nie udało się/);
  h.setPayload(new Error('offline'));h.setNow('2026-10-15T14:01:00Z');await h.refresh();assert.match(h.container.textContent,/niedostępny/);assert.doesNotMatch(h.container.textContent,/Fixture only/);
 });
-test('initial failure, malformed data and expired snapshot show an error, never synthetic events',async()=>{
- for(const payload of [new Error('offline'),{},snapshot([{...fixture(),sourceUrl:'javascript:alert(1)'}])]){const h=harness(payload);await h.flush();assert.match(h.container.textContent,/niedostępny/);assert.equal(h.warnings.length,1);}
- const expired=harness(snapshot(),{now:'2026-11-10T12:00:00Z'});await expired.flush();assert.match(expired.container.textContent,/niedostępny/);assert.doesNotMatch(expired.container.textContent,/Fixture only/);
+
+test('network, HTTP, JSON, schema and unsafe source errors never create synthetic rows',async()=>{
+ for(const payload of [new Error('offline'),{},snapshot([{...fixture(),sourceUrl:'javascript:alert(1)'}]),{schemaVersion:2,origin:'auto',events:[]},()=>{throw new SyntaxError('Invalid JSON');}]){
+  const h=harness(payload);await h.flush();assert.match(h.container.textContent,/niedostępny/);assert.equal(h.warnings.length,1);assert.equal(h.container.getAttribute('aria-busy'),'false');
+ }
+ const h=harness(snapshot(),{httpStatus:404});await h.flush();assert.match(h.container.textContent,/niedostępny/);
 });
-test('new token rows require no renderer changes and source text is rendered safely',async()=>{
+
+test('manual entries do not expire based on verification age',async()=>{
+ const h=harness(snapshot([fixture()]),{now:'2026-10-14T12:00:00Z'});await h.flush();assert.equal(h.container.getAttribute('data-stale'),'false');assert.doesNotMatch(h.note.textContent,/nieświeże|automat/);
+});
+
+test('supported assets and source text render safely as literal text',async()=>{
  const e={...fixture('BONK'),title:'<img src=x onerror=alert(1)>',description:'<script>fixture</script>'};const h=harness(snapshot([e]));await h.flush();assert.match(h.container.textContent,/BONK \(Bonk\) — <img/);assert.match(h.container.textContent,/<script>fixture/);assert.equal(h.warnings.length,0);
 });
-test('staleness is recalculated against source verification even when JSON fetch succeeds',async()=>{
- const h=harness(snapshot(),{now:'2026-10-13T01:00:00Z'});await h.flush();assert.equal(h.container.getAttribute('data-stale'),'true');assert.match(h.container.textContent,/nieświeże dane/);
+
+test('refresh is single-flight and timeout releases busy state and permits recovery',async()=>{
+ const h=harness(request=>new Promise((resolve,reject)=>request.signal.addEventListener('abort',()=>reject(new Error('timeout')),{once:true})));await h.flush();const pending=h.refresh();assert.equal(h.requests.length,1);[...h.timers.values()][0].callback();await pending;await h.flush();assert.match(h.container.textContent,/niedostępny/);assert.equal(h.container.getAttribute('aria-busy'),'false');assert.equal(h.timers.size,0);
+ h.setPayload(snapshot([fixture()]));await h.refresh();assert.equal(h.container.children.length,1);assert.equal(h.container.getAttribute('data-stale'),'false');
 });
-test('refresh is single-flight and timeout releases busy state',async()=>{
- const h=harness(request=>new Promise((resolve,reject)=>request.signal.addEventListener('abort',()=>reject(new Error('timeout')),{once:true})));await h.flush();const pending=h.refresh();assert.equal(h.requests.length,2);[...h.timers.values()][0].callback();await pending;await h.flush();assert.match(h.container.textContent,/niedostępny/);assert.equal(h.container.getAttribute('aria-busy'),'false');assert.equal(h.timers.size,0);
-});
+
 test('missing crypto container does not make requests or start timers',async()=>{
  const h=harness(snapshot(),{missing:true});await h.flush();assert.equal(h.requests.length,0);assert.equal(h.intervals.length,0);
 });
-test('index has one model and renderer, no static test events, and retains macro scripts',()=>{
- const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');assert.equal((html.match(/src="js\/crypto-calendar.js"/g)||[]).length,1);assert.ok(html.indexOf('src="js/crypto-calendar-model.js"')<html.indexOf('src="js/crypto-calendar.js"'));assert.equal((html.match(/src="js\/calendar.js"/g)||[]).length,1);assert.doesNotMatch(html,/Ethereum · test|Polkadot · test|Aethir · test|BONK — test/);
+
+test('index has one model and renderer, manual status and retains macro scripts',()=>{
+ const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');assert.equal((html.match(/src="js\/crypto-calendar.js"/g)||[]).length,1);assert.ok(html.indexOf('src="js/crypto-calendar-model.js"')<html.indexOf('src="js/crypto-calendar.js"'));assert.equal((html.match(/src="js\/calendar.js"/g)||[]).length,1);assert.match(html,/wpisy ręczne · czas: Warszawa/);assert.doesNotMatch(html,/automat \+ wpisy ręczne/);
 });
 
-test('production calendar keeps the existing layout and identifies automatic factual updates',async()=>{
- const data=snapshot();
- const h=harness(data);await h.flush();
- assert.equal(h.container.children.length,1);assert.equal(h.container.children[0].className,'calendar-event');
- assert.match(h.note.textContent,/automat \+ wpisy ręczne/);
- assert.doesNotMatch(h.note.textContent,/wersja lokalna/);
+test('manual month/week/range, multiple assets, cancellation and certainty render without a guessed time',async()=>{
+ const e={...fixture('ATH'),assets:['ATH','BONK'],period:{precision:'month',month:'2026-10'},startsAt:null,confidence:'speculative',status:'cancelled'};
+ const h=harness(snapshot([e]));await h.flush();assert.match(h.container.textContent,/październik 2026/);assert.match(h.container.textContent,/Aethir/);assert.match(h.container.textContent,/spekulacyjne/);assert.match(h.container.textContent,/odwołane/);assert.match(h.container.textContent,/wpis ręczny/);assert.equal(h.container.children[0].children[0].children[1].textContent,'—');
+ h.setPayload(snapshot([{...e,period:{precision:'week',from:'2026-10-12',to:'2026-10-18'},status:'postponed'}]));await h.refresh();assert.match(h.container.textContent,/tydz\. 12.*18/);assert.match(h.container.textContent,/przesunięte/);
+ h.setPayload(snapshot([{...e,period:{precision:'range',from:'2026-10-28',to:'2026-10-29'}}]));await h.refresh();assert.match(h.container.children[0].children[0].textContent,/28.*29/);
 });
 
-test('multi-day XLM range is rendered with both original dates and no guessed hour',async()=>{
- const event={...fixture('XLM'),period:{precision:'range',from:'2026-10-28',to:'2026-10-29'},startsAt:null,title:'Range fixture only'};
- const h=harness(snapshot([event]));await h.flush();const date=h.container.children[0].children[0];
- assert.match(date.children[0].textContent,/28.*29/);assert.equal(date.children[1].textContent,'—');assert.match(h.container.textContent,/XLM \(Stellar\) — Range fixture only/);assert.equal(h.warnings.length,0);
+test('manual selection sorts dates and times before limiting, deduplicates facts and hides completed/out-of-window rows',async()=>{
+ const es=Array.from({length:7},(_,i)=>({...fixture('ETH','2026-10-15T'+(19-i)+':00:00.000Z'),id:'item-'+i,title:'Event '+i}));
+ const duplicate={...es[6],id:'latest-copy',verifiedAt:'2026-10-11T12:00:01.000Z'};
+ const expired=fixture('BTC','2026-10-10T12:00:00.000Z'),completed={...es[0],id:'completed',status:'completed'},far=fixture('BTC','2026-12-01T12:00:00.000Z');
+ const h=harness(snapshot([...es,duplicate,expired,completed,far]));await h.flush();assert.equal(h.container.children.length,5);
+ assert.deepEqual(h.container.children.map(row=>row.children[1].children[0].textContent),[6,5,4,3,2].map(i=>'ETH (Ethereum) — Event '+i));
+ h.setNow('2026-10-15T13:01:00Z');await h.refresh();assert.equal(h.container.children.length,5);assert.match(h.container.children[0].textContent,/Event 5/);
+ h.setPayload(snapshot());await h.refresh();assert.equal(h.container.textContent,'brak zaplanowanych wydarzeń krypto');
 });
-
-test('XLM source outage never creates records and healthy ETH remains readable',async()=>{
- const data=snapshot([fixture('ETH')]);
- data.sources['xlm-test']={...data.sources['test-source'],status:'unavailable',verifiedAt:null,name:'XLM test source'};
- const h=harness(data);await h.flush();assert.equal(h.container.children.length,1);
- assert.equal(h.container.children[0].getAttribute('data-stale'),'false');assert.match(h.note.textContent,/nieświeże dane/);
-});
-
-test('manual month/week, multiple assets, cancellation and certainty render with no guessed date',async()=>{
- const e={...fixture('ATH'),origin:'manual',assets:['ATH','BONK'],period:{precision:'month',month:'2026-10'},startsAt:null,confidence:'speculative',status:'cancelled'};
- const h=harness(snapshot([]),{manual:{schemaVersion:2,origin:'manual',events:[e]}});await h.flush();
- assert.match(h.container.textContent,/październik 2026/);assert.match(h.container.textContent,/Aethir/);assert.match(h.container.textContent,/spekulacyjne/);assert.match(h.container.textContent,/odwołane/);assert.match(h.container.textContent,/wpis ręczny/);
- assert.equal(h.container.children[0].children[0].children[1].textContent,'—');
- h.setManual({schemaVersion:2,origin:'manual',events:[{...e,period:{precision:'week',from:'2026-10-12',to:'2026-10-18'},status:'postponed'}]});await h.refresh();assert.match(h.container.textContent,/tydz\. 12.*18/);assert.match(h.container.textContent,/przesunięte/);
-});
-
-test('independent datasets recover separately, failed auto never hides manual events',async()=>{
- const manual={schemaVersion:2,origin:'manual',events:[{...fixture('BTC'),origin:'manual',id:'manual-btc'}]};
- const h=harness(new Error('auto down'),{manual});await h.flush();assert.match(h.container.textContent,/Bitcoin/);assert.equal(h.container.children[0].getAttribute('data-stale'),'false');
- h.setPayload(snapshot());await h.refresh();assert.equal(h.container.children.length,2);
- h.setManual({schemaVersion:2,origin:'manual',events:[{...manual.events[0],verifiedAt:'tomorrow'}]});await h.refresh();assert.equal(h.container.children.length,2);assert.equal(h.container.children.find(e=>e.getAttribute('data-origin')==='manual').getAttribute('data-stale'),'true');
- h.setManual({schemaVersion:2,origin:'manual',events:[]});await h.refresh();assert.equal(h.container.children.length,1);
-});
-
-test('older auto responses cannot undo a cancellation or a newer auto snapshot',async()=>{
- const data=snapshot(),manual={schemaVersion:2,origin:'manual',events:[{...fixture(),origin:'manual',status:'cancelled'}]};
- const h=harness(data,{manual});await h.flush();assert.equal(h.container.children.length,1);assert.match(h.container.textContent,/odwołane/);
- h.setPayload({...data,generatedAt:'2026-10-10T12:00:00Z',sources:{}});await h.refresh();assert.match(h.container.textContent,/odwołane/);assert.equal(h.warnings.length,1);
-});
-
-test('legacy publication approval cannot enter the hybrid UI',async()=>{
- const h=harness({schemaVersion:1,mode:'automated-calendar',publication:{approved:true},events:[]});await h.flush();assert.equal(h.warnings.length,1);assert.match(h.container.textContent,/niedostępny/);
+test('manual ordering compares actual instants with optional fractional seconds',async()=>{
+ const first={...fixture('ETH','2026-10-15T14:00:00Z'),title:'first'};
+ const second={...fixture('ETH','2026-10-15T14:00:00.001Z'),title:'second'};
+ const h=harness(snapshot([second,first]));await h.flush();
+ assert.match(h.container.children[0].textContent,/first/);assert.match(h.container.children[1].textContent,/second/);
 });

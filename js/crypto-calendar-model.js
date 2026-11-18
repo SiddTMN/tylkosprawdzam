@@ -138,6 +138,16 @@
     const w=windowAt(now),future=events.filter(e=>{const b=periodBounds(e.period);return e.status!=='completed'&&b.to>=w.from&&b.from<w.toExclusive&&(e.startsAt===null||timestamp(e.startsAt)>=now);});
     return limit===Infinity?future:future.slice(0,limit);
   }
+  function upcomingManual(data,now=Date.now(),limit=5){
+    const facts=new Map();
+    for(const e of parseDataset(data,'manual',now).events){
+      const key=factKey(e),previous=facts.get(key);
+      if(!previous||timestamp(e.verifiedAt)>timestamp(previous.verifiedAt))facts.set(key,e);
+    }
+    const events=[...facts.values()].sort((a,b)=>periodBounds(a.period).from.localeCompare(periodBounds(b.period).from)||
+      (timestamp(a.startsAt)??0)-(timestamp(b.startsAt)??0)||a.id.localeCompare(b.id));
+    return upcomingHybrid(events,now,limit);
+  }
   function autoSourceIsStale(s,now){return !s||s.status!=='fresh'||timestamp(s.verifiedAt)===null||now-timestamp(s.verifiedAt)>AUTO_MAX_AGE_MS;}
   function periodLabel(p){
     const f=new Intl.DateTimeFormat('pl-PL',{timeZone:TIME_ZONE,day:'2-digit',month:'short'}),date=s=>f.format(Date.parse(s+'T12:00:00Z')).toUpperCase();
@@ -146,5 +156,5 @@
     return (p.precision==='week'?'tydz. ':'')+date(p.from)+' – '+date(p.to);
   }
   return {TIME_ZONE,MAX_AGE_MS,validDay,timestamp,day,windowAt,safeUrl,normalizeEvent,mergeEvents,selectUpcoming,sourceIsStale,parseSnapshot,
-    ASSETS,AUTO_MAX_AGE_MS,CONFIDENCE,STATUS,periodBounds,hybridEvent,parseDataset,mergeDatasets,upcomingHybrid,autoSourceIsStale,periodLabel};
+    ASSETS,AUTO_MAX_AGE_MS,CONFIDENCE,STATUS,periodBounds,hybridEvent,parseDataset,mergeDatasets,upcomingHybrid,upcomingManual,autoSourceIsStale,periodLabel};
 });
