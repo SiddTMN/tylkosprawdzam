@@ -20,13 +20,16 @@
       date.append(el('span','',M.periodLabel(event.period)),clock);
       const info=el('div','calendar-info'),title=el('strong','');
       const assetLabel=event.assets.map(a=>a+' ('+M.ASSETS[a]+')').join(', ');
-      const link=el('a','crypto-event-link',assetLabel+' — '+event.title);link.href=event.sourceUrl;link.target='_blank';link.rel='noopener noreferrer';title.append(link);
+      const label=el(event.sourceUrl?'a':'span',event.sourceUrl?'crypto-event-link':'',assetLabel+' — '+event.title);
+      if(event.sourceUrl){label.href=event.sourceUrl;label.target='_blank';label.rel='noopener noreferrer';}
+      title.append(label);
       info.append(title,el('span','',event.description));
       if(['postponed','cancelled'].includes(event.status))info.append(el('span','crypto-event-status',M.STATUS[event.status]));
       info.append(el('span','','wpis ręczny'));
       if(stale)info.append(el('span','crypto-stale-note','nie udało się odświeżyć wpisów ręcznych'));
-      row.title='Źródło: '+event.sourceUrl+'; weryfikacja: '+verifiedFormat.format(Date.parse(event.verifiedAt));
-      row.append(date,info,el('span','calendar-impact '+({confirmed:'medium',expected:'low',speculative:'low'}[event.confidence]),M.CONFIDENCE[event.confidence]));container.append(row);
+      row.title=(event.sourceUrl?'Źródło: '+event.sourceUrl+'; weryfikacja: ':'Wpis ręczny; aktualizacja: ')+verifiedFormat.format(Date.parse(event.verifiedAt));
+      const impact=event.impact||({confirmed:'medium',expected:'low',speculative:'low'}[event.confidence]);
+      row.append(date,info,el('span','calendar-impact '+impact,event.impact?M.IMPACT[event.impact]:M.CONFIDENCE[event.confidence]));container.append(row);
     }
     if(note){
       note.textContent=(unhealthy?'błąd odczytu wpisów ręcznych':'wpisy ręczne')+' · czas: Warszawa';

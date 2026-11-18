@@ -1,6 +1,6 @@
 # Kalendarz krypto — wpisy ręczne
 
-Jedynym źródłem kalendarza jest `data/crypto-manual.json`. Plik jest obecnie pusty.
+Jedynym źródłem kalendarza jest `data/crypto-manual.json`.
 Strona pokazuje maksymalnie pięć najbliższych wpisów w oknie 30 dni,
 z datami i godzinami w strefie Europe/Warsaw. Minione i zakończone wydarzenia
 znikają automatycznie. Pusta lista wyświetla „brak zaplanowanych wydarzeń krypto”.
@@ -15,6 +15,8 @@ znikają automatycznie. Pusta lista wyświetla „brak zaplanowanych wydarzeń k
 Wzór poniżej jest przykładem, nie prawdziwym wydarzeniem. Przed wklejeniem usuń
 `example`, zastąp tytuł, opis, termin i adres źródła, a `verifiedAt` ustaw na
 rzeczywisty czas sprawdzenia informacji w UTC (nie termin przyszłego wydarzenia).
+Wpisy przekazane ręcznie bez linku mogą mieć `sourceUrl: null`; wtedy `verifiedAt`
+oznacza czas wpisania/aktualizacji, a panel nie tworzy odnośnika do źródła.
 Nie wpisuj niepotwierdzonej godziny — pozostaw `startsAt: null`.
 
 ```json
@@ -26,6 +28,7 @@ Nie wpisuj niepotwierdzonej godziny — pozostaw `startsAt: null`.
   "description": "Krótki własny opis wydarzenia.",
   "period": {"precision": "day", "date": "2026-12-01"},
   "startsAt": null,
+  "impact": "high",
   "confidence": "expected",
   "status": "planned",
   "sourceUrl": "https://example.org/zastap-zrodlem",
@@ -38,11 +41,16 @@ Obsługiwane aktywa: `BTC`, `ETH`, `DOT`, `XLM`, `ATH`, `BONK` (także kilka w j
 wpisie). Pewność: `confirmed`, `expected`, `speculative`. Status: `planned`,
 `postponed`, `cancelled`, `completed`. Wpis odwołany zachowuje widoczne oznaczenie;
 `completed` usuwa go z listy przyszłych wydarzeń.
+Opcjonalne `impact` oznacza ważność: `low` (Niskie), `medium` (Średnie), `high`
+(Wysokie). Ważność jest niezależna od pewności `confidence`.
 
 Zamiast dokładnego dnia można użyć miesiąca
 `{"precision":"month","month":"2026-12"}`, tygodnia poniedziałek–niedziela
 `{"precision":"week","from":"2026-11-23","to":"2026-11-29"}` lub zakresu
 `{"precision":"range","from":"2026-12-01","to":"2026-12-03"}`.
+Termin „do 30 listopada” zapisujemy jako
+`{"precision":"deadline","date":"2026-11-30"}` z `startsAt: null`.
+Panel pokazuje „do 30 LIS” bez przypisywania dokładnego dnia realizacji ani godziny.
 `startsAt`, jeśli godzina jest potwierdzona, musi zawierać UTC z końcówką `Z`,
 np. `2026-12-01T13:00:00Z`, i odpowiadać dacie `period.date` w Warszawie.
 
