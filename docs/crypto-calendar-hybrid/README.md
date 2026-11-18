@@ -1,5 +1,9 @@
 # Hybrydowy kalendarz krypto
 
+> Dokument archiwalny. Aktualny kalendarz korzysta wyłącznie z wpisów ręcznych:
+> [instrukcja dodawania wydarzeń](../crypto-calendar-manual.md).
+> Workflow kolektora i pilota XLM zostały wycofane.
+
 Aktualizacja 17.10.2026: **publikacja pozostaje zablokowana**. Pages nadal ma źródło `main /` (`legacy`), niezależne od własnego workflow. Poprawione pakowanie zawiera wyłącznie 18 jawnie wybranych plików; kontrola w workflow wymaga źródła „GitHub Actions”. Dokładne ustalenia, kroki w Settings, odświeżenie bez crona i propozycja PR: [RELEASE-2026-10-17.md](RELEASE-2026-10-17.md). Poniższy opis implementacji pochodzi z 13.10; bieżące wyniki są także w [VALIDATION.md](VALIDATION.md).
 
 Implementacja na gałęzi draftu [PR #2](https://github.com/SiddTMN/tylkosprawdzam/pull/2), przygotowana 13.10.2026. Zapis na gałęzi draftu nie aktywuje produkcyjnego kolektora ani wdrożenia Pages. Lokalny test `--preview` odczytał wyłącznie dopuszczone kanały GitHub. Jego zweryfikowany wynik skopiowano do lokalnego `data/crypto-auto.json` do przeglądu; `crypto-manual.json` jest pusty. Przykłady pozostają tylko w docs i są odrzucane przez walidator.

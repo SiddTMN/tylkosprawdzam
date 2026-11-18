@@ -1,5 +1,76 @@
 {
   "schemaVersion": 2,
   "origin": "manual",
-  "events": []
+  "events": [
+    {
+      "id": "xlm-developer-meeting-2026-11-19",
+      "assets": ["XLM"],
+      "title": "Spotkanie deweloperów Stellar",
+      "description": "Spotkanie zaplanowane na 19 listopada o 22:00 czasu warszawskiego.",
+      "period": {"precision": "day", "date": "2026-11-19"},
+      "startsAt": "2026-11-19T21:00:00Z",
+      "impact": "medium",
+      "confidence": "expected",
+      "status": "planned",
+      "sourceUrl": null,
+      "verifiedAt": "2026-11-18T22:19:27Z",
+      "origin": "manual"
+    },
+    {
+      "id": "xlm-bell-protocol-30-vote-2026-11-23",
+      "assets": ["XLM"],
+      "title": "Głosowanie nad aktualizacją Bell, Protocol 30 w mainnecie",
+      "description": "Głosowanie zaplanowane na 23 listopada o 18:00 czasu warszawskiego.",
+      "period": {"precision": "day", "date": "2026-11-23"},
+      "startsAt": "2026-11-23T17:00:00Z",
+      "impact": "high",
+      "confidence": "expected",
+      "status": "planned",
+      "sourceUrl": null,
+      "verifiedAt": "2026-11-18T22:19:27Z",
+      "origin": "manual"
+    },
+    {
+      "id": "btc-monthly-options-expiry-2026-11-27",
+      "assets": ["BTC"],
+      "title": "Miesięczne wygaśnięcie opcji BTC",
+      "description": "Wygaśnięcie zaplanowane na 27 listopada o 09:00 czasu warszawskiego.",
+      "period": {"precision": "day", "date": "2026-11-27"},
+      "startsAt": "2026-11-27T08:00:00Z",
+      "impact": "high",
+      "confidence": "expected",
+      "status": "planned",
+      "sourceUrl": null,
+      "verifiedAt": "2026-11-18T22:19:27Z",
+      "origin": "manual"
+    },
+    {
+      "id": "ath-burn-public-dashboard-2026-11-30",
+      "assets": ["ATH"],
+      "title": "Planowane uruchomienie mechanizmu spalania ATH i publicznego panelu",
+      "description": "Planowane do 30 listopada; dokładna data i godzina nie zostały podane.",
+      "period": {"precision": "deadline", "date": "2026-11-30"},
+      "startsAt": null,
+      "impact": "high",
+      "confidence": "expected",
+      "status": "planned",
+      "sourceUrl": null,
+      "verifiedAt": "2026-11-18T22:19:27Z",
+      "origin": "manual"
+    },
+    {
+      "id": "ath-token-unlock-2026-12-12",
+      "assets": ["ATH"],
+      "title": "Kolejne planowane odblokowanie tokenów",
+      "description": "Planowane odblokowanie tokenów ATH 12 grudnia; godzina nie została podana.",
+      "period": {"precision": "day", "date": "2026-12-12"},
+      "startsAt": null,
+      "impact": "high",
+      "confidence": "expected",
+      "status": "planned",
+      "sourceUrl": null,
+      "verifiedAt": "2026-11-18T22:27:57Z",
+      "origin": "manual"
+    }
+  ]
 }

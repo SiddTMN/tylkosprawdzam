@@ -81,3 +81,20 @@ test('storage retains full population while UI selection remains five chronologi
 test('documentation template cannot accidentally be published as a real event',()=>{
  const template=require('../docs/crypto-calendar-hybrid/crypto-manual.template.json');assert.throws(()=>M.parseDataset(template,'manual',now));
 });
+test('manual importance and optional source never relax automatic source validation',()=>{
+ for(const sourceUrl of [null,undefined]){
+  const result=M.hybridEvent(man({sourceUrl,impact:'high',confidence:'expected'}),'manual',now);
+  assert.equal(result.sourceUrl,null);assert.equal(result.impact,'high');assert.equal(result.confidence,'expected');
+  assert.throws(()=>M.hybridEvent(event({sourceUrl}),'auto',now));
+ }
+ for(const patch of [{impact:'urgent'},{impact:null},{sourceUrl:'javascript:alert(1)'},{sourceUrl:''}])assert.throws(()=>M.hybridEvent(man(patch),'manual',now));
+});
+test('a deadline keeps its upper-bound meaning and rejects an invented exact timestamp',()=>{
+ const e=man({period:{precision:'deadline',date:'2026-10-15'},startsAt:null});
+ assert.deepEqual(M.periodBounds(e.period),{from:'2026-10-15',to:'2026-10-15'});
+ assert.match(M.periodLabel(e.period),/^do 15/);
+ assert.throws(()=>M.hybridEvent({...e,startsAt:'2026-10-15T12:00:00Z'},'manual',now));
+ assert.throws(()=>M.hybridEvent({...e,period:{precision:'deadline',date:'2026-02-30'}},'manual',now));
+ assert.equal(M.upcomingManual(manual([e]),Date.parse('2026-10-15T21:59:59Z')).length,1);
+ assert.equal(M.upcomingManual(manual([e]),Date.parse('2026-10-15T22:00:00Z')).length,0);
+});

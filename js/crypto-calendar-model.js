@@ -63,12 +63,13 @@
   const ASSETS={BTC:'Bitcoin',ETH:'Ethereum',DOT:'Polkadot',XLM:'Stellar',ATH:'Aethir',BONK:'Bonk'};
   const AUTO_MAX_AGE_MS=36*3600000;
   const CONFIDENCE={confirmed:'potwierdzone',expected:'oczekiwane',speculative:'spekulacyjne'};
+  const IMPACT={low:'Niskie',medium:'Średnie',high:'Wysokie'};
   const STATUS={planned:'planowane',postponed:'przesunięte',cancelled:'odwołane',completed:'zakończone'};
   function periodBounds(p){
     if(!p||typeof p!=='object'||Array.isArray(p))throw new Error('Brak terminu wydarzenia');
-    const allowed={day:['precision','date'],month:['precision','month'],week:['precision','from','to'],range:['precision','from','to']}[p.precision];
+    const allowed={day:['precision','date'],deadline:['precision','date'],month:['precision','month'],week:['precision','from','to'],range:['precision','from','to']}[p.precision];
     if(!allowed||Object.keys(p).some(k=>!allowed.includes(k)))throw new Error('Nieprawidłowa precyzja terminu');
-    if(p.precision==='day'&&validDay(p.date))return {from:p.date,to:p.date};
+    if(['day','deadline'].includes(p.precision)&&validDay(p.date))return {from:p.date,to:p.date};
     if(p.precision==='month'&&typeof p.month==='string'&&/^\d{4}-\d{2}$/.test(p.month)&&validDay(p.month+'-01')){
       const first=p.month+'-01',d=new Date(first+'T12:00:00Z');d.setUTCMonth(d.getUTCMonth()+1,0);
       return {from:first,to:d.toISOString().slice(0,10)};
@@ -84,13 +85,15 @@
     if(!e||e.example!==undefined||e.draft!==undefined||!validId(e.id)||e.origin!==origin||!['auto','manual'].includes(origin)||
       !Array.isArray(e.assets)||!e.assets.length||e.assets.length>6||new Set(e.assets).size!==e.assets.length||e.assets.some(a=>!Object.hasOwn(ASSETS,a))||
       typeof e.title!=='string'||!e.title.trim()||e.title.length>160||typeof e.description!=='string'||!e.description.trim()||e.description.length>360||
-      !Object.hasOwn(CONFIDENCE,e.confidence)||!Object.hasOwn(STATUS,e.status)||!safeUrl(e.sourceUrl)||
+      !Object.hasOwn(CONFIDENCE,e.confidence)||!Object.hasOwn(STATUS,e.status)||
+      ((origin==='auto'||e.sourceUrl!=null)&&!safeUrl(e.sourceUrl))||
+      (e.impact!==undefined&&!Object.hasOwn(IMPACT,e.impact))||
       timestamp(e.verifiedAt)===null||timestamp(e.verifiedAt)>now+300000||
       e.overridesId!==undefined&&(origin!=='manual'||!validId(e.overridesId)))throw new Error('Nieprawidłowe wydarzenie hybrydowe');
     periodBounds(e.period);
     if(e.startsAt!=null&&(e.period.precision!=='day'||timestamp(e.startsAt)===null||day(timestamp(e.startsAt))!==e.period.date))throw new Error('Godzina sprzeczna z terminem');
     if(origin==='auto'&&(!validId(e.sourceId)||e.confidence!=='confirmed'||e.status!=='planned'))throw new Error('Niezweryfikowany rekord automatyczny');
-    return {...e,assets:[...e.assets].sort(),period:{...e.period},startsAt:e.startsAt??null};
+    return {...e,assets:[...e.assets].sort(),period:{...e.period},startsAt:e.startsAt??null,sourceUrl:e.sourceUrl??null};
   }
   function parseDataset(data,origin,now=Date.now()){
     if(data?.schemaVersion!==2||data.origin!==origin||!Array.isArray(data.events)||data.events.length>2000)throw new Error('Nieprawidłowy zbiór '+origin);
@@ -138,13 +141,24 @@
     const w=windowAt(now),future=events.filter(e=>{const b=periodBounds(e.period);return e.status!=='completed'&&b.to>=w.from&&b.from<w.toExclusive&&(e.startsAt===null||timestamp(e.startsAt)>=now);});
     return limit===Infinity?future:future.slice(0,limit);
   }
+  function upcomingManual(data,now=Date.now(),limit=5){
+    const facts=new Map();
+    for(const e of parseDataset(data,'manual',now).events){
+      const key=factKey(e),previous=facts.get(key);
+      if(!previous||timestamp(e.verifiedAt)>timestamp(previous.verifiedAt))facts.set(key,e);
+    }
+    const events=[...facts.values()].sort((a,b)=>periodBounds(a.period).from.localeCompare(periodBounds(b.period).from)||
+      (timestamp(a.startsAt)??0)-(timestamp(b.startsAt)??0)||a.id.localeCompare(b.id));
+    return upcomingHybrid(events,now,limit);
+  }
   function autoSourceIsStale(s,now){return !s||s.status!=='fresh'||timestamp(s.verifiedAt)===null||now-timestamp(s.verifiedAt)>AUTO_MAX_AGE_MS;}
   function periodLabel(p){
     const f=new Intl.DateTimeFormat('pl-PL',{timeZone:TIME_ZONE,day:'2-digit',month:'short'}),date=s=>f.format(Date.parse(s+'T12:00:00Z')).toUpperCase();
     if(p.precision==='month')return new Intl.DateTimeFormat('pl-PL',{timeZone:TIME_ZONE,month:'long',year:'numeric'}).format(Date.parse(p.month+'-01T12:00:00Z'));
     if(p.precision==='day')return date(p.date);
+    if(p.precision==='deadline')return 'do '+date(p.date);
     return (p.precision==='week'?'tydz. ':'')+date(p.from)+' – '+date(p.to);
   }
   return {TIME_ZONE,MAX_AGE_MS,validDay,timestamp,day,windowAt,safeUrl,normalizeEvent,mergeEvents,selectUpcoming,sourceIsStale,parseSnapshot,
-    ASSETS,AUTO_MAX_AGE_MS,CONFIDENCE,STATUS,periodBounds,hybridEvent,parseDataset,mergeDatasets,upcomingHybrid,autoSourceIsStale,periodLabel};
+    ASSETS,AUTO_MAX_AGE_MS,CONFIDENCE,IMPACT,STATUS,periodBounds,hybridEvent,parseDataset,mergeDatasets,upcomingHybrid,upcomingManual,autoSourceIsStale,periodLabel};
 });
