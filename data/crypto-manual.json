@@ -57,6 +57,20 @@
       "sourceUrl": null,
       "verifiedAt": "2026-11-18T22:19:27Z",
       "origin": "manual"
+    },
+    {
+      "id": "ath-token-unlock-2026-12-12",
+      "assets": ["ATH"],
+      "title": "Kolejne planowane odblokowanie tokenów",
+      "description": "Planowane odblokowanie tokenów ATH 12 grudnia; godzina nie została podana.",
+      "period": {"precision": "day", "date": "2026-12-12"},
+      "startsAt": null,
+      "impact": "high",
+      "confidence": "expected",
+      "status": "planned",
+      "sourceUrl": null,
+      "verifiedAt": "2026-11-18T22:27:57Z",
+      "origin": "manual"
     }
   ]
 }
