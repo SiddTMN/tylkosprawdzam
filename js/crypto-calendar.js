@@ -20,9 +20,10 @@
       date.append(el('span','',M.periodLabel(event.period)),clock);
       const info=el('div','calendar-info'),title=el('strong','');
       const assetLabel=event.assets.map(a=>a+' ('+M.ASSETS[a]+')').join(', ');
-      const label=el(event.sourceUrl?'a':'span',event.sourceUrl?'crypto-event-link':'',assetLabel+' — '+event.title);
-      if(event.sourceUrl){label.href=event.sourceUrl;label.target='_blank';label.rel='noopener noreferrer';}
-      title.append(label);
+      const label=assetLabel+' — '+event.title;
+      if(event.sourceUrl){
+        const link=el('a','crypto-event-link',label);link.href=event.sourceUrl;link.target='_blank';link.rel='noopener noreferrer';title.append(link);
+      }else title.textContent=label;
       info.append(title,el('span','',event.description));
       if(['postponed','cancelled'].includes(event.status))info.append(el('span','crypto-event-status',M.STATUS[event.status]));
       info.append(el('span','','wpis ręczny'));

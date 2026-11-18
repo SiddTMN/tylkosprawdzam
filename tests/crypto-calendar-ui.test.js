@@ -114,14 +114,19 @@ test('manual ordering compares actual instants with optional fractional seconds'
  const h=harness(snapshot([second,first]));await h.flush();
  assert.match(h.container.children[0].textContent,/first/);assert.match(h.container.children[1].textContent,/second/);
 });
-test('user November entries retain Warsaw times, importance and an untimed ATH deadline without fabricated links',async()=>{
- const data=JSON.parse(fs.readFileSync(path.join(__dirname,'../data/crypto-manual.json'),'utf8'));
+test('manual entries retain Warsaw times, importance and an untimed deadline without fabricated links',async()=>{
+ const data=snapshot([
+  {...fixture('XLM','2026-11-19T21:00:00Z'),sourceUrl:null,impact:'medium'},
+  {...fixture('XLM','2026-11-23T17:00:00Z'),sourceUrl:null,impact:'high'},
+  {...fixture('BTC','2026-11-27T08:00:00Z'),sourceUrl:null,impact:'high'},
+  {...fixture('ATH','2026-11-30T12:00:00Z'),sourceUrl:null,impact:'high',period:{precision:'deadline',date:'2026-11-30'},startsAt:null,title:'Mechanizm spalania ATH'}
+ ]);
  const h=harness(data,{now:'2026-11-18T23:00:00Z'});await h.flush();
  assert.equal(h.container.children.length,4);assert.equal(h.warnings.length,0);
  assert.deepEqual(h.container.children.map(row=>row.children[0].children[1].textContent),['22:00','18:00','09:00','—']);
  assert.deepEqual(h.container.children.map(row=>row.children[2].textContent),['Średnie','Wysokie','Wysokie','Wysokie']);
  assert.match(h.container.children[3].children[0].children[0].textContent,/^do 30/);
- for(const row of h.container.children){assert.equal(row.children[1].children[0].children[0].tagName,'span');assert.match(row.title,/Wpis ręczny; aktualizacja:/);}
+ for(const row of h.container.children){assert.equal(row.children[1].children[0].children.length,0);assert.match(row.title,/Wpis ręczny; aktualizacja:/);}
  h.setNow('2026-11-30T22:59:59Z');await h.refresh();assert.equal(h.container.children.length,1);assert.match(h.container.textContent,/spalania ATH/);
  h.setNow('2026-11-30T23:00:00Z');await h.refresh();assert.equal(h.container.textContent,'brak zaplanowanych wydarzeń krypto');
 });
