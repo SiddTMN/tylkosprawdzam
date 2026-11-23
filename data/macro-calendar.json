@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-11-23T09:03:08.247Z",
+  "generatedAt": "2026-11-23T21:22:19.571Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,43 +12,17 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-11-23T09:03:08.247Z",
-      "lastSuccessAt": "2026-11-23T09:03:08.247Z"
+      "checkedAt": "2026-11-23T21:22:19.571Z",
+      "lastSuccessAt": "2026-11-23T21:22:19.571Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "fresh",
-      "checkedAt": "2026-11-23T09:03:08.247Z",
-      "lastSuccessAt": "2026-11-23T09:03:08.247Z"
+      "checkedAt": "2026-11-23T21:22:19.571Z",
+      "lastSuccessAt": "2026-11-23T21:22:19.571Z"
     }
   },
   "events": [
-    {
-      "source": "TreasuryDirect",
-      "id": "TreasuryDirect:91282CRY9:2026-11-23",
-      "name": "US Treasury 2Y Auction",
-      "category": "TreasuryDirect · potwierdzona",
-      "impact": "medium",
-      "kind": "timed",
-      "sortAt": 1795456800000,
-      "expiresAt": 1795456800000,
-      "cusip": "91282CRY9",
-      "securityType": "Note",
-      "originalTerm": "2-Year",
-      "remainingTerm": "2-Year",
-      "reopening": false,
-      "auctionDate": "2026-11-23",
-      "settlementDate": "2026-11-30",
-      "announcementDate": "2026-11-19",
-      "maturityDate": "2028-11-30",
-      "confirmation": "announced",
-      "timeZone": "America/New_York",
-      "timeBasis": "competitive-bid-close",
-      "competitiveClose": "13:00",
-      "noncompetitiveClose": "12:00",
-      "offeringAmount": "69000000000",
-      "announcementUrl": "https://www.treasurydirect.gov/instit/annceresult/press/preanre/2026/A_20261119_6.pdf"
-    },
     {
       "source": "TreasuryDirect",
       "id": "TreasuryDirect:91282CRZ6:2026-11-24",
