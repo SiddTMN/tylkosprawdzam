@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "FinanceCalendar+TreasuryDirect",
-  "generatedAt": "2026-11-24T06:01:40.073Z",
+  "generatedAt": "2026-11-24T17:42:38.558Z",
   "queryTimezone": "UTC",
   "displayTimezone": "Europe/Warsaw",
   "range": {
@@ -12,14 +12,14 @@
     "FinanceCalendar": {
       "endpoint": "https://www.financecalendar.com/wp-json/fc/v1/calendar",
       "status": "fresh",
-      "checkedAt": "2026-11-24T06:01:40.073Z",
-      "lastSuccessAt": "2026-11-24T06:01:40.073Z"
+      "checkedAt": "2026-11-24T17:42:38.558Z",
+      "lastSuccessAt": "2026-11-24T17:42:38.558Z"
     },
     "TreasuryDirect": {
       "endpoint": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
       "status": "fresh",
-      "checkedAt": "2026-11-24T06:01:40.073Z",
-      "lastSuccessAt": "2026-11-24T06:01:40.073Z"
+      "checkedAt": "2026-11-24T17:42:38.558Z",
+      "lastSuccessAt": "2026-11-24T17:42:38.558Z"
     }
   },
   "events": [
