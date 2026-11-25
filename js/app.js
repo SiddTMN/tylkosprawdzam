@@ -188,6 +188,8 @@ const cryptoAssets = document.querySelectorAll(".asset[data-coin]");
 
 const coinIds = [...cryptoAssets]
     .map(asset => asset.dataset.coin)
+    // Solana jest składnikiem Market Trend bez osobnego przycisku kursu.
+    .concat("solana")
     .join(",");
 
 const cryptoApiUrl =
@@ -223,7 +225,7 @@ function renderMarketTrend(data) {
     }
     const main = direction(core);
     const broad = average("polkadot", "stellar");
-    const speculative = average("bonk", "aethir");
+    const speculative = average("solana", "aethir");
     const pressure = broad === null ? 0 : direction(broad);
     let level = 0;
     if (pressure !== 0 && (main === 0 || pressure === main)) {
@@ -391,10 +393,10 @@ updateOilPrice();
 setInterval(updateOilPrice, 15 * 60 * 1000);
 
 // --------------------------------------------------
-// USD / PLN
+// USD / PLN, EUR / PLN
 // --------------------------------------------------
 
-async function updateUsdPln() {
+async function updatePlnRate(base) {
 
     try {
 
@@ -410,7 +412,7 @@ async function updateUsdPln() {
             `https://api.frankfurter.dev/v2/rates` +
             `?from=${formatDate(startDate)}` +
             `&to=${formatDate(endDate)}` +
-            `&base=USD` +
+            `&base=${base}` +
             `&quotes=PLN`;
 
         const response = await fetch(url);
@@ -423,7 +425,7 @@ async function updateUsdPln() {
 
         if (!Array.isArray(data) || data.length < 2) {
             throw new Error(
-                "Brak wystarczających danych USD/PLN"
+                `Brak wystarczających danych ${base}/PLN`
             );
         }
 
@@ -437,26 +439,34 @@ async function updateUsdPln() {
         const previous = data[data.length - 2];
 
         const rate = Number(latest.rate);
-        usdPlnRate = rate;
         const previousRate = Number(previous.rate);
+
+        if (!Number.isFinite(rate) || rate <= 0 ||
+            !Number.isFinite(previousRate) || previousRate <= 0) {
+            throw new Error(`Nieprawidłowy kurs ${base}/PLN`);
+        }
+
+        if (base === "USD") {
+            usdPlnRate = rate;
+        }
 
         const change =
             ((rate - previousRate) / previousRate) * 100;
 
-        const usdAsset =
+        const currencyAsset =
             document.querySelector(
-                '.asset[data-market="usdpln"]'
+                `.asset[data-market="${base.toLowerCase()}pln"]`
             );
 
-        if (!usdAsset) {
+        if (!currencyAsset) {
             return;
         }
 
         const priceElement =
-            usdAsset.querySelector(".asset-price");
+            currencyAsset.querySelector(".asset-price");
 
         const changeElement =
-            usdAsset.querySelector(".asset-change");
+            currencyAsset.querySelector(".asset-change");
 
         priceElement.textContent =
             rate.toFixed(4);
@@ -474,12 +484,13 @@ async function updateUsdPln() {
     } catch (error) {
 
         console.error(
-            "Nie udało się pobrać USD/PLN:",
+            `Nie udało się pobrać ${base}/PLN:`,
             error
         );
     }
 }
 
-updateUsdPln();
-
-setInterval(updateUsdPln, 60 * 60 * 1000);
+["USD", "EUR"].forEach(base => {
+    updatePlnRate(base);
+    setInterval(() => updatePlnRate(base), 60 * 60 * 1000);
+});
